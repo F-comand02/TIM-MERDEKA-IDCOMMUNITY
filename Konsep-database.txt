@@ -1,0 +1,22 @@
+USER
+  │
+  ▼
+Pilih Aksi
+  │
+  ▼
+Melakukan Aksi
+  │
+  ▼
+Upload Bukti
+  │
+  ▼
+Admin Verifikasi
+  │
+  ▼
+Aksi Disetujui
+  │
+  ├──────► + Progress Nasional
+  │
+  ├──────► + Poin User
+  │
+  └──────► Masuk Peta Aksi

@@ -1,0 +1,28 @@
+semangat-kemerdekaan/
+│
+├── config/
+│   └── database.php
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── script.js
+│   └── images/
+│
+├── pages/
+│   ├── aksi.php
+│   ├── peta.php
+│   ├── cerita.php
+│   └── tantangan.php
+│
+├── admin/
+│   ├── index.php
+│   ├── aksi.php
+│   ├── cerita.php
+│   └── user.php
+│
+├── index.php
+├── login.php
+├── register.php
+└── logout.php
