@@ -21,6 +21,26 @@ $userId = (int) $_SESSION['user_id'];
 
 
 // ==========================================
+// KOMPATIBILITAS DATABASE LAMA
+// ==========================================
+
+$checkWilayahColumn = mysqli_query(
+    $conn,
+    "SHOW COLUMNS FROM aksi_user LIKE 'wilayah'"
+);
+
+if (
+    $checkWilayahColumn !== false
+    && mysqli_num_rows($checkWilayahColumn) === 0
+) {
+    mysqli_query(
+        $conn,
+        "ALTER TABLE aksi_user ADD COLUMN wilayah VARCHAR(50) NULL AFTER daerah"
+    );
+}
+
+
+// ==========================================
 // AMBIL AKSI ID
 // ==========================================
 
@@ -163,17 +183,11 @@ if (
 
 
         // Ambil MIME asli
-        $finfo =
-            finfo_open(FILEINFO_MIME_TYPE);
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
 
-        $mimeType =
-            finfo_file(
-                $finfo,
-                $file['tmp_name']
-            );
-
-        finfo_close($finfo);
-
+        $mimeType = $finfo !== false
+            ? finfo_file($finfo, $file['tmp_name'])
+            : (mime_content_type($file['tmp_name']) ?: '');
 
         if (
             !in_array(

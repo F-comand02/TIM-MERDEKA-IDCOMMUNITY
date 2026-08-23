@@ -102,10 +102,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $daerah
             );
 
+            // ==============================
+            // JIKA BERHASIL
+            // LANGSUNG KE LOGIN
+            // ==============================
+
             if (mysqli_stmt_execute($stmtInsert)) {
 
-                $success =
-                    "Registrasi berhasil! Silakan masuk.";
+                header("Location: login.php");
+                exit;
 
             } else {
 
@@ -440,6 +445,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h1>
 
                 Jadilah Bagian
+
                 <span>
                     dari Perubahan.
                 </span>
@@ -492,17 +498,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="auth-message auth-error">
 
                     <?= htmlspecialchars($error) ?>
-
-                </div>
-
-            <?php endif; ?>
-
-
-            <?php if (!empty($success)): ?>
-
-                <div class="auth-message auth-success">
-
-                    <?= htmlspecialchars($success) ?>
 
                 </div>
 

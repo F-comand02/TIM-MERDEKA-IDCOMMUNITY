@@ -66,6 +66,7 @@ CREATE TABLE `aksi_user` (
   `user_id` int NOT NULL,
   `aksi_id` int NOT NULL,
   `daerah` varchar(100) DEFAULT NULL,
+  `wilayah` varchar(50) DEFAULT NULL,
   `bukti` text,
   `tanggal_aksi` date NOT NULL,
   `status` enum('pending','disetujui','ditolak') DEFAULT 'pending'
