@@ -167,6 +167,62 @@ $totalPoin =
 
 
 // ==========================================
+// LEVEL & CAPAIAN
+// ==========================================
+
+$milestones = [
+    ['target' => 1, 'label' => 'Pemula', 'icon' => '🌱'],
+    ['target' => 3, 'label' => 'Relawan', 'icon' => '🔥'],
+    ['target' => 5, 'label' => 'Aktivis', 'icon' => '🏅'],
+    ['target' => 10, 'label' => 'Pejuang', 'icon' => '👑'],
+];
+
+$currentLevel = $milestones[0];
+$nextMilestone = $milestones[0];
+$progressPercent = 0;
+
+foreach ($milestones as $index => $milestone) {
+    if ($totalDisetujui >= $milestone['target']) {
+        $currentLevel = $milestone;
+        $nextMilestone = $milestones[$index + 1] ?? null;
+    } else {
+        $nextMilestone = $milestone;
+        break;
+    }
+}
+
+if ($nextMilestone !== null && $totalDisetujui < $nextMilestone['target']) {
+    $previousTarget = 0;
+    foreach ($milestones as $milestone) {
+        if ($milestone['target'] >= $nextMilestone['target']) {
+            break;
+        }
+        $previousTarget = $milestone['target'];
+    }
+
+    $range = max(1, $nextMilestone['target'] - $previousTarget);
+    $progressPercent = min(
+        100,
+        max(
+            0,
+            (($totalDisetujui - $previousTarget) / $range) * 100
+        )
+    );
+} else {
+    $progressPercent = 100;
+}
+
+$levelLabel = $currentLevel['label'];
+$levelIcon = $currentLevel['icon'];
+
+if ($nextMilestone !== null && $totalDisetujui < $nextMilestone['target']) {
+    $nextGoalText = 'Target berikutnya: ' . $nextMilestone['label'] . ' (' . $totalDisetujui . '/' . $nextMilestone['target'] . ' aksi)';
+} else {
+    $nextGoalText = 'Kamu sudah mencapai level tertinggi!';
+}
+
+
+// ==========================================
 // RIWAYAT AKSI
 // ==========================================
 
@@ -331,6 +387,62 @@ $resultHistory =
         .dashboard-stat span {
             color: #737373;
             font-size: 11px;
+        }
+
+        .dashboard-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 22px 24px;
+            margin-bottom: 28px;
+            border: 1px solid #f3d4d5;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #fff5f5, #ffffff);
+        }
+
+        .progress-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 92px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #fff1f2;
+            color: #d71920;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .progress-copy {
+            flex: 1;
+        }
+
+        .progress-copy strong {
+            display: block;
+            font-size: 16px;
+        }
+
+        .progress-copy small {
+            display: block;
+            margin-top: 5px;
+            color: #737373;
+            font-size: 11px;
+        }
+
+        .progress-bar {
+            width: 210px;
+            height: 11px;
+            overflow: hidden;
+            border-radius: 999px;
+            background: #f5f5f5;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #d71920, #f87171);
         }
 
         .dashboard-content {
@@ -556,6 +668,15 @@ $resultHistory =
 
         <div class="nav-button">
 
+            <?php if ((($_SESSION['role'] ?? '') === 'admin')): ?>
+                <a
+                    href="admin/index.php"
+                    class="btn btn-primary"
+                >
+                    Kembali ke Admin
+                </a>
+            <?php endif; ?>
+
             <a
                 href="logout.php"
                 class="btn btn-outline"
@@ -688,6 +809,29 @@ $resultHistory =
                     Total Poin
                 </span>
 
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-progress">
+
+            <div class="progress-badge">
+                <?= $levelIcon ?> <?= $levelLabel ?>
+            </div>
+
+            <div class="progress-copy">
+                <strong>
+                    Progress kontribusimu
+                </strong>
+
+                <small>
+                    <?= htmlspecialchars($nextGoalText) ?>
+                </small>
+            </div>
+
+            <div class="progress-bar" aria-label="Progress pencapaian pengguna">
+                <span style="width: <?= round($progressPercent) ?>%"></span>
             </div>
 
         </div>
@@ -840,13 +984,98 @@ $resultHistory =
 
 <footer class="footer">
 
+    <div class="container footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    🇮🇩
+                </span>
+
+                Aksi Untuk Negeri
+
+            </div>
+
+
+            <p>
+                Platform kampanye sosial untuk
+                mengubah semangat kemerdekaan
+                menjadi aksi nyata.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Jelajahi
+            </h4>
+
+            <a href="index.php#aksi">
+                Pilih Aksi
+            </a>
+
+            <a href="index.php#progress">
+                Progress
+            </a>
+
+            <a href="index.php#tantangan">
+                17 Hari
+            </a>
+
+            <a href="index.php#cerita">
+                Cerita Mereka
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Bergabung
+            </h4>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+                    <a href="admin/index.php">
+                        Dashboard Admin
+                    </a>
+                <?php endif; ?>
+
+                <a href="dashboard.php">
+                    Dashboard
+                </a>
+
+                <a href="logout.php">
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a href="login.php">
+                    Masuk
+                </a>
+
+                <a href="register.php">
+                    Daftar
+                </a>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+
     <div class="footer-bottom">
 
         <div class="container">
 
             <p>
                 © <?= date('Y') ?>
-                Aksi Untuk Negeri 🇮🇩
+                Aksi Untuk Negeri.
+                Dibuat untuk Indonesia 🇮🇩
             </p>
 
         </div>

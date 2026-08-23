@@ -236,9 +236,24 @@ if (
                     $messageType =
                         "error";
                 }
+
+                $_SESSION['admin_flash_message'] = $message;
+                $_SESSION['admin_flash_type'] = $messageType;
+
+                header("Location: index.php");
+                exit;
             }
         }
     }
+}
+
+$flashMessage = $_SESSION['admin_flash_message'] ?? '';
+$flashType = $_SESSION['admin_flash_type'] ?? 'success';
+if (isset($_SESSION['admin_flash_message'])) {
+    unset($_SESSION['admin_flash_message']);
+}
+if (isset($_SESSION['admin_flash_type'])) {
+    unset($_SESSION['admin_flash_type']);
 }
 
 
@@ -339,6 +354,53 @@ $queryPendingList = mysqli_query(
      WHERE aksi_user.status = 'pending'
 
      ORDER BY aksi_user.id DESC"
+);
+
+$historyStatusFilter = $_GET['history_status'] ?? 'all';
+if (!in_array($historyStatusFilter, ['all', 'disetujui', 'ditolak'], true)) {
+    $historyStatusFilter = 'all';
+}
+
+$historyWhere = "aksi_user.status IN ('disetujui', 'ditolak')";
+if ($historyStatusFilter !== 'all') {
+    $historyWhere = "aksi_user.status = '" . mysqli_real_escape_string($conn, $historyStatusFilter) . "'";
+}
+
+$queryHistoryList = mysqli_query(
+    $conn,
+    "SELECT
+        aksi_user.id,
+        aksi_user.daerah,
+        aksi_user.wilayah,
+        aksi_user.bukti,
+        aksi_user.tanggal_aksi,
+        aksi_user.status,
+
+        users.nama AS nama_user,
+        users.email,
+
+        aksi.nama_aksi,
+        aksi.poin,
+
+        kategori.nama_kategori,
+        kategori.icon,
+        kategori.sdg
+
+     FROM aksi_user
+
+     INNER JOIN users
+        ON aksi_user.user_id = users.id
+
+     INNER JOIN aksi
+        ON aksi_user.aksi_id = aksi.id
+
+     INNER JOIN kategori
+        ON aksi.kategori_id = kategori.id
+
+     WHERE " . $historyWhere . "
+
+     ORDER BY aksi_user.id DESC
+     LIMIT 20"
 );
 
 ?>
@@ -611,6 +673,54 @@ $queryPendingList = mysqli_query(
             font-size: 10px;
 
             font-weight: 900;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 6px 10px;
+
+            border-radius: 999px;
+
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+        }
+
+        .status-badge.approved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-badge.rejected {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .history-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .history-filter a {
+            padding: 7px 11px;
+            border: 1px solid #e5e5e5;
+            border-radius: 999px;
+            background: #fafafa;
+            color: #525252;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .history-filter a.active {
+            background: #fff1f2;
+            border-color: #f3d4d5;
+            color: #d71920;
         }
 
 
@@ -902,17 +1012,32 @@ $queryPendingList = mysqli_query(
         <nav class="nav-menu">
 
             <a href="../index.php">
-                Website
+                Beranda
+            </a>
+
+            <a href="../index.php#cerita">
+                Kabar
             </a>
 
             <a href="../dashboard.php">
-                User Dashboard
+                Profil
+            </a>
+
+            <a href="../dashboard.php">
+                Halaman Web
             </a>
 
         </nav>
 
 
         <div class="nav-button">
+
+            <a
+                href="../dashboard.php"
+                class="btn btn-primary"
+            >
+                Halaman Web
+            </a>
 
             <a
                 href="../logout.php"
@@ -1157,7 +1282,7 @@ $queryPendingList = mysqli_query(
 
                             <div class="verification-user">
 
-                                👤
+                                <strong>Pelaku Aksi:</strong>
 
                                 <?= htmlspecialchars(
                                     $item['nama_user']
@@ -1255,16 +1380,25 @@ $queryPendingList = mysqli_query(
                         <div class="verification-actions">
 
 
-                            <?php if (
-                                !empty(
-                                    $item['bukti']
-                                )
-                            ): ?>
+                            <?php
+                                $proofPath = trim((string) $item['bukti']);
+                                $proofUrl = '';
+
+                                if ($proofPath !== '') {
+                                    $proofPath = preg_replace('#^\./+#', '', $proofPath);
+                                    $proofPath = ltrim($proofPath, '/');
+                                    $candidate = '../' . $proofPath;
+
+                                    if (file_exists(__DIR__ . '/../' . $proofPath)) {
+                                        $proofUrl = $candidate;
+                                    }
+                                }
+                            ?>
+
+                            <?php if ($proofUrl !== ''): ?>
 
                                 <a
-                                    href="../<?= htmlspecialchars(
-                                        $item['bukti']
-                                    ) ?>"
+                                    href="<?= htmlspecialchars($proofUrl) ?>"
                                     target="_blank"
                                     class="proof-link"
                                 >
@@ -1400,6 +1534,112 @@ $queryPendingList = mysqli_query(
 
         </section>
 
+
+        <!-- RIWAYAT VERIFIKASI -->
+
+        <section class="admin-panel" style="margin-top: 28px;">
+
+            <div class="admin-panel-header">
+
+                <div>
+
+                    <h2>
+                        Riwayat Verifikasi
+                    </h2>
+
+                    <p>
+                        Aksi yang sudah disetujui atau ditolak baru-baru ini.
+                    </p>
+
+                </div>
+
+                <div class="history-filter">
+                    <a href="index.php?history_status=all" class="<?= $historyStatusFilter === 'all' ? 'active' : '' ?>">Semua</a>
+                    <a href="index.php?history_status=disetujui" class="<?= $historyStatusFilter === 'disetujui' ? 'active' : '' ?>">Disetujui</a>
+                    <a href="index.php?history_status=ditolak" class="<?= $historyStatusFilter === 'ditolak' ? 'active' : '' ?>">Ditolak</a>
+                </div>
+
+            </div>
+
+            <?php if (mysqli_num_rows($queryHistoryList) > 0): ?>
+
+                <?php while ($item = mysqli_fetch_assoc($queryHistoryList)): ?>
+
+                    <div class="verification-item">
+
+                        <div class="verification-icon">
+                            <?= htmlspecialchars($item['icon']) ?>
+                        </div>
+
+                        <div class="verification-info">
+
+                            <h3>
+                                <?= htmlspecialchars($item['nama_aksi']) ?>
+                            </h3>
+
+                            <div class="verification-user">
+                                <strong>Pelaku Aksi:</strong>
+                                <?= htmlspecialchars($item['nama_user']) ?>
+                                ·
+                                <?= htmlspecialchars($item['email']) ?>
+                            </div>
+
+                            <div class="verification-meta">
+                                <span class="meta-item">📂 <?= htmlspecialchars($item['nama_kategori']) ?></span>
+                                <span class="meta-item">🎯 <?= htmlspecialchars($item['sdg']) ?></span>
+                                <span class="meta-item">📍 <?= htmlspecialchars($item['daerah']) ?></span>
+                                <span class="meta-item">🌏 <?= htmlspecialchars($item['wilayah']) ?></span>
+                                <span class="meta-item">📅 <?= date('d M Y', strtotime($item['tanggal_aksi'])) ?></span>
+                                <span class="meta-item">🏆 +<?= $item['poin'] ?> poin</span>
+                            </div>
+
+                        </div>
+
+                        <div class="verification-actions">
+
+                            <span class="status-badge <?= $item['status'] === 'disetujui' ? 'approved' : 'rejected' ?>">
+                                <?= $item['status'] === 'disetujui' ? 'DISETUJUI' : 'DITOLAK' ?>
+                            </span>
+
+                            <?php
+                                $proofPath = trim((string) $item['bukti']);
+                                $proofUrl = '';
+
+                                if ($proofPath !== '') {
+                                    $proofPath = preg_replace('#^\./+#', '', $proofPath);
+                                    $proofPath = ltrim($proofPath, '/');
+                                    $candidate = '../' . $proofPath;
+
+                                    if (file_exists(__DIR__ . '/../' . $proofPath)) {
+                                        $proofUrl = $candidate;
+                                    }
+                                }
+                            ?>
+
+                            <?php if ($proofUrl !== ''): ?>
+                                <a href="<?= htmlspecialchars($proofUrl) ?>" target="_blank" class="proof-link">
+                                    📸 Lihat Bukti
+                                </a>
+                            <?php endif; ?>
+
+                        </div>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+            <?php else: ?>
+
+                <div class="admin-empty">
+                    <div class="admin-empty-icon">📜</div>
+                    <h3>Belum Ada Riwayat</h3>
+                    <p>Riwayat verifikasi akan muncul setelah aksi disetujui atau ditolak.</p>
+                </div>
+
+            <?php endif; ?>
+
+        </section>
+
     </div>
 
 </main>
@@ -1407,13 +1647,92 @@ $queryPendingList = mysqli_query(
 
 <footer class="footer">
 
+    <div class="container footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    🇮🇩
+                </span>
+
+                Aksi Untuk Negeri
+
+            </div>
+
+
+            <p>
+                Platform kampanye sosial untuk
+                mengubah semangat kemerdekaan
+                menjadi aksi nyata.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Jelajahi
+            </h4>
+
+            <a href="../index.php#aksi">
+                Pilih Aksi
+            </a>
+
+            <a href="../index.php#progress">
+                Progress
+            </a>
+
+            <a href="../index.php#tantangan">
+                17 Hari
+            </a>
+
+            <a href="../index.php#cerita">
+                Cerita Mereka
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Bergabung
+            </h4>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="../dashboard.php">
+                    Halaman Web
+                </a>
+
+                <a href="../logout.php">
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a href="../login.php">
+                    Masuk
+                </a>
+
+                <a href="../register.php">
+                    Daftar
+                </a>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+
     <div class="footer-bottom">
 
         <div class="container">
 
             <p>
                 © <?= date('Y') ?>
-                Aksi Untuk Negeri 🇮🇩
+                Aksi Untuk Negeri.
+                Dibuat untuk Indonesia 🇮🇩
             </p>
 
         </div>

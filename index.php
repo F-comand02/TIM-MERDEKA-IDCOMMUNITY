@@ -889,13 +889,29 @@ $totalTantangan = (int) $dataTantangan['total'];
                 Bergabung
             </h4>
 
-            <a href="login.php">
-                Masuk
-            </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+                    <a href="admin/index.php">
+                        Dashboard Admin
+                    </a>
+                <?php endif; ?>
 
-            <a href="register.php">
-                Daftar
-            </a>
+                <a href="dashboard.php">
+                    Dashboard
+                </a>
+
+                <a href="logout.php">
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a href="login.php">
+                    Masuk
+                </a>
+
+                <a href="register.php">
+                    Daftar
+                </a>
+            <?php endif; ?>
 
         </div>
 

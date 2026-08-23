@@ -709,13 +709,98 @@ $totalAksi = array_sum(
 
 <footer class="footer">
 
+    <div class="container footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    🇮🇩
+                </span>
+
+                Aksi Untuk Negeri
+
+            </div>
+
+
+            <p>
+                Platform kampanye sosial untuk
+                mengubah semangat kemerdekaan
+                menjadi aksi nyata.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Jelajahi
+            </h4>
+
+            <a href="../index.php#aksi">
+                Pilih Aksi
+            </a>
+
+            <a href="../index.php#progress">
+                Progress
+            </a>
+
+            <a href="../index.php#tantangan">
+                17 Hari
+            </a>
+
+            <a href="../index.php#cerita">
+                Cerita Mereka
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Bergabung
+            </h4>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+                    <a href="../admin/index.php">
+                        Dashboard Admin
+                    </a>
+                <?php endif; ?>
+
+                <a href="../dashboard.php">
+                    Dashboard
+                </a>
+
+                <a href="../logout.php">
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a href="../login.php">
+                    Masuk
+                </a>
+
+                <a href="../register.php">
+                    Daftar
+                </a>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+
     <div class="footer-bottom">
 
         <div class="container">
 
             <p>
                 © <?= date('Y') ?>
-                Aksi Untuk Negeri 🇮🇩
+                Aksi Untuk Negeri.
+                Dibuat untuk Indonesia 🇮🇩
             </p>
 
         </div>

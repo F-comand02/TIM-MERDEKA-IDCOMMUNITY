@@ -263,6 +263,10 @@ select {
     gap: 9px;
 }
 
+.nav-button .btn {
+    white-space: nowrap;
+}
+
 
 /* =========================================================
    HERO
