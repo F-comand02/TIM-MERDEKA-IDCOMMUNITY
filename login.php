@@ -7,39 +7,57 @@ require_once "config/database.php";
 // Kalau sudah login
 if (isset($_SESSION['user_id'])) {
 
-    header("Location: index.php");
+    if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+        header("Location: admin/index.php");
+    } else {
+        header("Location: dashboard.php");
+    }
 
     exit;
 }
 
 $error = "";
+$success = "";
 
+// Pesan setelah berhasil register
+if (
+    isset($_GET['register']) &&
+    $_GET['register'] === 'success'
+) {
+    $success = "Registrasi berhasil! Silakan login dengan akun yang baru dibuat.";
+}
+
+// Jika user ingin melakukan aksi tertentu setelah login
 if (isset($_GET['aksi'])) {
 
     $aksiTujuan = (int) $_GET['aksi'];
 
     if ($aksiTujuan > 0) {
-
-        $_SESSION['redirect_aksi'] =
-            $aksiTujuan;
+        $_SESSION['redirect_aksi'] = $aksiTujuan;
     }
 }
+
+
+// ==============================
+// PROSES LOGIN
+// ==============================
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
 
+    // VALIDASI
     if (
         empty($email) ||
         empty($password)
     ) {
 
-        $error =
-            "Email dan password wajib diisi.";
+        $error = "Email dan password wajib diisi.";
 
     } else {
 
+        // Cari user berdasarkan email
         $stmt = mysqli_prepare(
             $conn,
             "SELECT
@@ -49,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 password,
                 role,
                 daerah
-             FROM users
-             WHERE email = ?
-             LIMIT 1"
+            FROM users
+            WHERE email = ?
+            LIMIT 1"
         );
 
         mysqli_stmt_bind_param(
@@ -62,12 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         mysqli_stmt_execute($stmt);
 
-        $result =
-            mysqli_stmt_get_result($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-        $user =
-            mysqli_fetch_assoc($result);
+        $user = mysqli_fetch_assoc($result);
 
+
+        // ==========================
+        // CEK PASSWORD
+        // ==========================
 
         if (
             $user &&
@@ -83,62 +103,74 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             session_regenerate_id(true);
 
-            $_SESSION['user_id'] =
-                $user['id'];
+            $_SESSION['user_id'] = $user['id'];
 
-            $_SESSION['nama'] =
-                $user['nama'];
+            $_SESSION['nama'] = $user['nama'];
 
-            $_SESSION['email'] =
-                $user['email'];
+            $_SESSION['email'] = $user['email'];
 
-            $_SESSION['role'] =
-                $user['role'];
+            $_SESSION['role'] = $user['role'];
 
-            $_SESSION['daerah'] =
-                $user['daerah'];
+            $_SESSION['daerah'] = $user['daerah'];
+
+
+            // Tutup statement
+            mysqli_stmt_close($stmt);
 
 
             // ==========================
             // REDIRECT
             // ==========================
-if ($user['role'] === 'admin') {
 
-    header(
-        "Location: admin/index.php"
-    );
+            // Jika admin
+            if ($user['role'] === 'admin') {
 
-} else {
+                header(
+                    "Location: admin/index.php"
+                );
 
-    $aksiTujuan =
-        isset($_SESSION['redirect_aksi'])
-        ? (int) $_SESSION['redirect_aksi']
-        : 0;
+                exit;
 
-    unset($_SESSION['redirect_aksi']);
+            } else {
 
-    if ($aksiTujuan > 0) {
+                // Jika sebelumnya user ingin
+                // melakukan aksi tertentu
+                $aksiTujuan =
+                    isset($_SESSION['redirect_aksi'])
+                    ? (int) $_SESSION['redirect_aksi']
+                    : 0;
 
-        header(
-            "Location: lakukan-aksi.php?aksi="
-            . $aksiTujuan
-        );
+                // Hapus redirect aksi setelah digunakan
+                unset($_SESSION['redirect_aksi']);
 
-    } else {
 
-        header(
-            "Location: dashboard.php"
-        );
-    }
-}
+                if ($aksiTujuan > 0) {
 
-exit;
+                    header(
+                        "Location: lakukan-aksi.php?aksi="
+                        . $aksiTujuan
+                    );
+
+                    exit;
+
+                } else {
+
+                    // User biasa masuk dashboard
+                    header(
+                        "Location: dashboard.php"
+                    );
+
+                    exit;
+                }
+            }
 
         } else {
 
             $error =
                 "Email atau password salah.";
         }
+
+        mysqli_stmt_close($stmt);
     }
 }
 
@@ -185,6 +217,7 @@ exit;
                 );
         }
 
+
         .login-container {
             width: 100%;
             max-width: 950px;
@@ -206,6 +239,11 @@ exit;
                 0 25px 70px
                 rgba(0,0,0,0.10);
         }
+
+
+        /* ==========================
+           BAGIAN KIRI
+        ========================== */
 
         .login-brand {
             position: relative;
@@ -229,6 +267,7 @@ exit;
             color: white;
         }
 
+
         .login-brand::before {
             content: "🇮🇩";
 
@@ -242,11 +281,13 @@ exit;
             opacity: 0.06;
         }
 
+
         .login-brand-content {
             position: relative;
 
             z-index: 2;
         }
+
 
         .login-brand h1 {
             margin-top: 20px;
@@ -257,6 +298,7 @@ exit;
 
             letter-spacing: -2px;
         }
+
 
         .login-brand p {
             margin-top: 20px;
@@ -269,6 +311,11 @@ exit;
             line-height: 1.8;
         }
 
+
+        /* ==========================
+           BAGIAN FORM
+        ========================== */
+
         .login-form-area {
             display: flex;
 
@@ -277,12 +324,15 @@ exit;
             padding: 60px;
         }
 
+
         .login-box {
             width: 100%;
+
             max-width: 390px;
 
             margin: auto;
         }
+
 
         .login-logo {
             font-size: 18px;
@@ -292,11 +342,13 @@ exit;
             margin-bottom: 35px;
         }
 
+
         .login-box h2 {
             font-size: 34px;
 
             letter-spacing: -1px;
         }
+
 
         .login-description {
             margin-top: 7px;
@@ -306,13 +358,16 @@ exit;
             font-size: 13px;
         }
 
+
         .login-form {
             margin-top: 30px;
         }
 
+
         .login-group {
             margin-bottom: 18px;
         }
+
 
         .login-group label {
             display: block;
@@ -323,6 +378,7 @@ exit;
 
             font-weight: 700;
         }
+
 
         .login-group input {
             width: 100%;
@@ -339,6 +395,7 @@ exit;
             font-size: 13px;
         }
 
+
         .login-group input:focus {
             border-color: #d71920;
 
@@ -347,6 +404,7 @@ exit;
                 rgba(215,25,32,0.08);
         }
 
+
         .login-button {
             width: 100%;
 
@@ -354,6 +412,11 @@ exit;
 
             margin-top: 5px;
         }
+
+
+        /* ==========================
+           PESAN ERROR
+        ========================== */
 
         .login-error {
             margin-top: 20px;
@@ -372,6 +435,29 @@ exit;
             font-size: 12px;
         }
 
+
+        /* ==========================
+           PESAN BERHASIL REGISTER
+        ========================== */
+
+        .login-success {
+            margin-top: 20px;
+
+            padding: 12px 14px;
+
+            border-radius: 10px;
+
+            background: #f0fdf4;
+
+            border:
+                1px solid #bbf7d0;
+
+            color: #15803d;
+
+            font-size: 12px;
+        }
+
+
         .login-register {
             margin-top: 25px;
 
@@ -382,11 +468,13 @@ exit;
             font-size: 12px;
         }
 
+
         .login-register a {
             color: #d71920;
 
             font-weight: 800;
         }
+
 
         .login-back {
             display: block;
@@ -400,15 +488,22 @@ exit;
             font-size: 12px;
         }
 
+
+        /* ==========================
+           RESPONSIVE
+        ========================== */
+
         @media (max-width: 750px) {
 
             .login-page {
                 padding: 15px;
             }
 
+
             .login-container {
                 grid-template-columns: 1fr;
             }
+
 
             .login-brand {
                 min-height: 250px;
@@ -416,13 +511,16 @@ exit;
                 padding: 35px;
             }
 
+
             .login-brand h1 {
                 font-size: 34px;
             }
 
+
             .login-form-area {
                 padding: 40px 25px;
             }
+
         }
 
     </style>
@@ -432,13 +530,16 @@ exit;
 
 <body>
 
+
 <div class="login-page">
 
 
     <div class="login-container">
 
 
-        <!-- BRAND -->
+        <!-- ==========================
+             BAGIAN KIRI
+        ========================== -->
 
         <div class="login-brand">
 
@@ -448,13 +549,17 @@ exit;
                     🇮🇩
                 </div>
 
+
                 <h1>
 
                     Semangat
+
                     <br>
+
                     Kemerdekaan.
 
                 </h1>
+
 
                 <p>
 
@@ -469,19 +574,28 @@ exit;
         </div>
 
 
-        <!-- FORM -->
+
+        <!-- ==========================
+             BAGIAN KANAN
+        ========================== -->
 
         <div class="login-form-area">
 
+
             <div class="login-box">
 
+
                 <div class="login-logo">
+
                     🇮🇩 Aksi Untuk Negeri
+
                 </div>
 
 
                 <h2>
+
                     Selamat Datang
+
                 </h2>
 
 
@@ -492,6 +606,23 @@ exit;
 
                 </p>
 
+
+
+                <!-- PESAN BERHASIL REGISTER -->
+
+                <?php if (!empty($success)): ?>
+
+                    <div class="login-success">
+
+                        <?= htmlspecialchars($success) ?>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+
+                <!-- PESAN ERROR -->
 
                 <?php if (!empty($error)): ?>
 
@@ -504,16 +635,23 @@ exit;
                 <?php endif; ?>
 
 
+
+                <!-- FORM LOGIN -->
+
                 <form
                     method="POST"
                     class="login-form"
                 >
 
+
                     <div class="login-group">
 
                         <label for="email">
+
                             Email
+
                         </label>
+
 
                         <input
                             type="email"
@@ -529,11 +667,15 @@ exit;
                     </div>
 
 
+
                     <div class="login-group">
 
                         <label for="password">
+
                             Password
+
                         </label>
+
 
                         <input
                             type="password"
@@ -546,41 +688,60 @@ exit;
                     </div>
 
 
+
                     <button
                         type="submit"
                         class="btn btn-primary login-button"
                     >
+
                         🇮🇩 Masuk
+
                     </button>
+
 
                 </form>
 
+
+
+                <!-- REGISTER -->
 
                 <div class="login-register">
 
                     Belum punya akun?
 
                     <a href="register.php">
+
                         Daftar sekarang
+
                     </a>
 
                 </div>
 
 
+
+                <!-- KEMBALI -->
+
                 <a
                     href="index.php"
                     class="login-back"
                 >
+
                     ← Kembali ke halaman utama
+
                 </a>
+
 
             </div>
 
+
         </div>
+
 
     </div>
 
+
 </div>
+
 
 </body>
 
