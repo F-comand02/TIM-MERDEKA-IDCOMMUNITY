@@ -700,6 +700,7 @@ if ($userId > 0) {
 
 </footer>
 
+<script src="../assets/js/icons.js"></script>
 </body>
 
 </html>

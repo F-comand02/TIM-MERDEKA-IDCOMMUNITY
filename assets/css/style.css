@@ -42,6 +42,35 @@ select {
     font-family: inherit;
 }
 
+.ui-icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex: 0 0 auto;
+    vertical-align: -0.14em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.logo-icon .ui-icon,
+.stat-icon .ui-icon,
+.dashboard-stat-icon .ui-icon,
+.category-icon .ui-icon,
+.history-icon .ui-icon,
+.action-icon .ui-icon {
+    width: 1.15em;
+    height: 1.15em;
+}
+
+.btn .ui-icon,
+.nav-button .ui-icon {
+    width: 1.1em;
+    height: 1.1em;
+}
+
 
 /* =========================================================
    GLOBAL

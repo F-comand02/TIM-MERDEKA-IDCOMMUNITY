@@ -1029,6 +1029,7 @@ $queryKategoriAksi = mysqli_query(
 </footer>
 
 
+<script src="../assets/js/icons.js"></script>
 </body>
 
 </html>

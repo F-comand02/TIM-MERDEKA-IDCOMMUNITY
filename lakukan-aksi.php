@@ -1158,6 +1158,7 @@ mysqli_stmt_bind_param(
 </footer>
 
 
+<script src="assets/js/icons.js"></script>
 </body>
 
 </html>

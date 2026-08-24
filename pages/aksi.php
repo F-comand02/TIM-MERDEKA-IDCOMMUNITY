@@ -135,6 +135,21 @@ $queryAksi = mysqli_stmt_get_result($stmtAksi);
 
 $totalAksi = mysqli_num_rows($queryAksi);
 
+$aksiIcons = [
+    1 => '&#128218;',
+    2 => '&#129330;',
+    3 => '&#128187;',
+    4 => '&#10084;&#65039;',
+    5 => '&#128167;',
+    6 => '&#127793;',
+    7 => '&#127795;',
+    8 => '&#9851;&#65039;',
+    9 => '&#128188;',
+    10 => '&#127758;',
+    11 => '&#129309;',
+    12 => '&#127919;',
+];
+
 ?>
 
 <!DOCTYPE html>
@@ -751,19 +766,35 @@ $totalAksi = mysqli_num_rows($queryAksi);
 
         <div class="nav-button">
 
-            <a
-                href="../login.php"
-                class="btn btn-outline"
-            >
-                Masuk
-            </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a
+                    href="../dashboard.php"
+                    class="btn btn-outline"
+                >
+                    Dashboard
+                </a>
 
-            <a
-                href="../register.php"
-                class="btn btn-primary"
-            >
-                Gabung
-            </a>
+                <a
+                    href="../logout.php"
+                    class="btn btn-primary"
+                >
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a
+                    href="../login.php"
+                    class="btn btn-outline"
+                >
+                    Masuk
+                </a>
+
+                <a
+                    href="../register.php"
+                    class="btn btn-primary"
+                >
+                    Gabung
+                </a>
+            <?php endif; ?>
 
         </div>
 
@@ -991,9 +1022,8 @@ $totalAksi = mysqli_num_rows($queryAksi);
 
                             <div class="aksi-icon">
 
-                                <?= htmlspecialchars(
-                                    $aksi['icon']
-                                ) ?>
+                                <?= $aksiIcons[(int) $aksi['id']]
+                                    ?? htmlspecialchars($aksi['icon']) ?>
 
                             </div>
 
@@ -1269,6 +1299,7 @@ $totalAksi = mysqli_num_rows($queryAksi);
 </footer>
 
 
+<script src="../assets/js/icons.js?v=2"></script>
 </body>
 
 </html>

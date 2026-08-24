@@ -961,6 +961,7 @@ $totalTantangan = (int) $dataTantangan['total'];
 </footer>
 
 
+<script src="assets/js/icons.js"></script>
 </body>
 
 </html>

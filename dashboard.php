@@ -165,6 +165,59 @@ $dataPoin =
 $totalPoin =
     (int) $dataPoin['total_poin'];
 
+$stmtCategories = mysqli_prepare(
+    $conn,
+    "SELECT COUNT(DISTINCT aksi.kategori_id) AS total
+     FROM aksi_user
+     INNER JOIN aksi
+        ON aksi_user.aksi_id = aksi.id
+     WHERE aksi_user.user_id = ?
+     AND aksi_user.status = 'disetujui'"
+);
+
+mysqli_stmt_bind_param(
+    $stmtCategories,
+    "i",
+    $userId
+);
+
+mysqli_stmt_execute($stmtCategories);
+
+$dataCategories =
+    mysqli_fetch_assoc(mysqli_stmt_get_result($stmtCategories));
+
+$totalCategories =
+    (int) $dataCategories['total'];
+
+mysqli_stmt_close($stmtCategories);
+
+$badges = [
+    [
+        'icon' => '🌱',
+        'label' => 'Aksi Pertama',
+        'description' => 'Menyelesaikan aksi pertama',
+        'unlocked' => $totalDisetujui >= 1,
+    ],
+    [
+        'icon' => '🔥',
+        'label' => 'Konsisten',
+        'description' => 'Menyelesaikan 3 aksi',
+        'unlocked' => $totalDisetujui >= 3,
+    ],
+    [
+        'icon' => '🏆',
+        'label' => 'Pengumpul Poin',
+        'description' => 'Mengumpulkan 100 poin',
+        'unlocked' => $totalPoin >= 100,
+    ],
+    [
+        'icon' => '🌈',
+        'label' => 'Lintas Bidang',
+        'description' => 'Berkontribusi di 3 bidang',
+        'unlocked' => $totalCategories >= 3,
+    ],
+];
+
 
 // ==========================================
 // LEVEL & CAPAIAN
@@ -370,12 +423,27 @@ $resultHistory =
         .dashboard-stat-icon {
             width: 42px;
             height: 42px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 12px;
             background: #f5f5f5;
             font-size: 20px;
+            color: #d71920;
+            line-height: 1;
+        }
+
+        .dashboard-stat-icon .ui-icon,
+        .history-icon .ui-icon,
+        .badge-icon .ui-icon,
+        .action-panel .action-icon .ui-icon,
+        .logo-icon .ui-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            min-width: 1em;
+            min-height: 1em;
+            vertical-align: -0.12em;
         }
 
         .dashboard-stat strong {
@@ -445,6 +513,60 @@ $resultHistory =
             background: linear-gradient(90deg, #d71920, #f87171);
         }
 
+        .badge-panel {
+            padding: 23px 25px;
+            margin-bottom: 28px;
+            border: 1px solid #e5e5e5;
+            border-radius: 20px;
+            background: white;
+        }
+
+        .badge-panel h2 {
+            font-size: 19px;
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .badge-item {
+            padding: 15px 12px;
+            border: 1px solid #f0f0f0;
+            border-radius: 14px;
+            background: #fafafa;
+            text-align: center;
+        }
+
+        .badge-item.locked {
+            filter: grayscale(1);
+            opacity: 0.48;
+        }
+
+        .badge-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            line-height: 1;
+        }
+
+        .badge-item strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .badge-item small {
+            display: block;
+            margin-top: 5px;
+            color: #737373;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
         .dashboard-content {
             display: grid;
             grid-template-columns: 1fr 330px;
@@ -491,12 +613,14 @@ $resultHistory =
         .history-icon {
             width: 45px;
             height: 45px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 12px;
             background: #f5f5f5;
             font-size: 20px;
+            color: #7c3aed;
+            line-height: 1;
         }
 
         .history-info {
@@ -554,7 +678,11 @@ $resultHistory =
         }
 
         .action-panel .action-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             font-size: 38px;
+            line-height: 1;
         }
 
         .action-panel h2 {
@@ -601,6 +729,10 @@ $resultHistory =
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .badge-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .dashboard-content {
                 grid-template-columns: 1fr;
             }
@@ -628,6 +760,10 @@ $resultHistory =
 
             .dashboard-stat strong {
                 font-size: 23px;
+            }
+
+            .badge-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
         }
@@ -835,6 +971,37 @@ $resultHistory =
             </div>
 
         </div>
+
+
+        <section class="badge-panel">
+
+            <h2>Capaianmu</h2>
+
+            <div class="badge-grid">
+
+                <?php foreach ($badges as $badge): ?>
+
+                    <div class="badge-item <?= $badge['unlocked'] ? '' : 'locked' ?>">
+
+                        <div class="badge-icon">
+                            <?= $badge['icon'] ?>
+                        </div>
+
+                        <strong>
+                            <?= htmlspecialchars($badge['label']) ?>
+                        </strong>
+
+                        <small>
+                            <?= htmlspecialchars($badge['description']) ?>
+                        </small>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+        </section>
 
 
         <div class="dashboard-content">
@@ -1084,6 +1251,7 @@ $resultHistory =
 
 </footer>
 
+<script src="assets/js/icons.js"></script>
 </body>
 
 </html>

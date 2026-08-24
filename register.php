@@ -640,6 +640,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </div>
 
+<script src="assets/js/icons.js"></script>
 </body>
 
 </html>

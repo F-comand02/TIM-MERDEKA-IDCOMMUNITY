@@ -810,6 +810,7 @@ $totalAksi = array_sum(
 </footer>
 
 
+<script src="../assets/js/icons.js"></script>
 </body>
 
 </html>
