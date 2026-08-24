@@ -14,6 +14,14 @@ $kategoriId = isset($_GET['kategori'])
     ? (int) $_GET['kategori']
     : 0;
 
+$kataKunci = trim($_GET['q'] ?? '');
+$tingkatDipilih = $_GET['tingkat'] ?? '';
+$tingkatValid = ['Mudah', 'Sedang', 'Sulit'];
+
+if (!in_array($tingkatDipilih, $tingkatValid, true)) {
+    $tingkatDipilih = '';
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,48 +72,59 @@ if ($kategoriId > 0) {
 |--------------------------------------------------------------------------
 */
 
+$conditions = [];
+$params = [];
+$types = '';
+
 if ($kategoriId > 0) {
-
-    $stmtAksi = mysqli_prepare(
-        $conn,
-        "SELECT
-            aksi.*,
-            kategori.nama_kategori,
-            kategori.icon,
-            kategori.sdg
-         FROM aksi
-         INNER JOIN kategori
-            ON aksi.kategori_id = kategori.id
-         WHERE aksi.kategori_id = ?
-         ORDER BY aksi.id ASC"
-    );
-
-    mysqli_stmt_bind_param(
-        $stmtAksi,
-        "i",
-        $kategoriId
-    );
-
-    mysqli_stmt_execute($stmtAksi);
-
-    $queryAksi =
-        mysqli_stmt_get_result($stmtAksi);
-
-} else {
-
-    $queryAksi = mysqli_query(
-        $conn,
-        "SELECT
-            aksi.*,
-            kategori.nama_kategori,
-            kategori.icon,
-            kategori.sdg
-         FROM aksi
-         INNER JOIN kategori
-            ON aksi.kategori_id = kategori.id
-         ORDER BY aksi.id ASC"
-    );
+    $conditions[] = 'aksi.kategori_id = ?';
+    $params[] = $kategoriId;
+    $types .= 'i';
 }
+
+if ($kataKunci !== '') {
+    $conditions[] = '(aksi.nama_aksi LIKE ? OR aksi.deskripsi LIKE ?)';
+    $searchValue = '%' . $kataKunci . '%';
+    $params[] = $searchValue;
+    $params[] = $searchValue;
+    $types .= 'ss';
+}
+
+if ($tingkatDipilih !== '') {
+    $conditions[] = 'aksi.tingkat_kesulitan = ?';
+    $params[] = $tingkatDipilih;
+    $types .= 's';
+}
+
+$querySql = "SELECT
+                aksi.*,
+                kategori.nama_kategori,
+                kategori.icon,
+                kategori.sdg
+             FROM aksi
+             INNER JOIN kategori
+                ON aksi.kategori_id = kategori.id";
+
+if ($conditions) {
+    $querySql .= ' WHERE ' . implode(' AND ', $conditions);
+}
+
+$querySql .= ' ORDER BY aksi.id ASC';
+
+$stmtAksi = mysqli_prepare($conn, $querySql);
+
+if ($params) {
+    $bindParams = [$stmtAksi, $types];
+
+    foreach ($params as $index => $param) {
+        $bindParams[] = &$params[$index];
+    }
+
+    call_user_func_array('mysqli_stmt_bind_param', $bindParams);
+}
+
+mysqli_stmt_execute($stmtAksi);
+$queryAksi = mysqli_stmt_get_result($stmtAksi);
 
 
 /*
@@ -297,6 +316,48 @@ $totalAksi = mysqli_num_rows($queryAksi);
             box-shadow:
                 0 7px 18px
                 rgba(215, 25, 32, 0.18);
+        }
+
+        .aksi-search {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 180px auto;
+            gap: 10px;
+            padding-top: 22px;
+        }
+
+        .aksi-search input,
+        .aksi-search select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #262626;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .aksi-search input:focus,
+        .aksi-search select:focus {
+            border-color: #d71920;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
+        }
+
+        .aksi-search button {
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 10px;
+            background: #171717;
+            color: #ffffff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .aksi-search button:hover {
+            background: #d71920;
         }
 
 
@@ -617,6 +678,10 @@ $totalAksi = mysqli_num_rows($queryAksi);
                 flex-direction: column;
             }
 
+            .aksi-search {
+                grid-template-columns: 1fr;
+            }
+
             .aksi-grid {
                 grid-template-columns: 1fr;
             }
@@ -772,6 +837,28 @@ $totalAksi = mysqli_num_rows($queryAksi);
             <?php endif; ?>
 
         </div>
+
+        <form method="get" class="aksi-search">
+            <?php if ($kategoriId > 0): ?>
+                <input type="hidden" name="kategori" value="<?= $kategoriId ?>">
+            <?php endif; ?>
+            <input
+                type="search"
+                name="q"
+                value="<?= htmlspecialchars($kataKunci) ?>"
+                placeholder="Cari nama atau deskripsi aksi..."
+                aria-label="Cari aksi"
+            >
+            <select name="tingkat" aria-label="Filter tingkat kesulitan">
+                <option value="">Semua tingkat</option>
+                <?php foreach ($tingkatValid as $tingkat): ?>
+                    <option value="<?= $tingkat ?>" <?= $tingkatDipilih === $tingkat ? 'selected' : '' ?>>
+                        <?= $tingkat ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <button type="submit">Cari Aksi</button>
+        </form>
 
     </div>
 

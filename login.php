@@ -705,20 +705,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <!-- SOCIAL LOGIN -->
 
                     <style>
-                        .social-row { margin-top:18px; display:flex; gap:10px; }
-                        .social-btn{ flex:1; display:inline-flex; align-items:center; gap:10px; padding:10px 12px; border-radius:10px; text-decoration:none; font-weight:700; font-size:14px; }
-                        .social-google { background:#fff; color:#111; border:1px solid #d4d4d4; }
-                        .social-fb { background:#1877f2; color:#fff; border:1px solid rgba(0,0,0,0.05); }
-                        .social-icon{ width:20px; height:20px; display:inline-block; }
+                        .social-login { margin-top: 24px; }
+                        .social-label { margin-bottom: 10px; color: #737373; text-align: center; font-size: 12px; }
+                        .social-row { display: flex; gap: 10px; }
+                        .social-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 11px 12px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+                        .social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10); }
+                        .social-google { background: #fff; color: #111; border: 1px solid #d4d4d4; }
+                        .social-fb { background: #1877f2; color: #fff; border: 1px solid rgba(0, 0, 0, 0.05); }
+                        .social-icon { width: 20px; height: 20px; display: inline-flex; }
+                        .social-icon svg { width: 100%; height: 100%; }
+                        @media (max-width: 420px) {
+                            .social-row { flex-direction: column; }
+                        }
                     </style>
 
-                    <div class="social-row">
+                    <div class="social-login">
+                        <div class="social-label">Masuk dengan</div>
+
+                        <div class="social-row">
                         <a href="oauth.php?provider=google" class="social-btn social-google" aria-label="Masuk dengan Google">
                             <span class="social-icon">
                                 <!-- Google SVG -->
                                 <svg viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg"><path fill="#4285f4" d="M533.5 278.4c0-18.5-1.6-37.1-4.9-54.9H272v103.9h147.1c-6.4 34.6-25.6 63.9-54.6 83.5v69.4h88.1c51.6-47.6 81.9-117.6 81.9-202z"/><path fill="#34a853" d="M272 544.3c73.7 0 135.6-24.4 180.8-66.1l-88.1-69.4c-24.6 16.5-56.2 26.3-92.7 26.3-71 0-131.2-47.9-152.7-112.3H29.1v70.8C74.3 490.1 167.6 544.3 272 544.3z"/><path fill="#fbbc04" d="M119.3 327.7c-10.6-31.5-10.6-65.5 0-97l-90.2-70.8C7.6 206.6 0 239.6 0 272.7s7.6 66.1 29.1 112.8l90.2-57.8z"/><path fill="#ea4335" d="M272 107.7c39.9 0 75.7 13.7 104 40.6l78-78C392.8 24.1 335.8 0 272 0 167.6 0 74.3 54.2 29.1 135.9l90.2 70.8C140.8 155.6 201 107.7 272 107.7z"/></svg>
                             </span>
-                            Masuk dengan Google
+                            Google
                         </a>
 
                         <a href="oauth.php?provider=facebook" class="social-btn social-fb" aria-label="Masuk dengan Facebook">
@@ -726,8 +736,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <!-- Facebook SVG -->
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.1V12h2.1V9.7c0-2.1 1.2-3.3 3-3.3.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/></svg>
                             </span>
-                            Masuk dengan Facebook
+                            Facebook
                         </a>
+                        </div>
                     </div>
 
 

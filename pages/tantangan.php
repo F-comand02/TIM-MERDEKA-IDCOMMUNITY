@@ -26,9 +26,9 @@ if ($userId > 0) {
     $stmtApproved = mysqli_prepare(
         $conn,
         "SELECT COUNT(*) AS total
-         FROM aksi_user
-         WHERE user_id = ?
-         AND status = 'disetujui'"
+        FROM aksi_user
+        WHERE user_id = ?
+        AND status = 'disetujui'"
     );
 
     mysqli_stmt_bind_param($stmtApproved, "i", $userId);

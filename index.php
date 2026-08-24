@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "config/database.php";
 
 /*
@@ -131,13 +133,37 @@ $totalTantangan = (int) $dataTantangan['total'];
 
         <div class="nav-button">
 
-            <a href="login.php" class="btn btn-outline">
-                Masuk
-            </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
 
-            <a href="register.php" class="btn btn-primary">
-                Gabung
-            </a>
+                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
+
+                    <a href="admin/index.php" class="btn btn-primary">
+                        Dashboard Admin
+                    </a>
+
+                <?php else: ?>
+
+                    <a href="dashboard.php" class="btn btn-primary">
+                        Dashboard
+                    </a>
+
+                <?php endif; ?>
+
+                <a href="logout.php" class="btn btn-outline">
+                    Keluar
+                </a>
+
+            <?php else: ?>
+
+                <a href="login.php" class="btn btn-outline">
+                    Masuk
+                </a>
+
+                <a href="register.php" class="btn btn-primary">
+                    Gabung
+                </a>
+
+            <?php endif; ?>
 
         </div>
 
@@ -812,10 +838,10 @@ $totalTantangan = (int) $dataTantangan['total'];
 
 
             <a
-                href="register.php"
+                href="<?= isset($_SESSION['user_id']) ? 'dashboard.php' : 'register.php' ?>"
                 class="btn btn-white btn-large"
             >
-                🔥 Mulai Beraksi Sekarang
+                🔥 <?= isset($_SESSION['user_id']) ? 'Lanjutkan Aksi' : 'Mulai Beraksi Sekarang' ?>
             </a>
 
         </div>
