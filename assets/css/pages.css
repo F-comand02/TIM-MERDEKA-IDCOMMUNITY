@@ -284,7 +284,7 @@
             border-radius: 12px;
             background: #f5f5f5;
             font-size: 20px;
-            color: #7c3aed;
+            color: #171717;
             line-height: 1;
         }
 
@@ -769,7 +769,7 @@
         }
 
         .aksi-hero-content {
-            max-width: 750px;
+            max-width: 550px;
         }
 
         .aksi-badge {
@@ -841,6 +841,12 @@
             overflow-x: auto;
 
             padding-bottom: 5px;
+
+            margin-bottom: 30px;
+        }
+
+        #kategori-filter {
+            scroll-margin-top: 95px;
         }
 
         .kategori-filter-list::-webkit-scrollbar {
@@ -880,10 +886,34 @@
                 0.2s ease;
         }
 
+        .kategori-filter-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            padding: 4px;
+            border-radius: 7px;
+            background: transparent;
+            color: #d71920;
+            filter: none;
+            transition: background 0.2s ease, color 0.2s ease, filter 0.2s ease;
+        }
+
+        .kategori-filter-icon .ui-icon {
+            color: #d71920 !important;
+        }
+
         .kategori-filter-item:hover {
             border-color: #d71920;
 
             color: #d71920;
+        }
+
+        .kategori-filter-item:hover .kategori-filter-icon {
+            background: #fff1f2;
+            color: #d71920;
+            filter: none;
         }
 
         .kategori-filter-item.active {
@@ -896,6 +926,15 @@
             box-shadow:
                 0 7px 18px
                 rgba(215, 25, 32, 0.18);
+        }
+
+        .kategori-filter-item.active .kategori-filter-icon {
+            background: #fff1f2;
+            color: #d71920;
+        }
+
+        .kategori-filter-item.active .kategori-filter-icon .ui-icon {
+            color: #d71920 !important;
         }
 
         .aksi-search {
@@ -915,20 +954,282 @@
             color: #262626;
             font: inherit;
             font-size: 13px;
+            font-weight: 700;
+            appearance: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
+        .aksi-search select {
+            background:
+                #ffffff
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23171717' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+                no-repeat right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .aksi-search select:hover {
+            border-color: #171717;
+        }
+
+        .aksi-search select option {
+            background: #ffffff;
+            color: #262626;
+            font-weight: 700;
+        }
+.aksi-select-wrap {
+    position: relative;
+}
+
+/* Native select disembunyikan */
+.aksi-select-wrap.has-custom-select .aksi-level-select {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* =========================
+   SELECT BUTTON
+   ========================= */
+
+.aksi-select-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 14px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #262626;
+
+    font: inherit;  
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.aksi-select-button:hover,
+.aksi-select-wrap.is-open .aksi-select-button {
+    border-color: #d1d5db;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Warna button berdasarkan level */
+.aksi-select-button.aksi-level-mudah {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #15803d;
+}
+
+.aksi-select-button.aksi-level-sedang {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #b45309;
+}
+
+.aksi-select-button.aksi-level-sulit {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+
+/* =========================
+   CHEVRON
+   ========================= */
+
+.aksi-select-chevron {
+    color: currentColor;
+    font-size: 18px;
+    line-height: 0.7;
+
+    transform: translateY(-2px);
+
+    transition: transform 0.2s ease;
+}
+
+.aksi-select-wrap.is-open .aksi-select-chevron {
+    transform: translateY(-2px) rotate(180deg);
+}
+
+
+/* =========================
+   DROPDOWN MENU
+   ========================= */
+
+.aksi-select-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    z-index: 20;
+
+    display: grid;
+    gap: 3px;
+
+    padding: 6px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(-5px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.aksi-select-wrap.is-open .aksi-select-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   OPTION
+   ========================= */
+
+.aksi-select-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 38px;
+    padding: 9px 12px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent !important;
+    color: #374151 !important;
+
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+/* =========================
+   DOT INDICATOR
+   ========================= */
+
+
+
+
+/* Semua tingkat */
+.aksi-select-option[data-value="Semua tingkat"]::before {
+    background: #9ca3af;
+}
+
+
+/* Mudah */
+.aksi-select-option[data-value="Mudah"]::before {
+    background: #22c55e;
+}
+
+
+/* Sedang */
+.aksi-select-option[data-value="Sedang"]::before {
+    background: #f59e0b;
+}
+
+
+/* Sulit */
+.aksi-select-option[data-value="Sulit"]::before {
+    background: #ef4444;
+}
+
+
+/* =========================
+   HOVER
+   ========================= */
+
+.aksi-select-option:hover {
+    background: #f9fafb;
+    color: #111827;
+}
+
+
+/* Mudah */
+.aksi-select-option.aksi-level-mudah:hover,
+.aksi-select-option.aksi-level-mudah.is-selected {
+    background: #f0fdf4 !important;
+    color: #15803d !important;
+}
+
+/* Sedang */
+.aksi-select-option.aksi-level-sedang:hover,
+.aksi-select-option.aksi-level-sedang.is-selected {
+    background: #fffbeb !important;
+    color: #b45309 !important;
+}
+
+/* Sulit */
+.aksi-select-option.aksi-level-sulit:hover,
+.aksi-select-option.aksi-level-sulit.is-selected {
+    background: #fef2f2 !important;
+    color: #dc2626 !important;
+}
+
+/* Semua tingkat */
+.aksi-select-option.aksi-level-all:hover,
+.aksi-select-option.aksi-level-all.is-selected {
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+}
+
+
+/* Semua tingkat */
+.aksi-select-option[data-value="Semua tingkat"]:hover,
+.aksi-select-option[data-value="Semua tingkat"].is-selected {
+    background: #f3f4f6;
+    color: #374151;
+}
 
         .aksi-search input:focus,
         .aksi-search select:focus {
-            border-color: #d71920;
+            border-color: #171717;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
+            box-shadow: 0 0 0 3px rgba(23, 23, 23, 0.10);
         }
 
         .aksi-search button {
             padding: 12px 18px;
             border: 0;
             border-radius: 10px;
-            background: #171717;
+            background: #d71920;
             color: #ffffff;
             cursor: pointer;
             font: inherit;
@@ -937,7 +1238,7 @@
         }
 
         .aksi-search button:hover {
-            background: #d71920;
+            background: #b51218;
         }
 
 
@@ -1008,7 +1309,7 @@
 
             flex-direction: column;
 
-            min-height: 390px;
+            min-height: 350px;
 
             padding: 25px;
 
@@ -1078,9 +1379,14 @@
 
             border-radius: 15px;
 
-            background: #f5f5f5;
+            background: #d71920;
+            color: #ffffff;
 
             font-size: 25px;
+        }
+
+        .aksi-icon > span {
+            filter: grayscale(1) brightness(0) invert(1);
         }
 
         .aksi-icon .ui-icon {
@@ -1097,25 +1403,12 @@
 
             color: #d71920;
 
-            font-size: 10px;
-            font-weight: 900;
-        }
-
-        .aksi-sdg {
-            display: inline-block;
-
-            margin-top: 22px;
-
-            color: #d71920;
-
-            font-size: 10px;
-            font-weight: 900;
-
-            letter-spacing: 1px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .aksi-card h3 {
-            margin-top: 7px;
+            margin-top: 16px;
 
             font-size: 20px;
 
@@ -1137,7 +1430,40 @@
 
             color: #a3a3a3;
 
+            font-size: 13px;
+        }
+
+        .aksi-category-icon {
+            display: inline-flex;
+            align-items: center;
+            color: #d71920;
+            vertical-align: middle;
+        }
+
+        .aksi-category-icon .ui-icon {
+            width: 1.15em;
+            height: 1.15em;
+            stroke-width: 2;
+            vertical-align: middle;
+        }
+
+        .aksi-category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border: 1px solid #f3d4d5;
+            border-radius: 999px;
+            background: #fff1f2;
+            color: #d71920;
             font-size: 11px;
+            font-weight: 700;
+        }
+
+        .aksi-category-badge .aksi-category-icon {
+            padding: 0;
+            background: transparent;
+            filter: grayscale(1) sepia(1) saturate(8) hue-rotate(320deg);
         }
 
         .aksi-footer {
@@ -1163,29 +1489,25 @@
 
             color: #737373;
 
-            font-size: 11px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
-        .aksi-difficulty-dot {
-            width: 1.1em;
-            height: 1.1em;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #16a34a;
+        .aksi-difficulty.mudah {
+            color: #15803d;
         }
 
-        .aksi-difficulty-dot.sedang {
-            color: #eab308;
+        .aksi-difficulty.sedang {
+            color: #a16207;
         }
 
-        .aksi-difficulty-dot.sulit {
-            color: #d71920;
+        .aksi-difficulty.sulit {
+            color: #b51218;
         }
 
-        .aksi-difficulty-dot .ui-icon {
-            width: 1.1em;
-            height: 1.1em;
+        .aksi-participants strong {
+            color: #171717;
+            font-weight: 800;
         }
 
         .aksi-difficulty-badge {
@@ -1238,7 +1560,7 @@
         .aksi-participants {
             margin-top: 12px;
             color: #737373;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .aksi-map-section {
@@ -1320,7 +1642,15 @@
         }
 
         .aksi-region-icon {
-            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            border-radius: 8px;
+            background: #d71920;
+            color: #ffffff;
+            font-size: 9px;
         }
 
         .aksi-region-icon .ui-icon {
@@ -1365,6 +1695,8 @@
         }
 
         .aksi-location-icon {
+            color: #d71920;
+            filter: grayscale(1) sepia(1) saturate(8) hue-rotate(320deg);
             font-size: 20px;
         }
 
@@ -1428,6 +1760,19 @@
 
         .empty-state-icon {
             font-size: 45px;
+        }
+
+        .empty-state-icon-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #d71920;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
         }
 
         .empty-state h3 {

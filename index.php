@@ -102,15 +102,10 @@ require __DIR__ . '/includes/header.php';
 
         <div class="hero-content">
 
-            <div class="hero-badge">
-                 Semangat Kemerdekaan Indonesia
-            </div>
-
-
             <h1>
 
                 Kemerdekaan Bukan Hanya
-                <span>Untuk Dirayakan.</span>
+                <span>Untuk Dirayakan</span>
 
             </h1>
 
@@ -132,7 +127,7 @@ require __DIR__ . '/includes/header.php';
                     href="#aksi"
                     class="btn btn-primary btn-large"
                 >
-                    🔥 Mulai Beraksi
+                    Mulai Beraksi
                 </a>
 
 
@@ -145,27 +140,6 @@ require __DIR__ . '/includes/header.php';
 
             </div>
 
-
-            <div class="hero-mini-stat">
-
-                <div class="mini-stat-icon">
-                    ❤️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Bersama Kita Berdampak
-                    </strong>
-
-                    <p>
-                        Satu aksi kecil dapat menjadi
-                        perubahan besar.
-                    </p>
-
-                </div>
-
-            </div>
 
         </div>
 
@@ -257,10 +231,30 @@ require __DIR__ . '/includes/header.php';
 
     <div class="container stats-grid">
 
+        <div class="stats-heading">
+
+            <span class="section-label">
+                RINGKASAN GERAKAN
+            </span>
+
+            <h2>
+                Bersama, Indonesia Bergerak.
+            </h2>
+
+            <p>
+                Angka sederhana yang menunjukkan
+                dampak aksi komunitas sejauh ini.
+            </p>
+
+        </div>
+
         <div class="stat-item">
 
-            <span class="stat-icon">
-                🔥
+            <span class="stat-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="8"></circle>
+                    <path d="m8 12 3 3 5-6"></path>
+                </svg>
             </span>
 
             <div>
@@ -280,8 +274,11 @@ require __DIR__ . '/includes/header.php';
 
         <div class="stat-item">
 
-            <span class="stat-icon">
-                🎯
+            <span class="stat-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="8"></circle>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
             </span>
 
             <div>
@@ -301,8 +298,11 @@ require __DIR__ . '/includes/header.php';
 
         <div class="stat-item">
 
-            <span class="stat-icon">
-                🌱
+            <span class="stat-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <path d="M20 4C11 4 6 8 6 14c0 3 2 5 5 5 6 0 9-5 9-15Z"></path>
+                    <path d="M4 20c2-5 6-8 11-10"></path>
+                </svg>
             </span>
 
             <div>
@@ -322,8 +322,11 @@ require __DIR__ . '/includes/header.php';
 
         <div class="stat-item">
 
-            <span class="stat-icon">
-                
+            <span class="stat-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <rect x="4" y="5" width="16" height="15" rx="2"></rect>
+                    <path d="M8 3v4M16 3v4M4 10h16"></path>
+                </svg>
             </span>
 
             <div>
@@ -811,7 +814,7 @@ require __DIR__ . '/includes/header.php';
                 href="<?= isset($_SESSION['user_id']) ? 'dashboard.php' : 'register.php' ?>"
                 class="btn btn-white btn-large"
             >
-                🔥 <?= isset($_SESSION['user_id']) ? 'Lanjutkan Aksi' : 'Mulai Beraksi Sekarang' ?>
+                <?= isset($_SESSION['user_id']) ? 'Lanjutkan Aksi' : 'Mulai Beraksi Sekarang' ?>
             </a>
 
         </div>

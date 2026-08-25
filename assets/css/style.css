@@ -158,18 +158,13 @@ a:focus-visible {
 
     font-size: 14px;
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: normal;
     line-height: 1;
 
-
-button,
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
-    font-family: var(--font-body);
-    letter-spacing: normal;
-}
         background 0.25s ease,
         color 0.25s ease,
         border-color 0.25s ease;
@@ -493,7 +488,7 @@ button,
         );
 
     padding:
-        90px 0
+        60px 0
         100px;
 }
 
@@ -574,7 +569,7 @@ button,
     font-size: clamp(
         42px,
         5vw,
-        70px
+        64px
     );
 
     line-height: 1.03;
@@ -598,7 +593,7 @@ button,
 
     color: var(--gray-700);
 
-    font-size: 17px;
+    font-size: 16px;
 
     line-height: 1.8;
 }
@@ -841,7 +836,7 @@ button,
 }
 
 .hero-card-content p {
-    max-width: 270px;
+    max-width: 360px;
 
     margin-top: 12px;
 
@@ -860,7 +855,7 @@ button,
 
     display: flex;
 
-    padding: 25px 35px;
+    padding: 15px 35px;
 
     border-top:
         1px solid rgba(255, 255, 255, 0.15);
@@ -883,7 +878,7 @@ button,
     color:
         rgba(255, 255, 255, 0.7);
 
-    font-size: 11px;
+    font-size: 16px;
 }
 
 .hero-decoration {
@@ -917,7 +912,9 @@ button,
     position: relative;
     z-index: 5;
 
-    background: var(--white);
+    background:
+        radial-gradient(circle at 10% 0%, rgba(215, 25, 32, 0.08), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #fff7f7 100%);
 
     border-bottom:
         1px solid var(--gray-200);
@@ -932,7 +929,27 @@ button,
     grid-template-columns:
         repeat(4, 1fr);
 
-    padding: 28px 0;
+    gap: 14px;
+    padding: 42px 0;
+}
+
+.stats-heading {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    margin: 0 auto 8px;
+    text-align: center;
+}
+
+.stats-heading h2 {
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.15;
+}
+
+.stats-heading p {
+    margin-top: 10px;
+    color: var(--gray-500);
+    font-size: 13px;
+    line-height: 1.7;
 }
 
 .impact-banner {
@@ -1004,11 +1021,10 @@ button,
 
     gap: 14px;
 
-    padding:
-        10px 25px;
+    padding: 18px 20px;
 
-    border-right:
-        1px solid var(--gray-200);
+    border: 1px solid rgba(215, 25, 32, 0.10);
+    border-radius: 16px;
 
     background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1020,7 +1036,7 @@ button,
 }
 
 .stat-item:last-child {
-    border-right: none;
+    border-right: 1px solid rgba(215, 25, 32, 0.10);
 }
 
 .stat-icon {
@@ -1033,7 +1049,8 @@ button,
 
     border-radius: 12px;
 
-    background: var(--gray-100);
+    background: var(--red);
+    color: var(--white);
 
     font-size: 20px;
 }
@@ -1059,6 +1076,12 @@ button,
 
 .section {
     padding: 100px 0;
+}
+
+.action-section {
+    background:
+        radial-gradient(circle at 90% 12%, rgba(215, 25, 32, 0.08), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #fffafa 100%);
 }
 
 .section-heading {
@@ -1142,7 +1165,7 @@ button,
 }
 
 .category-card:hover .category-icon {
-    background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
     transform: scale(1.04);
 }
 
@@ -1235,7 +1258,8 @@ button,
     padding: 90px 0;
 
     background:
-        #fafafa;
+        radial-gradient(circle at 8% 20%, rgba(215, 25, 32, 0.08), transparent 24%),
+        linear-gradient(180deg, #fff7f7 0%, #f7f7f7 100%);
 }
 
 .progress-card {
@@ -1400,7 +1424,9 @@ button,
 ========================================================= */
 
 .challenge-section {
-    background: var(--white);
+    background:
+        radial-gradient(circle at 85% 0%, rgba(215, 25, 32, 0.07), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #fffafa 100%);
 }
 
 .challenge-preview {
@@ -1505,7 +1531,9 @@ button,
 
 .recent-section {
     padding: 100px 0;
-    background: #fafafa;
+    background:
+        radial-gradient(circle at 12% 20%, rgba(215, 25, 32, 0.06), transparent 24%),
+        linear-gradient(180deg, #f7f7f7 0%, #ffffff 100%);
 }
 
 .recent-grid {
@@ -1585,7 +1613,9 @@ button,
 .story-section {
     padding: 100px 0;
 
-    background: #fafafa;
+    background:
+        radial-gradient(circle at 90% 15%, rgba(215, 25, 32, 0.07), transparent 25%),
+        linear-gradient(180deg, #ffffff 0%, #fff7f7 100%);
 }
 
 .story-wrapper {
@@ -2942,6 +2972,6 @@ button,
 .verify-btn,
 .auth-button {
     font-family: var(--font-body);
-    font-weight: 400 !important;
+    font-weight: 700 !important;
     letter-spacing: normal;
 }

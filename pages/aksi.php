@@ -348,11 +348,6 @@ $aksiIcons = [
 
         <div class="aksi-hero-content">
 
-            <div class="aksi-badge">
-                🔥 AKSI INDONESIA
-            </div>
-
-
             <?php if ($kategoriDipilih): ?>
 
                 <h1>
@@ -384,7 +379,7 @@ $aksiIcons = [
                 <h1>
 
                     Temukan Aksi,
-                    <span>Berikan Dampak.</span>
+                    <span>Berikan Dampak</span>
 
                 </h1>
 
@@ -400,7 +395,7 @@ $aksiIcons = [
 
         </div>
 
-        <form method="get" class="aksi-search">
+        <form method="get" action="aksi.php#kategori-filter" class="aksi-search">
             <?php if ($kategoriId > 0): ?>
                 <input type="hidden" name="kategori" value="<?= $kategoriId ?>">
             <?php endif; ?>
@@ -411,80 +406,22 @@ $aksiIcons = [
                 placeholder="Cari nama atau deskripsi aksi..."
                 aria-label="Cari aksi"
             >
-            <select name="tingkat" aria-label="Filter tingkat kesulitan">
-                <option value="">Semua tingkat</option>
-                <?php foreach ($tingkatValid as $tingkat): ?>
-                    <option value="<?= $tingkat ?>" <?= $tingkatDipilih === $tingkat ? 'selected' : '' ?>>
-                        <?= $tingkat ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <div class="aksi-select-wrap">
+                <select
+                    name="tingkat"
+                    class="aksi-level-select"
+                    aria-label="Filter tingkat kesulitan"
+                >
+                    <option value="">Semua tingkat</option>
+                    <?php foreach ($tingkatValid as $tingkat): ?>
+                        <option value="<?= $tingkat ?>" <?= $tingkatDipilih === $tingkat ? 'selected' : '' ?>>
+                            <?= $tingkat ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button type="submit">Cari Aksi</button>
         </form>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FILTER KATEGORI
-===================================================== -->
-
-<section class="kategori-filter">
-
-    <div class="container">
-
-        <div class="kategori-filter-list">
-
-            <a
-                href="aksi.php"
-                class="kategori-filter-item
-                <?= $kategoriId === 0
-                    ? 'active'
-                    : '' ?>"
-            >
-                🔥 Semua Aksi
-            </a>
-
-
-            <?php
-
-            mysqli_data_seek(
-                $queryKategori,
-                0
-            );
-
-            ?>
-
-
-            <?php while (
-                $kategori = mysqli_fetch_assoc(
-                    $queryKategori
-                )
-            ): ?>
-
-                <a
-                    href="aksi.php?kategori=<?= $kategori['id'] ?>"
-                    class="kategori-filter-item
-                    <?= $kategoriId === (int) $kategori['id']
-                        ? 'active'
-                        : '' ?>"
-                >
-
-                    <?= htmlspecialchars(
-                        $kategori['icon']
-                    ) ?>
-
-                    <?= htmlspecialchars(
-                        $kategori['nama_kategori']
-                    ) ?>
-
-                </a>
-
-            <?php endwhile; ?>
-
-        </div>
 
     </div>
 
@@ -499,15 +436,9 @@ $aksiIcons = [
 
     <div class="container">
 
-
         <div class="aksi-list-header">
 
             <div>
-
-                <span class="section-label">
-                    AKSI NYATA
-                </span>
-
 
                 <h2>
                     Temukan Aksimu
@@ -533,7 +464,38 @@ $aksiIcons = [
             </div>
 
         </div>
+                <div id="kategori-filter" class="kategori-filter-list">
 
+            <a
+                href="aksi.php#kategori-filter"
+                class="kategori-filter-item
+                <?= $kategoriId === 0
+                    ? 'active'
+                    : '' ?>"
+            >
+                Semua Aksi
+            </a>
+
+            <?php
+            mysqli_data_seek($queryKategori, 0);
+            ?>
+
+            <?php while ($kategori = mysqli_fetch_assoc($queryKategori)): ?>
+                <a
+                    href="aksi.php?kategori=<?= $kategori['id'] ?>#kategori-filter"
+                    class="kategori-filter-item
+                    <?= $kategoriId === (int) $kategori['id']
+                        ? 'active'
+                        : '' ?>"
+                >
+                    <span class="kategori-filter-icon" aria-hidden="true">
+                        <?= htmlspecialchars($kategori['icon']) ?>
+                    </span>
+                    <?= htmlspecialchars($kategori['nama_kategori']) ?>
+                </a>
+            <?php endwhile; ?>
+
+        </div>
 
         <?php if ($totalAksi > 0): ?>
 
@@ -553,8 +515,10 @@ $aksiIcons = [
 
                             <div class="aksi-icon">
 
-                                <?= $aksiIcons[(int) $aksi['id']]
-                                    ?? htmlspecialchars($aksi['icon']) ?>
+                                <span aria-hidden="true">
+                                    <?= $aksiIcons[(int) $aksi['id']]
+                                        ?? htmlspecialchars($aksi['icon']) ?>
+                                </span>
 
                             </div>
 
@@ -562,20 +526,11 @@ $aksiIcons = [
                             <div class="aksi-poin">
 
                                 +<?= $aksi['poin'] ?>
-                                POIN
+                                Poin
 
                             </div>
 
                         </div>
-
-
-                        <span class="aksi-sdg">
-
-                            <?= htmlspecialchars(
-                                $aksi['sdg']
-                            ) ?>
-
-                        </span>
 
 
                         <h3>
@@ -598,51 +553,24 @@ $aksiIcons = [
 
                         <div class="aksi-category">
 
-                            📂
-
-                            <?= htmlspecialchars(
-                                $aksi['nama_kategori']
-                            ) ?>
+                            <span class="aksi-category-badge">
+                                <span class="aksi-category-icon" aria-hidden="true">
+                                    <?= htmlspecialchars($aksi['icon']) ?>
+                                </span>
+                                <?= htmlspecialchars($aksi['nama_kategori']) ?>
+                            </span>
 
                         </div>
 
                         <div class="aksi-participants">
-                            <?= number_format((int) $aksi['total_peserta'], 0, ',', '.') ?> peserta telah ikut
+                            <strong><?= number_format((int) $aksi['total_peserta'], 0, ',', '.') ?></strong> peserta telah ikut
                         </div>
 
 
                         <div class="aksi-footer">
 
 
-                            <div class="aksi-difficulty">
-
-                                <?php
-
-                                $difficultyClass =
-                                    strtolower(
-                                        $aksi[
-                                            'tingkat_kesulitan'
-                                        ]
-                                    );
-
-                                $difficultyIcon = match (
-                                    $difficultyClass
-                                ) {
-                                    'mudah' => '🌱',
-                                    'sedang' => '🎯',
-                                    'sulit' => '⚡',
-                                    default => '✦'
-                                };
-
-                                ?>
-
-
-                                <span
-                                    class="aksi-difficulty-dot
-                                    <?= $difficultyClass ?>"
-                                    aria-hidden="true"
-                                ><?= $difficultyIcon ?></span>
-
+                            <div class="aksi-difficulty <?= strtolower($aksi['tingkat_kesulitan']) ?>">
 
                                 <?= htmlspecialchars(
                                     $aksi[
@@ -659,7 +587,7 @@ $aksiIcons = [
                                 : '../login.php?aksi=' . $aksi['id'] ?>"
                             class="aksi-button"
                         >
-                            Lakukan Aksi →
+                            Lakukan Aksi
                         </a>
 
                         </div>
@@ -678,7 +606,7 @@ $aksiIcons = [
             <div class="empty-state">
 
                 <div class="empty-state-icon">
-                    🔍
+                    <span class="empty-state-icon-mark" aria-hidden="true">?</span>
                 </div>
 
 
@@ -734,7 +662,7 @@ $aksiIcons = [
                             href="peta.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta"
                             class="aksi-region-item <?= $wilayahDipilih === $wilayah ? 'active' : '' ?>"
                         >
-                            <span class="aksi-region-icon">📍</span>
+                            <span class="aksi-region-icon" aria-hidden="true">●</span>
                             <span>
                                 <strong><?= htmlspecialchars($wilayah) ?></strong>
                                 <small><?= number_format($jumlahWilayah, 0, ',', '.') ?> aksi</small>
@@ -755,7 +683,7 @@ $aksiIcons = [
                         <div class="aksi-location-list">
                             <?php foreach ($aksiWilayah as $aksiLokasi): ?>
                                 <div class="aksi-location-item">
-                                    <span class="aksi-location-icon"><?= htmlspecialchars($aksiLokasi['kategori_icon'] ?: '🔥') ?></span>
+                                    <span class="aksi-location-icon" aria-hidden="true"><?= htmlspecialchars($aksiLokasi['kategori_icon'] ?: '●') ?></span>
                                     <div>
                                         <strong><?= htmlspecialchars($aksiLokasi['nama_aksi']) ?></strong>
                                         <small><?= number_format((int) $aksiLokasi['total_peserta'], 0, ',', '.') ?> peserta</small>
@@ -763,7 +691,7 @@ $aksiIcons = [
                                     <a
                                         href="<?= isset($_SESSION['user_id']) ? '../lakukan-aksi.php?aksi=' . (int) $aksiLokasi['id'] : '../login.php?aksi=' . (int) $aksiLokasi['id'] ?>"
                                         class="aksi-button"
-                                    >Ikut Aksi →</a>
+                                    >Ikut Aksi</a>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -772,7 +700,7 @@ $aksiIcons = [
                     <?php endif; ?>
                 <?php else: ?>
                     <div class="aksi-location-empty aksi-location-empty-prompt">
-                        <span>📍</span>
+                        <span aria-hidden="true">●</span>
                         <strong>Pilih wilayah untuk melihat aksi di sekitarnya</strong>
                         <p>Dari kategori ke lokasi, temukan aksi yang paling dekat denganmu.</p>
                     </div>
@@ -815,7 +743,7 @@ $aksiIcons = [
                 href="../register.php"
                 class="btn btn-white btn-large"
             >
-                🔥 Gabung Sekarang
+                Gabung Sekarang
             </a>
 
         </div>
@@ -928,6 +856,7 @@ $aksiIcons = [
 <?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 
+<script src="../assets/js/aksi-select.js"></script>
 <script src="../assets/js/icons.js?v=3"></script>
 </body>
 

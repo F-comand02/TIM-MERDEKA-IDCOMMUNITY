@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^php -l index\\.php; if \\(\\$LASTEXITCODE -ne 0\\) \\{ exit 1 \\}; git diff --check$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
