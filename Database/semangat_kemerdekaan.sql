@@ -55,6 +55,13 @@ INSERT INTO `aksi` (`id`, `kategori_id`, `nama_aksi`, `deskripsi`, `poin`, `ting
 (11, 5, 'Berbagi Ilmu', 'Bagikan pengetahuan atau keterampilan kepada orang lain tanpa membedakan latar belakang.', 20, 'Mudah', '2026-08-20 16:47:07'),
 (12, 5, 'Bantu Akses Pendidikan', 'Bantu seseorang mendapatkan informasi atau akses terhadap pendidikan.', 30, 'Sedang', '2026-08-20 16:47:07');
 
+INSERT IGNORE INTO `aksi` (`id`, `kategori_id`, `nama_aksi`, `deskripsi`, `poin`, `tingkat_kesulitan`) VALUES
+(13, 1, 'Bangun Kelas Belajar Komunitas', 'Rancang dan jalankan kelas belajar rutin untuk minimal 10 peserta selama empat minggu.', 80, 'Sulit'),
+(14, 2, 'Selenggarakan Pemeriksaan Kesehatan', 'Bantu mengorganisir kegiatan pemeriksaan kesehatan dasar bersama tenaga atau fasilitas kesehatan setempat.', 90, 'Sulit'),
+(15, 3, 'Pimpin Program Pemulihan Lingkungan', 'Rancang dan koordinasikan program pemulihan lingkungan yang melibatkan warga serta memiliki hasil yang terukur.', 100, 'Sulit'),
+(16, 4, 'Dampingi UMKM Naik Kelas', 'Dampingi satu UMKM lokal menyusun strategi pemasaran, pencatatan sederhana, dan rencana pengembangan usaha.', 90, 'Sulit'),
+(17, 5, 'Bangun Program Inklusi Komunitas', 'Buat dan jalankan program yang memperluas akses atau kesempatan bagi kelompok yang kurang terwakili di lingkunganmu.', 100, 'Sulit');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +189,14 @@ CREATE TABLE `users` (
   `daerah` varchar(100) DEFAULT NULL,
   `tanggal_daftar` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Default admin account for local development.
+-- Email: admin@gmail.com
+-- Password: admin12345
+INSERT IGNORE INTO `users`
+  (`id`, `nama`, `email`, `password`, `role`, `daerah`)
+VALUES
+  (1, 'Administrator', 'admin@gmail.com', '$2y$12$nbHA388yrwNo.aKI.3Abb.ynHciV1oCT2cbDy.iwLVsP8O.qOjYDG', 'admin', 'Indonesia');
 
 --
 -- Indexes for dumped tables

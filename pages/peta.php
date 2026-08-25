@@ -4,9 +4,6 @@ session_start();
 
 require_once "../config/database.php";
 
-header('Location: aksi.php#peta-aksi');
-exit;
-
 
 // =====================================================
 // DATA WILAYAH
@@ -23,6 +20,14 @@ $wilayahList = [
     'Papua'
 
 ];
+
+$wilayahDipilih = $_GET['wilayah'] ?? '';
+if (!in_array($wilayahDipilih, $wilayahList, true)) {
+    $wilayahDipilih = '';
+}
+$lokasiPeta = $wilayahDipilih !== ''
+    ? $wilayahDipilih . ', Indonesia'
+    : 'Indonesia';
 
 
 // =====================================================
@@ -185,7 +190,7 @@ $totalAksi = array_sum(
 <?php endif; ?>
 
 
-<main class="map-main">
+<main class="map-main" id="peta">
 
     <div class="container">
 
@@ -207,10 +212,14 @@ $totalAksi = array_sum(
 
             <p>
 
-                Setiap titik kontribusi menunjukkan
+                    <?= $wilayahDipilih !== ''
+                        ? 'Menampilkan peta wilayah ' . htmlspecialchars($wilayahDipilih)
+                        : 'Setiap titik kontribusi menunjukkan' ?>
+                    <?php if ($wilayahDipilih === ''): ?>
                 semangat masyarakat Indonesia untuk
                 melakukan perubahan dari daerahnya
                 masing-masing.
+                    <?php endif; ?>
 
             </p>
 
@@ -224,28 +233,13 @@ $totalAksi = array_sum(
 
             <div class="map-card">
 
-                <div class="map-illustration">
-
-                    <div class="map-title">
-                         AKSI UNTUK NEGERI
-                    </div>
-
-                    <div class="indonesia-symbol">
-                        🗺️
-                    </div>
-
-                    <p class="map-caption">
-                        <?= number_format(
-                            $totalAksi,
-                            0,
-                            ',',
-                            '.'
-                        ) ?>
-                        aksi telah disetujui
-                        dari berbagai wilayah Indonesia.
-                    </p>
-
-                </div>
+                <iframe
+                    class="google-map-embed"
+                    src="https://www.google.com/maps?q=<?= urlencode($lokasiPeta) ?>&output=embed"
+                    title="Peta Google <?= htmlspecialchars($lokasiPeta) ?>"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
 
             </div>
 
@@ -297,7 +291,10 @@ $totalAksi = array_sum(
 
                     <div class="region-item">
 
-                        <div class="region-top">
+                        <a
+                            class="region-top"
+                            href="peta.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta"
+                        >
 
                             <span class="region-name">
 
@@ -354,7 +351,7 @@ $totalAksi = array_sum(
 
                             </span>
 
-                        </div>
+                        </a>
 
 
                         <div class="region-bar">

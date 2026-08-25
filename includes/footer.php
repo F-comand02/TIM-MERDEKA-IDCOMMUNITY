@@ -10,6 +10,7 @@
         <div class="footer-links">
             <h4>Jelajahi</h4>
             <a href="<?= $basePath ?>index.php#aksi">Pilih Aksi</a>
+            <a href="<?= $basePath ?>pages/peta.php">Peta</a>
             <a href="<?= $basePath ?>index.php#progress">Progress</a>
             <a href="<?= $basePath ?>index.php#event">Event</a>
             <a href="<?= $basePath ?>index.php#cerita">Cerita Mereka</a>

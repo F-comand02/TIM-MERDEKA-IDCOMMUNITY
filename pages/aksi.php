@@ -165,13 +165,13 @@ $aksiWilayah = [];
 if ($wilayahDipilih !== '') {
     $stmtWilayah = mysqli_prepare(
         $conn,
-        "SELECT aksi.id, aksi.nama_aksi, aksi.icon, kategori.icon AS kategori_icon,
+        "SELECT aksi.id, aksi.nama_aksi, kategori.icon AS kategori_icon,
                 COUNT(aksi_user.id) AS total_peserta
          FROM aksi_user
          INNER JOIN aksi ON aksi.id = aksi_user.aksi_id
          INNER JOIN kategori ON kategori.id = aksi.kategori_id
          WHERE aksi_user.status = 'disetujui' AND aksi_user.wilayah = ?
-         GROUP BY aksi.id, aksi.nama_aksi, aksi.icon, kategori.icon
+         GROUP BY aksi.id, aksi.nama_aksi, kategori.icon
          ORDER BY total_peserta DESC, aksi.nama_aksi ASC"
     );
     mysqli_stmt_bind_param($stmtWilayah, 's', $wilayahDipilih);
@@ -196,6 +196,11 @@ $aksiIcons = [
     10 => '&#127758;',
     11 => '&#129309;',
     12 => '&#127919;',
+    13 => '&#127758;',
+    14 => '&#128737;&#65039;',
+    15 => '&#128200;',
+    16 => '&#127963;&#65039;',
+    17 => '&#128161;',
 ];
 
 ?>
@@ -245,16 +250,11 @@ $aksiIcons = [
 
     <div class="container nav-container">
 
-        <a
-            href="../index.php"
-            class="logo"
-        >
-
-            <span class="logo-icon">
-                🇮🇩
-            </span>
-
-            <span>
+                                <span
+                                    class="aksi-difficulty-badge <?= $difficultyClass ?>"
+                                >
+                                    <?= htmlspecialchars($aksi['tingkat_kesulitan']) ?>
+                                </span>
                 Aksi Untuk Negeri
             </span>
 
@@ -625,13 +625,23 @@ $aksiIcons = [
                                         ]
                                     );
 
+                                $difficultyIcon = match (
+                                    $difficultyClass
+                                ) {
+                                    'mudah' => '🌱',
+                                    'sedang' => '🎯',
+                                    'sulit' => '⚡',
+                                    default => '✦'
+                                };
+
                                 ?>
 
 
                                 <span
                                     class="aksi-difficulty-dot
                                     <?= $difficultyClass ?>"
-                                ></span>
+                                    aria-hidden="true"
+                                ><?= $difficultyIcon ?></span>
 
 
                                 <?= htmlspecialchars(
@@ -721,7 +731,7 @@ $aksiIcons = [
                     <?php foreach ($wilayahValid as $wilayah): ?>
                         <?php $jumlahWilayah = $dataWilayah[$wilayah] ?? 0; ?>
                         <a
-                            href="aksi.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta-aksi"
+                            href="peta.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta"
                             class="aksi-region-item <?= $wilayahDipilih === $wilayah ? 'active' : '' ?>"
                         >
                             <span class="aksi-region-icon">📍</span>
@@ -745,7 +755,7 @@ $aksiIcons = [
                         <div class="aksi-location-list">
                             <?php foreach ($aksiWilayah as $aksiLokasi): ?>
                                 <div class="aksi-location-item">
-                                    <span class="aksi-location-icon"><?= htmlspecialchars($aksiLokasi['kategori_icon'] ?: $aksiLokasi['icon'] ?: '🔥') ?></span>
+                                    <span class="aksi-location-icon"><?= htmlspecialchars($aksiLokasi['kategori_icon'] ?: '🔥') ?></span>
                                     <div>
                                         <strong><?= htmlspecialchars($aksiLokasi['nama_aksi']) ?></strong>
                                         <small><?= number_format((int) $aksiLokasi['total_peserta'], 0, ',', '.') ?> peserta</small>
@@ -918,7 +928,7 @@ $aksiIcons = [
 <?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 
-<script src="../assets/js/icons.js?v=2"></script>
+<script src="../assets/js/icons.js?v=3"></script>
 </body>
 
 </html>

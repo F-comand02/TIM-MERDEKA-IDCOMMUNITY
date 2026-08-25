@@ -3,6 +3,7 @@ $basePath = $basePath ?? '';
 $currentPage = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
 $isHome = $currentPage === 'index.php';
 $isAction = $currentPage === 'aksi.php';
+$isMap = $currentPage === 'peta.php';
 $isProgress = $currentPage === 'progress.php';
 $isEvent = $currentPage === 'event.php' || $currentPage === 'tantangan.php';
 $isLeaderboard = $currentPage === 'leaderboard.php';
@@ -18,6 +19,7 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
         <nav class="nav-menu">
             <a href="<?= $basePath ?>index.php" class="<?= $isHome ? 'active' : '' ?>" <?= $isHome ? 'aria-current="page"' : '' ?>>Beranda</a>
             <a href="<?= $basePath ?>pages/aksi.php" class="<?= $isAction ? 'active' : '' ?>" <?= $isAction ? 'aria-current="page"' : '' ?>>Aksi</a>
+            <a href="<?= $basePath ?>pages/peta.php" class="<?= $isMap ? 'active' : '' ?>" <?= $isMap ? 'aria-current="page"' : '' ?>>Peta</a>
             <a href="<?= $basePath ?>pages/progress.php" class="<?= $isProgress ? 'active' : '' ?>" <?= $isProgress ? 'aria-current="page"' : '' ?>>Progress</a>
             <a href="<?= $basePath ?>pages/event.php" class="<?= $isEvent ? 'active' : '' ?>" <?= $isEvent ? 'aria-current="page"' : '' ?>>Event</a>
             <a href="<?= $basePath ?>pages/leaderboard.php" class="<?= $isLeaderboard ? 'active' : '' ?>" <?= $isLeaderboard ? 'aria-current="page"' : '' ?>>Leaderboard</a>
