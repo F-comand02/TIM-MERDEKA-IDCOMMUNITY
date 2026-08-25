@@ -193,10 +193,16 @@ CREATE TABLE `users` (
 -- Default admin account for local development.
 -- Email: admin@gmail.com
 -- Password: admin12345
-INSERT IGNORE INTO `users`
+INSERT INTO `users`
   (`id`, `nama`, `email`, `password`, `role`, `daerah`)
 VALUES
-  (1, 'Administrator', 'admin@gmail.com', '$2y$12$nbHA388yrwNo.aKI.3Abb.ynHciV1oCT2cbDy.iwLVsP8O.qOjYDG', 'admin', 'Indonesia');
+  (1, 'Administrator', 'admin@gmail.com', '$2y$12$nbHA388yrwNo.aKI.3Abb.ynHciV1oCT2cbDy.iwLVsP8O.qOjYDG', 'admin', 'Indonesia')
+ON DUPLICATE KEY UPDATE
+  `nama` = VALUES(`nama`),
+  `email` = VALUES(`email`),
+  `password` = VALUES(`password`),
+  `role` = 'admin',
+  `daerah` = VALUES(`daerah`);
 
 --
 -- Indexes for dumped tables
