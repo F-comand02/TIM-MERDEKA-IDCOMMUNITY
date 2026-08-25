@@ -154,10 +154,97 @@ $queryKategoriAksi = mysqli_query(
      NAVBAR
 ===================================================== -->
 
-<?php
-$basePath = '../';
-require __DIR__ . '/../includes/navbar.php';
-?>
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a
+            href="../index.php"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                🇮🇩
+            </span>
+
+            Aksi Untuk Negeri
+
+        </a>
+
+
+        <nav class="nav-menu">
+
+            <a href="../index.php">
+                Beranda
+            </a>
+
+            <a href="aksi.php">
+                Pilih Aksi
+            </a>
+
+            <a href="progress.php">
+                Progress
+            </a>
+
+            <a href="tantangan.php">
+                17 Hari
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+            <a href="cerita.php">
+                Cerita Mereka
+            </a>
+
+        </nav>
+
+
+        <div class="nav-button">
+
+            <?php if (
+                isset($_SESSION['user_id'])
+            ): ?>
+
+                <a
+                    href="../dashboard.php"
+                    class="btn btn-primary"
+                >
+                    Dashboard
+                </a>
+
+            <?php else: ?>
+
+                <a
+                    href="../login.php"
+                    class="btn btn-outline"
+                >
+                    Masuk
+                </a>
+
+                <a
+                    href="../register.php"
+                    class="btn btn-primary"
+                >
+                    Gabung
+                </a>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</header>
 
 
 <!-- =====================================================

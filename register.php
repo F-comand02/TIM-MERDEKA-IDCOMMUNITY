@@ -148,105 +148,73 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         .auth-page {
             min-height: 100vh;
-
             display: flex;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff,
-                    #fff5f5
-                );
+            align-items: stretch;
+            padding: 32px;
+            background: linear-gradient(135deg, #fff, #fff5f5);
         }
 
         .auth-left {
             width: 50%;
-
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-
             padding: 60px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #d71920,
-                    #a80f15
-                );
-
-            color: white;
-
-            position: relative;
-
             overflow: hidden;
+            background: linear-gradient(145deg, #d71920, #a80f15);
+            color: white;
         }
 
         .auth-left::before {
-            content: "";
-
+            content: "🇮🇩";
             position: absolute;
-
-            font-size: 300px;
-
-            opacity: 0.06;
-
             right: -70px;
-            bottom: -80px;
+            bottom: -90px;
+            font-size: 300px;
+            opacity: 0.06;
         }
 
         .auth-left-content {
             position: relative;
             z-index: 2;
-
-            max-width: 480px;
+            max-width: 500px;
         }
 
         .auth-left h1 {
-            font-size: 52px;
-
+            font-size: clamp(40px, 4vw, 56px);
             line-height: 1.08;
-
             letter-spacing: -2px;
         }
 
         .auth-left h1 span {
             display: block;
-
             color: #ffe4e4;
         }
 
         .auth-left p {
             margin-top: 20px;
-
-            color:
-                rgba(255,255,255,0.75);
-
+            color: rgba(255,255,255,0.78);
             line-height: 1.8;
+            font-size: 14px;
         }
 
         .auth-quote {
             margin-top: 35px;
-
-            padding: 20px;
-
-            border-left:
-                3px solid white;
-
-            background:
-                rgba(255,255,255,0.08);
-
+            padding: 20px 18px;
+            border-left: 3px solid white;
+            background: rgba(255,255,255,0.08);
             font-size: 14px;
+            line-height: 1.7;
+            border-radius: 0 12px 12px 0;
         }
 
         .auth-right {
             width: 50%;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
-            padding: 40px;
+            padding: 42px 34px;
         }
 
         .auth-box {
@@ -255,28 +223,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         .auth-logo {
-            margin-bottom: 30px;
-
+            margin-bottom: 28px;
             font-size: 18px;
             font-weight: 800;
+            color: #171717;
         }
 
         .auth-box h2 {
-            font-size: 34px;
-
+            font-size: clamp(30px, 3vw, 38px);
             letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .auth-subtitle {
-            margin-top: 7px;
-
+            margin-top: 8px;
             color: #737373;
-
             font-size: 13px;
+            line-height: 1.7;
         }
 
         .auth-form {
-            margin-top: 30px;
+            margin-top: 28px;
         }
 
         .form-group {
@@ -285,11 +252,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         .form-group label {
             display: block;
-
-            margin-bottom: 7px;
-
-            color: #404040;
-
+            margin-bottom: 8px;
+            color: #262626;
             font-size: 12px;
             font-weight: 700;
         }
@@ -297,93 +261,62 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .form-group input,
         .form-group select {
             width: 100%;
-
             padding: 13px 14px;
-
-            border:
-                1px solid #d4d4d4;
-
-            border-radius: 10px;
-
+            border: 1px solid #d4d4d4;
+            border-radius: 12px;
             outline: none;
-
             background: white;
-
             font-size: 13px;
-
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             border-color: #d71920;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(215,25,32,0.08);
+            box-shadow: 0 0 0 3px rgba(215,25,32,0.08);
         }
 
         .auth-button {
             width: 100%;
-
-            border: none;
-
             margin-top: 8px;
         }
 
         .auth-message {
             padding: 12px 14px;
-
             margin-bottom: 20px;
-
-            border-radius: 10px;
-
+            border-radius: 12px;
             font-size: 12px;
+            line-height: 1.5;
         }
 
         .auth-error {
             background: #fff1f2;
-
             color: #b51218;
-
-            border:
-                1px solid #fecdd3;
+            border: 1px solid #fecdd3;
         }
 
         .auth-success {
             background: #f0fdf4;
-
             color: #15803d;
-
-            border:
-                1px solid #bbf7d0;
+            border: 1px solid #bbf7d0;
         }
 
         .auth-footer {
             margin-top: 22px;
-
             text-align: center;
-
             color: #737373;
-
             font-size: 12px;
         }
 
         .auth-footer a {
             color: #d71920;
-
             font-weight: 800;
         }
 
         .back-home {
             display: inline-block;
-
             margin-top: 20px;
-
             color: #737373;
-
             font-size: 12px;
         }
 
@@ -392,17 +325,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         @media (max-width: 800px) {
-
             .auth-page {
                 display: block;
             }
 
             .auth-left {
                 width: 100%;
-
                 min-height: 300px;
-
-                padding: 45px 25px;
+                padding: 42px 26px;
             }
 
             .auth-left h1 {
@@ -415,9 +345,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             .auth-right {
                 width: 100%;
-
-                padding:
-                    50px 25px;
+                padding: 42px 22px 52px;
             }
         }
 

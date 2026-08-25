@@ -191,10 +191,100 @@ $aksiIcons = [
      NAVBAR
 ===================================================== -->
 
-<?php
-$basePath = '../';
-require __DIR__ . '/../includes/navbar.php';
-?>
+<header class="navbar">
+
+    <div class="container nav-container">
+
+        <a
+            href="../index.php"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                🇮🇩
+            </span>
+
+            <span>
+                Aksi Untuk Negeri
+            </span>
+
+        </a>
+
+
+        <nav class="nav-menu">
+
+            <a href="../index.php#beranda">
+                Beranda
+            </a>
+
+            <a href="aksi.php">
+                Pilih Aksi
+            </a>
+
+            <a href="progress.php">
+                Progress
+            </a>
+
+            <a href="tantangan.php">
+                17 Hari
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+            <a href="cerita.php">
+                Cerita Mereka
+            </a>
+
+        </nav>
+
+
+        <div class="nav-button">
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a
+                    href="../dashboard.php"
+                    class="btn btn-outline"
+                >
+                    Dashboard
+                </a>
+
+                <a
+                    href="../logout.php"
+                    class="btn btn-primary"
+                >
+                    Keluar
+                </a>
+            <?php else: ?>
+                <a
+                    href="../login.php"
+                    class="btn btn-outline"
+                >
+                    Masuk
+                </a>
+
+                <a
+                    href="../register.php"
+                    class="btn btn-primary"
+                >
+                    Gabung
+                </a>
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+</header>
 
 
 <!-- =====================================================
@@ -608,6 +698,104 @@ require __DIR__ . '/../includes/navbar.php';
      FOOTER
 ===================================================== -->
 
-<?php
-require __DIR__ . '/../includes/footer.php';
-?>
+<footer class="footer">
+
+    <div class="container footer-container">
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <span class="logo-icon">
+                    🇮🇩
+                </span>
+
+                Aksi Untuk Negeri
+
+            </div>
+
+
+            <p>
+
+                Platform kampanye sosial untuk
+                mengubah semangat kemerdekaan
+                menjadi aksi nyata.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Jelajahi
+            </h4>
+
+            <a href="../index.php#aksi">
+                Pilih Aksi
+            </a>
+
+            <a href="../index.php#progress">
+                Progress
+            </a>
+
+            <a href="../index.php#tantangan">
+                17 Hari
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Bergabung
+            </h4>
+
+            <a href="../login.php">
+                Masuk
+            </a>
+
+            <a href="../register.php">
+                Daftar
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <p>
+                © <?= date('Y') ?>
+                Aksi Untuk Negeri.
+                Dibuat untuk Indonesia 🇮🇩
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="../assets/js/icons.js?v=2"></script>
+</body>
+
+</html>
