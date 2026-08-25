@@ -69,8 +69,8 @@ require_once "../config/database.php";
                 Kami siap berdiskusi dan siap membantu menghubungkan langkahmu dengan gerakan yang lebih besar.
             </p>
             <div class="about-actions">
-                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="btn btn-primary">WhatsApp Kami</a>
-                <a href="mailto:hello@aksikeuninegeri.id" class="btn btn-light">Email Kami</a>
+                <a href="https://wa.me/6287785171888" target="_blank" rel="noopener noreferrer" class="btn btn-primary">WhatsApp Kami</a>
+                <a href="mailto:merdekacomunity45@gmail.com" class="btn btn-light">Email Kami</a>
             </div>
         </div>
 
@@ -93,19 +93,19 @@ require_once "../config/database.php";
         <div class="contact-card">
             <div class="value-icon">📞</div>
             <h3>Telepon</h3>
-            <p>+62 812-3456-7890</p>
+            <p>0877 8517 1888</p>
         </div>
 
         <div class="contact-card">
             <div class="value-icon">✉️</div>
             <h3>Email</h3>
-            <p>hello@aksikeuninegeri.id</p>
+            <p>merdekacomunity45@gmail.com</p>
         </div>
 
         <div class="contact-card">
             <div class="value-icon">📍</div>
             <h3>Alamat</h3>
-            <p>Jakarta, Indonesia</p>
+            <p>Medan, Indonesia</p>
         </div>
     </div>
 </section>
@@ -201,7 +201,7 @@ require_once "../config/database.php";
 <?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 <a
-    href="https://wa.me/6281234567890"
+    href="https://wa.me/6287785171888"
     class="floating-whatsapp"
     target="_blank"
     rel="noopener noreferrer"
