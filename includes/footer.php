@@ -3,7 +3,7 @@
         <div class="footer-brand">
             <div class="logo">
                 <span class="logo-icon"></span>
-                Aksi Untuk Negeri
+                MERDEKA COMMUNITY
             </div>
             <p>Platform kampanye sosial untuk mengubah semangat kemerdekaan menjadi aksi nyata.</p>
         </div>

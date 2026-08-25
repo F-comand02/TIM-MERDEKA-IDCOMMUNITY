@@ -13,7 +13,7 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
     <div class="container nav-container">
         <a href="<?= $basePath ?>index.php" class="logo">
             <span class="logo-icon"></span>
-            Aksi Untuk Negeri
+            MERDEKA COMMUNITY
         </a>
         <nav class="nav-menu">
             <a href="<?= $basePath ?>index.php" class="<?= $isHome ? 'active' : '' ?>" <?= $isHome ? 'aria-current="page"' : '' ?>>Beranda</a>
