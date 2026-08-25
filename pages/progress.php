@@ -148,6 +148,8 @@ $queryKategoriAksi = mysqli_query(
 </head>
 
 <body class="progress-page">
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 
 
 <!-- =====================================================
@@ -245,6 +247,7 @@ $queryKategoriAksi = mysqli_query(
     </div>
 
 </header>
+<?php endif; ?>
 
 
 <!-- =====================================================

@@ -744,6 +744,11 @@
            AKSI PAGE
         ===================================================== */
 
+        .aksi-button {
+            font-family: var(--font-body);
+            letter-spacing: normal;
+        }
+
         .aksi-page {
             min-height: 100vh;
             background: #fafafa;
@@ -1180,6 +1185,174 @@
             background: #d71920;
         }
 
+        .aksi-participants {
+            margin-top: 12px;
+            color: #737373;
+            font-size: 11px;
+        }
+
+        .aksi-map-section {
+            padding: 75px 0 95px;
+            background: #fff5f5;
+            border-top: 1px solid #fee2e2;
+            border-bottom: 1px solid #fee2e2;
+        }
+
+        .aksi-map-heading {
+            max-width: 680px;
+            margin-bottom: 30px;
+        }
+
+        .aksi-map-heading h2 {
+            margin-top: 8px;
+            font-size: 30px;
+            letter-spacing: -1px;
+        }
+
+        .aksi-map-heading p {
+            margin-top: 8px;
+            color: #737373;
+            font-size: 13px;
+        }
+
+        .aksi-map-layout {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .aksi-region-panel,
+        .aksi-location-results {
+            padding: 24px;
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .aksi-region-panel-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 13px;
+        }
+
+        .aksi-region-panel-heading span,
+        .aksi-location-item small {
+            color: #737373;
+            font-size: 11px;
+        }
+
+        .aksi-region-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+        }
+
+        .aksi-region-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 10px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            color: #525252;
+            transition: 0.2s ease;
+        }
+
+        .aksi-region-item:hover,
+        .aksi-region-item.active {
+            border-color: #d71920;
+            color: #d71920;
+            background: #fff1f2;
+        }
+
+        .aksi-region-icon {
+            font-size: 16px;
+        }
+
+        .aksi-region-item strong,
+        .aksi-region-item small {
+            display: block;
+        }
+
+        .aksi-region-item strong {
+            font-size: 12px;
+        }
+
+        .aksi-region-item small {
+            margin-top: 2px;
+            color: #737373;
+            font-size: 10px;
+        }
+
+        .aksi-location-heading h3 {
+            margin-top: 7px;
+            font-size: 22px;
+        }
+
+        .aksi-location-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .aksi-location-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 13px;
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .aksi-location-icon {
+            font-size: 20px;
+        }
+
+        .aksi-location-item strong,
+        .aksi-location-item small {
+            display: block;
+        }
+
+        .aksi-location-item strong {
+            font-size: 13px;
+        }
+
+        .aksi-location-item small {
+            margin-top: 3px;
+        }
+
+        .aksi-location-empty {
+            color: #737373;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .aksi-location-empty-prompt {
+            display: grid;
+            min-height: 220px;
+            place-content: center;
+            text-align: center;
+        }
+
+        .aksi-location-empty-prompt span {
+            font-size: 34px;
+        }
+
+        .aksi-location-empty-prompt strong {
+            margin-top: 12px;
+            color: #262626;
+            font-size: 14px;
+        }
+
+        .aksi-location-empty-prompt p {
+            margin-top: 5px;
+        }
+
 
         /* =====================================================
            EMPTY STATE
@@ -1259,6 +1432,25 @@
 
             .aksi-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .aksi-map-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .aksi-region-panel-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .aksi-location-item {
+                grid-template-columns: auto 1fr;
+            }
+
+            .aksi-location-item .aksi-button {
+                grid-column: 1 / -1;
+                justify-self: start;
             }
 
             .aksi-card {

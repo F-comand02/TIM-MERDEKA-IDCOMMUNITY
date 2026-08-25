@@ -16,55 +16,11 @@ $stats = mysqli_fetch_assoc($queryStats);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-        name="description"
-        content="Tentang Aksi Untuk Negeri, visi, misi, dan tujuan komunitas dalam mendorong aksi nyata untuk Indonesia."
-    >
-    <title>Tentang Kami — Aksi Untuk Negeri</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-
-<body>
-
-<header class="navbar">
-    <div class="container nav-container">
-        <a href="../index.php" class="logo">
-            <span class="logo-icon">🇮🇩</span>
-            <span>Aksi Untuk Negeri</span>
-        </a>
-
-        <nav class="nav-menu">
-            <a href="../index.php#beranda">Beranda</a>
-            <a href="../index.php#aksi">Pilih Aksi</a>
-            <a href="../index.php#progress">Progress</a>
-            <a href="../index.php#tantangan">17 Hari</a>
-            <a href="about.php">Tentang</a>
-            <a href="faq.php">FAQ</a>
-            <a href="contact.php">Kontak</a>
-            <a href="cerita.php">Cerita Mereka</a>
-        </nav>
-
-        <div class="nav-button">
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
-                    <a href="../admin/index.php" class="btn btn-primary">Dashboard Admin</a>
-                <?php else: ?>
-                    <a href="../dashboard.php" class="btn btn-primary">Dashboard</a>
-                <?php endif; ?>
-                <a href="../logout.php" class="btn btn-outline">Keluar</a>
-            <?php else: ?>
-                <a href="../login.php" class="btn btn-outline">Masuk</a>
-                <a href="../register.php" class="btn btn-primary">Gabung</a>
-            <?php endif; ?>
-        </div>
-    </div>
-</header>
+<?php
+$pageTitle = 'Tentang Kami - Aksi Untuk Negeri';
+$basePath = '../';
+require __DIR__ . '/../includes/header.php';
+?>
 
 <section class="about-hero">
     <div class="container about-hero-inner">
@@ -341,6 +297,7 @@ $stats = mysqli_fetch_assoc($queryStats);
     </div>
 </section>
 
+<?php if (false): ?>
 <footer class="footer">
     <div class="container footer-container">
         <div class="footer-brand">
@@ -384,6 +341,7 @@ $stats = mysqli_fetch_assoc($queryStats);
         </div>
     </div>
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 <a
     href="https://wa.me/6281234567890"

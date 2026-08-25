@@ -61,6 +61,8 @@ $stories = [
 
 <body>
 
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 <header class="navbar">
     <div class="container nav-container">
         <a href="../index.php" class="logo">
@@ -93,6 +95,7 @@ $stories = [
         </div>
     </div>
 </header>
+<?php endif; ?>
 
 <section class="about-hero">
     <div class="container about-hero-inner">
@@ -161,6 +164,7 @@ $stories = [
     </div>
 </section>
 
+<?php if (false): ?>
 <footer class="footer">
     <div class="container footer-container">
         <div class="footer-brand">
@@ -204,6 +208,7 @@ $stories = [
         </div>
     </div>
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 <a
     href="https://wa.me/6281234567890"

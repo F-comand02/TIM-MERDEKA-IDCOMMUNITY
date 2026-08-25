@@ -17,6 +17,12 @@ $kategoriId = isset($_GET['kategori'])
 $kataKunci = trim($_GET['q'] ?? '');
 $tingkatDipilih = $_GET['tingkat'] ?? '';
 $tingkatValid = ['Mudah', 'Sedang', 'Sulit'];
+$wilayahValid = ['Sumatera', 'Jawa', 'Kalimantan', 'Sulawesi', 'Bali & Nusa Tenggara', 'Maluku', 'Papua'];
+$wilayahDipilih = $_GET['wilayah'] ?? '';
+
+if (!in_array($wilayahDipilih, $wilayahValid, true)) {
+    $wilayahDipilih = '';
+}
 
 if (!in_array($tingkatDipilih, $tingkatValid, true)) {
     $tingkatDipilih = '';
@@ -100,7 +106,13 @@ $querySql = "SELECT
                 aksi.*,
                 kategori.nama_kategori,
                 kategori.icon,
-                kategori.sdg
+                kategori.sdg,
+                (
+                    SELECT COUNT(*)
+                    FROM aksi_user
+                    WHERE aksi_user.aksi_id = aksi.id
+                    AND aksi_user.status = 'disetujui'
+                ) AS total_peserta
              FROM aksi
              INNER JOIN kategori
                 ON aksi.kategori_id = kategori.id";
@@ -134,6 +146,42 @@ $queryAksi = mysqli_stmt_get_result($stmtAksi);
 */
 
 $totalAksi = mysqli_num_rows($queryAksi);
+
+$queryWilayah = mysqli_query(
+    $conn,
+    "SELECT wilayah, COUNT(*) AS total
+     FROM aksi_user
+     WHERE status = 'disetujui' AND wilayah IS NOT NULL AND wilayah != ''
+     GROUP BY wilayah
+     ORDER BY total DESC"
+);
+
+$dataWilayah = [];
+while ($row = mysqli_fetch_assoc($queryWilayah)) {
+    $dataWilayah[$row['wilayah']] = (int) $row['total'];
+}
+
+$aksiWilayah = [];
+if ($wilayahDipilih !== '') {
+    $stmtWilayah = mysqli_prepare(
+        $conn,
+        "SELECT aksi.id, aksi.nama_aksi, aksi.icon, kategori.icon AS kategori_icon,
+                COUNT(aksi_user.id) AS total_peserta
+         FROM aksi_user
+         INNER JOIN aksi ON aksi.id = aksi_user.aksi_id
+         INNER JOIN kategori ON kategori.id = aksi.kategori_id
+         WHERE aksi_user.status = 'disetujui' AND aksi_user.wilayah = ?
+         GROUP BY aksi.id, aksi.nama_aksi, aksi.icon, kategori.icon
+         ORDER BY total_peserta DESC, aksi.nama_aksi ASC"
+    );
+    mysqli_stmt_bind_param($stmtWilayah, 's', $wilayahDipilih);
+    mysqli_stmt_execute($stmtWilayah);
+    $resultWilayah = mysqli_stmt_get_result($stmtWilayah);
+
+    while ($row = mysqli_fetch_assoc($resultWilayah)) {
+        $aksiWilayah[] = $row;
+    }
+}
 
 $aksiIcons = [
     1 => '&#128218;',
@@ -170,7 +218,7 @@ $aksiIcons = [
     >
 
     <title>
-        Pilih Aksi — Aksi Untuk Negeri
+        Aksi Indonesia — Aksi Untuk Negeri
     </title>
 
     <link
@@ -185,6 +233,8 @@ $aksiIcons = [
 
 
 <body class="aksi-page">
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 
 
 <!-- =====================================================
@@ -285,6 +335,7 @@ $aksiIcons = [
     </div>
 
 </header>
+<?php endif; ?>
 
 
 <!-- =====================================================
@@ -298,7 +349,7 @@ $aksiIcons = [
         <div class="aksi-hero-content">
 
             <div class="aksi-badge">
-                🔥 PILIH AKSIMU
+                🔥 AKSI INDONESIA
             </div>
 
 
@@ -332,20 +383,16 @@ $aksiIcons = [
 
                 <h1>
 
-                    Setiap Aksi
-                    <span>
-                        Berarti.
-                    </span>
+                    Temukan Aksi,
+                    <span>Berikan Dampak.</span>
 
                 </h1>
 
 
                 <p>
 
-                    Pilih bidang yang paling dekat
-                    denganmu. Temukan aksi sederhana
-                    yang dapat kamu lakukan untuk
-                    memberikan dampak nyata.
+                    Temukan aksi berdasarkan bidang dan lokasi,
+                    lalu ikut bergerak bersama komunitas di seluruh Indonesia.
 
                 </p>
 
@@ -559,6 +606,10 @@ $aksiIcons = [
 
                         </div>
 
+                        <div class="aksi-participants">
+                            <?= number_format((int) $aksi['total_peserta'], 0, ',', '.') ?> peserta telah ikut
+                        </div>
+
 
                         <div class="aksi-footer">
 
@@ -651,6 +702,76 @@ $aksiIcons = [
 </section>
 
 
+<section class="aksi-map-section" id="peta-aksi">
+    <div class="container">
+        <div class="aksi-map-heading">
+            <span class="section-label">🗺️ PETA AKSI</span>
+            <h2>Lihat aksi yang sedang berlangsung di Indonesia</h2>
+            <p>Pilih wilayah untuk menemukan aksi yang sedang dilakukan komunitas di sana.</p>
+        </div>
+
+        <div class="aksi-map-layout">
+            <div class="aksi-region-panel">
+                <div class="aksi-region-panel-heading">
+                    <strong>Temukan berdasarkan lokasi</strong>
+                    <span><?= number_format(array_sum($dataWilayah), 0, ',', '.') ?> aksi disetujui</span>
+                </div>
+
+                <div class="aksi-region-grid">
+                    <?php foreach ($wilayahValid as $wilayah): ?>
+                        <?php $jumlahWilayah = $dataWilayah[$wilayah] ?? 0; ?>
+                        <a
+                            href="aksi.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta-aksi"
+                            class="aksi-region-item <?= $wilayahDipilih === $wilayah ? 'active' : '' ?>"
+                        >
+                            <span class="aksi-region-icon">📍</span>
+                            <span>
+                                <strong><?= htmlspecialchars($wilayah) ?></strong>
+                                <small><?= number_format($jumlahWilayah, 0, ',', '.') ?> aksi</small>
+                            </span>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div class="aksi-location-results">
+                <?php if ($wilayahDipilih !== ''): ?>
+                    <div class="aksi-location-heading">
+                        <span class="section-label">AKSI DI WILAYAH TERPILIH</span>
+                        <h3>Aksi di <?= htmlspecialchars($wilayahDipilih) ?></h3>
+                    </div>
+
+                    <?php if ($aksiWilayah): ?>
+                        <div class="aksi-location-list">
+                            <?php foreach ($aksiWilayah as $aksiLokasi): ?>
+                                <div class="aksi-location-item">
+                                    <span class="aksi-location-icon"><?= htmlspecialchars($aksiLokasi['kategori_icon'] ?: $aksiLokasi['icon'] ?: '🔥') ?></span>
+                                    <div>
+                                        <strong><?= htmlspecialchars($aksiLokasi['nama_aksi']) ?></strong>
+                                        <small><?= number_format((int) $aksiLokasi['total_peserta'], 0, ',', '.') ?> peserta</small>
+                                    </div>
+                                    <a
+                                        href="<?= isset($_SESSION['user_id']) ? '../lakukan-aksi.php?aksi=' . (int) $aksiLokasi['id'] : '../login.php?aksi=' . (int) $aksiLokasi['id'] ?>"
+                                        class="aksi-button"
+                                    >Ikut Aksi →</a>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <p class="aksi-location-empty">Belum ada aksi disetujui di wilayah ini. Pilih wilayah lain atau mulai aksi baru.</p>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <div class="aksi-location-empty aksi-location-empty-prompt">
+                        <span>📍</span>
+                        <strong>Pilih wilayah untuk melihat aksi di sekitarnya</strong>
+                        <p>Dari kategori ke lokasi, temukan aksi yang paling dekat denganmu.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- =====================================================
      CTA
 ===================================================== -->
@@ -698,6 +819,7 @@ $aksiIcons = [
      FOOTER
 ===================================================== -->
 
+<?php if (false): ?>
 <footer class="footer">
 
     <div class="container footer-container">
@@ -793,6 +915,7 @@ $aksiIcons = [
     </div>
 
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 
 <script src="../assets/js/icons.js?v=2"></script>

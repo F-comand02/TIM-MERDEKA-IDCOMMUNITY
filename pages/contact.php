@@ -22,6 +22,8 @@ require_once "../config/database.php";
 
 <body>
 
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 <header class="navbar">
     <div class="container nav-container">
         <a href="../index.php" class="logo">
@@ -55,6 +57,7 @@ require_once "../config/database.php";
         </div>
     </div>
 </header>
+<?php endif; ?>
 
 <section class="about-hero">
     <div class="container about-hero-inner">
@@ -151,6 +154,7 @@ require_once "../config/database.php";
     </div>
 </section>
 
+<?php if (false): ?>
 <footer class="footer">
     <div class="container footer-container">
         <div class="footer-brand">
@@ -194,6 +198,7 @@ require_once "../config/database.php";
         </div>
     </div>
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 <a
     href="https://wa.me/6281234567890"

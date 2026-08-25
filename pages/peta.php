@@ -4,6 +4,9 @@ session_start();
 
 require_once "../config/database.php";
 
+header('Location: aksi.php#peta-aksi');
+exit;
+
 
 // =====================================================
 // DATA WILAYAH
@@ -91,6 +94,8 @@ $totalAksi = array_sum(
 </head>
 
 <body class="map-page">
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 
 
 <header class="navbar">
@@ -177,6 +182,7 @@ $totalAksi = array_sum(
     </div>
 
 </header>
+<?php endif; ?>
 
 
 <main class="map-main">
@@ -445,6 +451,7 @@ $totalAksi = array_sum(
 </main>
 
 
+<?php if (false): ?>
 <footer class="footer">
 
     <div class="container footer-container">
@@ -558,6 +565,7 @@ $totalAksi = array_sum(
     </div>
 
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 
 <script src="../assets/js/icons.js"></script>

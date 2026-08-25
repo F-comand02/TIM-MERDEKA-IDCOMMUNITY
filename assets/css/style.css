@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     background:
         radial-gradient(
             circle at top,
@@ -95,6 +95,7 @@ a:focus-visible {
 ========================================================= */
 
 :root {
+    --font-body: Arial, Helvetica, sans-serif;
     --red: #d71920;
     --red-dark: #b51218;
     --red-light: #fff1f2;
@@ -156,13 +157,19 @@ a:focus-visible {
     border-radius: 12px;
 
     font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.01em;
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: normal;
     line-height: 1;
 
+
+button,
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease,
+    font-family: var(--font-body);
+    letter-spacing: normal;
+}
         background 0.25s ease,
         color 0.25s ease,
         border-color 0.25s ease;
@@ -322,8 +329,99 @@ a:focus-visible {
 }
 
 .nav-menu a:hover::after,
-.nav-menu a:focus-visible::after {
+.nav-menu a:focus-visible::after,
+.nav-menu a.active::after {
     width: 100%;
+}
+
+.nav-menu a.active {
+    color: var(--red);
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 28px 0;
+    color: var(--gray-700);
+    cursor: pointer;
+    list-style: none;
+    transition: color 0.25s ease;
+}
+
+.nav-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-dropdown summary span {
+    color: var(--gray-500);
+    font-size: 11px;
+    transition: transform 0.25s ease;
+}
+
+.nav-dropdown[open] summary span {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown summary:hover,
+.nav-dropdown summary:focus-visible,
+.nav-dropdown[open] summary,
+.nav-dropdown summary.active {
+    color: var(--red);
+}
+
+.nav-dropdown summary::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 18px;
+    width: 0;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.25s ease;
+}
+
+.nav-dropdown summary:hover::after,
+.nav-dropdown summary:focus-visible::after,
+.nav-dropdown summary.active::after {
+    width: calc(100% - 16px);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% - 10px);
+    left: 50%;
+    min-width: 175px;
+    padding: 8px;
+    transform: translateX(-50%);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-dropdown-menu a {
+    display: block;
+    padding: 10px 12px;
+    color: var(--gray-700);
+    white-space: nowrap;
+    border-radius: 7px;
+}
+
+.nav-dropdown-menu a::after {
+    display: none;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible,
+.nav-dropdown-menu a.active {
+    color: var(--red);
+    background: var(--red-light);
 }
 
 .nav-button {
@@ -2504,7 +2602,17 @@ a:focus-visible {
 @media (max-width: 1000px) {
 
     .nav-menu {
-        display: none;
+        flex: 1;
+        gap: 16px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        font-size: 12px;
+    }
+
+    .nav-menu a,
+    .nav-dropdown summary {
+        padding: 28px 0;
+        white-space: nowrap;
     }
 
     .recent-grid {
@@ -2809,4 +2917,15 @@ a:focus-visible {
         grid-column: auto;
     }
 
+}
+
+.btn,
+button,
+.aksi-button,
+.social-btn,
+.verify-btn,
+.auth-button {
+    font-family: var(--font-body);
+    font-weight: 400 !important;
+    letter-spacing: normal;
 }

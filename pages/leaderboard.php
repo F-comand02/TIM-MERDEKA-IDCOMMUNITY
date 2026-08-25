@@ -65,6 +65,8 @@ if ($userId > 0) {
     <link rel="stylesheet" href="../assets/css/pages.css">
 </head>
 <body class="leaderboard-page">
+<?php $basePath = '../'; require __DIR__ . '/../includes/navbar.php'; ?>
+<?php if (false): ?>
 
 <header class="navbar">
     <div class="container nav-container">
@@ -95,6 +97,7 @@ if ($userId > 0) {
         </div>
     </div>
 </header>
+<?php endif; ?>
 
 <main class="leaderboard-main">
     <div class="container">
@@ -147,6 +150,7 @@ if ($userId > 0) {
     </div>
 </main>
 
+<?php if (false): ?>
 <footer class="footer">
 
     <div class="container footer-container">
@@ -260,6 +264,7 @@ if ($userId > 0) {
     </div>
 
 </footer>
+<?php endif; require __DIR__ . '/../includes/footer.php'; ?>
 
 <script src="../assets/js/icons.js"></script>
 </body>
