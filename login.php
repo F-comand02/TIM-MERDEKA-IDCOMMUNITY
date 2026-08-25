@@ -487,7 +487,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="login-brand-content">
 
                 <div style="font-size:35px;">
-                    🇮🇩
+                    
                 </div>
 
 
@@ -528,7 +528,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <div class="login-logo">
 
-                    🇮🇩 Aksi Untuk Negeri
+                     Aksi Untuk Negeri
 
                 </div>
 
@@ -635,7 +635,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         class="btn btn-primary login-button"
                     >
 
-                        🇮🇩 Masuk
+                         Masuk
 
                     </button>
 

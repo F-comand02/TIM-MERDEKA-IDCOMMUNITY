@@ -1001,7 +1001,7 @@ $queryHistoryList = mysqli_query(
         >
 
             <span class="logo-icon">
-                🇮🇩
+                
             </span>
 
             Aksi Untuk Negeri
@@ -1069,7 +1069,7 @@ $queryHistoryList = mysqli_query(
             <div>
 
                 <small>
-                    🇮🇩 ADMINISTRATOR
+                     ADMINISTRATOR
                 </small>
 
                 <h1>
@@ -1654,7 +1654,7 @@ $queryHistoryList = mysqli_query(
             <div class="logo">
 
                 <span class="logo-icon">
-                    🇮🇩
+                    
                 </span>
 
                 Aksi Untuk Negeri
@@ -1732,7 +1732,7 @@ $queryHistoryList = mysqli_query(
             <p>
                 © <?= date('Y') ?>
                 Aksi Untuk Negeri.
-                Dibuat untuk Indonesia 🇮🇩
+                Dibuat untuk Indonesia 
             </p>
 
         </div>

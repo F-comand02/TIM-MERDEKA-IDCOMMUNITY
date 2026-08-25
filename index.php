@@ -81,134 +81,16 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Semangat Kemerdekaan, Aksi untuk Negeri. Platform kampanye sosial untuk mengajak masyarakat Indonesia melakukan aksi nyata."
-    >
-
-    <title>
-        Semangat Kemerdekaan — Aksi untuk Negeri
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="assets/css/style.css"
-    >
-
-</head>
-
-
-<body>
-
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
-
-<header class="navbar">
-
-    <div class="container nav-container">
-
-        <a href="index.php" class="logo">
-
-            <span class="logo-icon">
-                🇮🇩
-            </span>
-
-            <span>
-                Aksi Untuk Negeri
-            </span>
-
-        </a>
-
-
-        <nav class="nav-menu">
-
-            <a href="#beranda">
-                Beranda
-            </a>
-
-            <a href="#aksi">
-                Pilih Aksi
-            </a>
-
-            <a href="#progress">
-                Progress
-            </a>
-
-            <a href="#tantangan">
-                17 Hari
-            </a>
-
-            <a href="#cerita">
-                Cerita Mereka
-            </a>
-
-        </nav>
-
-
-        <div class="nav-button">
-
-            <?php if (isset($_SESSION['user_id'])): ?>
-
-                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
-
-                    <a href="admin/index.php" class="btn btn-primary">
-                        Dashboard Admin
-                    </a>
-
-                <?php else: ?>
-
-                    <a href="dashboard.php" class="btn btn-primary">
-                        Dashboard
-                    </a>
-
-                <?php endif; ?>
-
-                <a href="logout.php" class="btn btn-outline">
-                    Keluar
-                </a>
-
-            <?php else: ?>
-
-                <a href="login.php" class="btn btn-outline">
-                    Masuk
-                </a>
-
-                <a href="register.php" class="btn btn-primary">
-                    Gabung
-                </a>
-
-            <?php endif; ?>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
+<?php
+$pageTitle = 'Semangat Kemerdekaan - Aksi Untuk Negeri';
+$basePath = '';
+require __DIR__ . '/includes/header.php';
+?>
 
 <section id="beranda" class="hero">
 
     <div class="hero-decoration hero-decoration-one">
-        🇮🇩
+        
     </div>
 
     <div class="hero-decoration hero-decoration-two">
@@ -221,7 +103,7 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
         <div class="hero-content">
 
             <div class="hero-badge">
-                🇮🇩 Semangat Kemerdekaan Indonesia
+                 Semangat Kemerdekaan Indonesia
             </div>
 
 
@@ -255,10 +137,10 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
 
 
                 <a
-                    href="#tantangan"
+                    href="#event"
                     class="btn btn-light btn-large"
                 >
-                    🇮🇩 Lihat Tantangan
+                     Lihat Event
                 </a>
 
             </div>
@@ -295,7 +177,7 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
                 <div class="hero-card-top">
 
                     <span>
-                        🇮🇩 AKSI UNTUK NEGERI
+                         AKSI UNTUK NEGERI
                     </span>
 
                     <span>
@@ -441,7 +323,7 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
         <div class="stat-item">
 
             <span class="stat-icon">
-                🇮🇩
+                
             </span>
 
             <div>
@@ -468,24 +350,23 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
      PILIH AKSI
 ===================================================== -->
 
-<section id="aksi" class="section">
+<section id="aksi" class="section action-section">
 
     <div class="container">
 
         <div class="section-heading">
 
             <span class="section-label">
-                MULAI DARI SINI
+                PILIH CARA BERKONTRIBUSI
             </span>
 
             <h2>
-                Pilih Aksimu
+                Aksi Kecil, Dampak Berarti.
             </h2>
 
             <p>
-                Setiap orang punya cara untuk berkontribusi.
-                Pilih bidang yang paling dekat denganmu
-                dan mulai lakukan perubahan.
+                Pilih bidang yang ingin kamu bantu,
+                lalu temukan aksi sederhana yang bisa kamu lakukan.
             </p>
 
         </div>
@@ -501,45 +382,24 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
                 >
 
                     <div class="category-icon">
-
-                        <?= htmlspecialchars($kategori['icon']) ?>
-
+                        <span class="category-icon-symbol">
+                            <?= htmlspecialchars($kategori['icon']) ?>
+                        </span>
                     </div>
-
 
                     <div class="category-content">
 
-                        <span class="category-sdg">
-
-                            <?= htmlspecialchars($kategori['sdg']) ?>
-
-                        </span>
-
-
                         <h3>
-
                             <?= htmlspecialchars(
                                 $kategori['nama_kategori']
                             ) ?>
-
                         </h3>
 
-
                         <p>
-
                             <?= htmlspecialchars(
                                 $kategori['deskripsi']
                             ) ?>
-
                         </p>
-
-
-                        <span class="category-link">
-
-                            Lihat Aksi
-                            →
-                            
-                        </span>
 
                     </div>
 
@@ -571,7 +431,7 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
             <div class="progress-content">
 
                 <span class="section-label">
-                    🇮🇩 PROGRESS KEMERDEKAAN
+                     PROGRESS KEMERDEKAAN
                 </span>
 
 
@@ -652,11 +512,11 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
 
 
 <!-- =====================================================
-     17 HARI
+    EVENT YANG BERLANGSUNG
 ===================================================== -->
 
 <section
-    id="tantangan"
+    id="event"
     class="section challenge-section"
 >
 
@@ -665,98 +525,44 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
         <div class="section-heading">
 
             <span class="section-label">
-                🇮🇩 TANTANGAN KEMERDEKAAN
+                EVENT YANG BERLANGSUNG
             </span>
 
             <h2>
-                17 Hari, 17 Aksi
+                Saatnya Beraksi Bersama
             </h2>
 
             <p>
 
-                Satu hari, satu aksi untuk Indonesia.
-                Jadikan momentum kemerdekaan sebagai
-                kesempatan untuk memberikan dampak.
+                Ikuti event yang sedang berlangsung dan
+                ubah satu aksi kecil setiap hari menjadi
+                dampak nyata untuk Indonesia.
 
             </p>
 
         </div>
 
 
-        <div class="challenge-preview">
-
-            <?php
-
-            $queryPreview = mysqli_query(
-                $conn,
-                "SELECT * FROM tantangan
-                 ORDER BY hari ASC
-                 LIMIT 6"
-            );
-
-            ?>
-
-
-            <?php while ($tantangan = mysqli_fetch_assoc($queryPreview)): ?>
-
-                <div class="challenge-card">
-
-                    <div class="challenge-day">
-
-                        Hari
-                        <?= $tantangan['hari'] ?>
-
-                    </div>
-
-
-                    <div class="challenge-icon">
-
-                        <?= htmlspecialchars(
-                            $tantangan['icon']
-                        ) ?>
-
-                    </div>
-
-
-                    <span class="challenge-sdg">
-
-                        SDG
-                        <?= $tantangan['sdg_nomor'] ?>
-
-                    </span>
-
-
-                    <h3>
-
-                        <?= htmlspecialchars(
-                            $tantangan['judul']
-                        ) ?>
-
-                    </h3>
-
-
-                    <p>
-
-                        <?= htmlspecialchars(
-                            $tantangan['deskripsi']
-                        ) ?>
-
-                    </p>
-
+        <div class="event-grid landing-event-grid">
+            <a href="pages/tantangan.php" class="event-card">
+                <div class="event-card-icon">17</div>
+                <div class="event-card-content">
+                    <span class="event-card-label">EVENT UTAMA</span>
+                    <h3>17 Hari, 17 Aksi</h3>
+                    <p>Satu tantangan setiap hari untuk membangun kebiasaan beraksi dan memberi dampak nyata.</p>
+                    <span class="event-card-link">Lihat Event <span aria-hidden="true">→</span></span>
                 </div>
-
-            <?php endwhile; ?>
-
+            </a>
         </div>
 
 
         <div class="center-button">
 
             <a
-                href="pages/tantangan.php"
+                href="pages/event.php"
                 class="btn btn-primary"
             >
-                Lihat Semua 17 Tantangan →
+                Lihat Semua Event →
             </a>
 
         </div>
@@ -982,7 +788,7 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
         <div class="cta-content">
 
             <span>
-                🇮🇩 UNTUK INDONESIA
+                 UNTUK INDONESIA
             </span>
 
 
@@ -1020,112 +826,6 @@ while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
      FOOTER
 ===================================================== -->
 
-<footer class="footer">
-
-    <div class="container footer-container">
-
-        <div class="footer-brand">
-
-            <div class="logo">
-
-                <span class="logo-icon">
-                    🇮🇩
-                </span>
-
-                Aksi Untuk Negeri
-
-            </div>
-
-
-            <p>
-
-                Platform kampanye sosial untuk
-                mengubah semangat kemerdekaan
-                menjadi aksi nyata.
-
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Jelajahi
-            </h4>
-
-            <a href="#aksi">
-                Pilih Aksi
-            </a>
-
-            <a href="#progress">
-                Progress
-            </a>
-
-            <a href="#tantangan">
-                17 Hari
-            </a>
-
-            <a href="#cerita">
-                Cerita Mereka
-            </a>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Bergabung
-            </h4>
-
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <?php if (($_SESSION['role'] ?? '') === 'admin'): ?>
-                    <a href="admin/index.php">
-                        Dashboard Admin
-                    </a>
-                <?php endif; ?>
-
-                <a href="dashboard.php">
-                    Dashboard
-                </a>
-
-                <a href="logout.php">
-                    Keluar
-                </a>
-            <?php else: ?>
-                <a href="login.php">
-                    Masuk
-                </a>
-
-                <a href="register.php">
-                    Daftar
-                </a>
-            <?php endif; ?>
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <div class="container">
-
-            <p>
-                © <?= date('Y') ?>
-                Aksi Untuk Negeri.
-                Dibuat untuk Indonesia 🇮🇩
-            </p>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-<script src="assets/js/icons.js"></script>
-</body>
-
-</html>
+<?php
+require __DIR__ . '/includes/footer.php';
+?>

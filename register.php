@@ -367,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="auth-left-content">
 
             <div style="font-size: 30px;">
-                🇮🇩
+                
             </div>
 
             <h1>
@@ -409,7 +409,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="auth-box">
 
             <div class="auth-logo">
-                🇮🇩 Aksi Untuk Negeri
+                 Aksi Untuk Negeri
             </div>
 
             <h2>
@@ -534,7 +534,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     type="submit"
                     class="btn btn-primary auth-button"
                 >
-                    🇮🇩 Buat Akun
+                     Buat Akun
                 </button>
 
             </form>
