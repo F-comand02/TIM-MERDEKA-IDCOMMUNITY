@@ -98,7 +98,6 @@ $queryKategoriAksi = mysqli_query(
     "SELECT
         kategori.nama_kategori,
         kategori.icon,
-        kategori.sdg,
         COUNT(aksi_user.id) AS total
 
      FROM kategori
@@ -113,8 +112,7 @@ $queryKategoriAksi = mysqli_query(
      GROUP BY
         kategori.id,
         kategori.nama_kategori,
-        kategori.icon,
-        kategori.sdg
+          kategori.icon
 
      ORDER BY total DESC"
 );
@@ -263,15 +261,11 @@ $queryKategoriAksi = mysqli_query(
 
         <div class="progress-hero">
 
-            <span class="progress-hero-label">
-                 GERAKAN NASIONAL
-            </span>
-
             <h1>
 
                 Bersama Menuju
                 <span>
-                    10.000 Aksi.
+                    10.000 Aksi
                 </span>
 
             </h1>
@@ -292,6 +286,8 @@ $queryKategoriAksi = mysqli_query(
         <section class="national-progress">
 
             <div class="national-progress-content">
+
+                <div class="national-progress-copy">
 
                 <span class="national-progress-label">
                     PROGRESS KEMERDEKAAN
@@ -362,93 +358,34 @@ $queryKategoriAksi = mysqli_query(
 
                 </div>
 
-            </div>
-
-        </section>
-
-
-        <!-- STATS -->
-
-        <section class="progress-stats">
-
-
-            <div class="progress-stat">
-
-                <div class="progress-stat-icon">
-                    🔥
                 </div>
 
-                <strong>
-                    <?= number_format(
-                        $totalAksi,
-                        0,
-                        ',',
-                        '.'
-                    ) ?>
-                </strong>
+                <div class="progress-stats">
+                    <div class="progress-stat">
+                        <strong><?= number_format($totalAksi, 0, ',', '.') ?></strong>
+                        <span>Aksi berhasil disetujui</span>
+                    </div>
 
-                <span>
-                    Aksi berhasil disetujui
-                </span>
+                    <div class="progress-stat">
+                        <strong><?= number_format($totalUserAksi, 0, ',', '.') ?></strong>
+                        <span>Masyarakat ikut beraksi</span>
+                    </div>
 
-            </div>
-
-
-            <div class="progress-stat">
-
-                <div class="progress-stat-icon">
-                    👥
+                    <div class="progress-stat">
+                        <strong><?= number_format($totalPoin, 0, ',', '.') ?></strong>
+                        <span>Poin kontribusi nasional</span>
+                    </div>
                 </div>
-
-                <strong>
-                    <?= number_format(
-                        $totalUserAksi,
-                        0,
-                        ',',
-                        '.'
-                    ) ?>
-                </strong>
-
-                <span>
-                    Masyarakat ikut beraksi
-                </span>
-
-            </div>
-
-
-            <div class="progress-stat">
-
-                <div class="progress-stat-icon">
-                    🏆
-                </div>
-
-                <strong>
-                    <?= number_format(
-                        $totalPoin,
-                        0,
-                        ',',
-                        '.'
-                    ) ?>
-                </strong>
-
-                <span>
-                    Poin kontribusi nasional
-                </span>
 
             </div>
 
         </section>
-
 
         <!-- IMPACT CATEGORY -->
 
         <section>
 
             <div class="impact-heading">
-
-                <span class="section-label">
-                    DAMPAK AKSI
-                </span>
 
                 <h2>
                     Kontribusi Berdasarkan Bidang
@@ -476,9 +413,9 @@ $queryKategoriAksi = mysqli_query(
 
                         <div class="impact-icon">
 
-                            <?= htmlspecialchars(
+                            <span class="impact-icon-symbol"><?= htmlspecialchars(
                                 $kategori['icon']
-                            ) ?>
+                            ) ?></span>
 
                         </div>
 
@@ -492,15 +429,6 @@ $queryKategoriAksi = mysqli_query(
                             ) ?>
 
                         </h3>
-
-
-                        <span class="impact-sdg">
-
-                            <?= htmlspecialchars(
-                                $kategori['sdg']
-                            ) ?>
-
-                        </span>
 
 
                         <div class="impact-total">

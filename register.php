@@ -146,134 +146,168 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <style>
 
-        .auth-page {
+        .login-page {
             min-height: 100vh;
             display: flex;
-            align-items: stretch;
+            align-items: center;
+            justify-content: center;
             padding: 32px;
             background: linear-gradient(135deg, #fff, #fff5f5);
+            border-radius: 0;
         }
 
-        .auth-left {
-            width: 50%;
+        .login-container {
+            width: 100%;
+            max-width: 980px;
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            overflow: hidden;
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: 0 26px 80px rgba(0, 0, 0, 0.10);
+            border: 1px solid #f1f1f1;
+        }
+
+        .login-brand {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px;
+            padding: 52px 46px;
             overflow: hidden;
             background: linear-gradient(145deg, #d71920, #a80f15);
             color: white;
         }
 
-        .auth-left::before {
+        .login-brand::before {
             content: "🇮🇩";
             position: absolute;
             right: -70px;
             bottom: -90px;
-            font-size: 300px;
+            font-size: 330px;
             opacity: 0.06;
         }
 
-        .auth-left-content {
+        .login-brand-content {
             position: relative;
             z-index: 2;
-            max-width: 500px;
+            max-width: 360px;
         }
 
-        .auth-left h1 {
-            font-size: clamp(40px, 4vw, 56px);
-            line-height: 1.08;
+        .auth-brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 26px;
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .auth-brand-logo .brand-logo-icon {
+            width: 34px;
+            height: 34px;
+            flex-basis: 34px;
+        }
+
+        .auth-brand-logo .brand-logo-icon img {
+            width: 34px;
+            height: 34px;
+        }
+
+        .login-brand h1 {
+            margin-top: 18px;
+            font-size: clamp(36px, 4vw, 52px);
+            line-height: 1.07;
             letter-spacing: -2px;
         }
 
-        .auth-left h1 span {
-            display: block;
-            color: #ffe4e4;
-        }
-
-        .auth-left p {
-            margin-top: 20px;
-            color: rgba(255,255,255,0.78);
+        .login-brand p {
+            margin-top: 18px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 14px;
             line-height: 1.8;
-            font-size: 14px;
         }
 
-        .auth-quote {
-            margin-top: 35px;
-            padding: 20px 18px;
-            border-left: 3px solid white;
-            background: rgba(255,255,255,0.08);
-            font-size: 14px;
-            line-height: 1.7;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .auth-right {
-            width: 50%;
+        .login-form-area {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 42px 34px;
+            padding: 52px 38px;
         }
 
-        .auth-box {
+        .login-box {
             width: 100%;
-            max-width: 470px;
+            max-width: 420px;
         }
 
-        .auth-logo {
-            margin-bottom: 28px;
+        .login-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
             font-size: 18px;
             font-weight: 800;
             color: #171717;
         }
 
-        .auth-box h2 {
-            font-size: clamp(30px, 3vw, 38px);
-            letter-spacing: -1px;
-            line-height: 1.2;
+        .login-back {
+            display: inline-block;
+            margin-bottom: 28px;
+            color: #737373;
+            font-size: 12px;
         }
 
-        .auth-subtitle {
+        .login-back:hover {
+            color: #d71920;
+        }
+
+        .login-box h2 {
+            font-size: clamp(30px, 3vw, 38px);
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .login-description {
             margin-top: 8px;
             color: #737373;
             font-size: 13px;
             line-height: 1.7;
         }
 
-        .auth-form {
-            margin-top: 28px;
+        .login-form {
+            margin-top: 26px;
         }
 
-        .form-group {
-            margin-bottom: 17px;
+        .login-group {
+            margin-bottom: 18px;
         }
 
-        .form-group label {
+        .login-group label {
             display: block;
             margin-bottom: 8px;
-            color: #262626;
             font-size: 12px;
             font-weight: 700;
+            color: #262626;
         }
 
-        .form-group input,
-        .form-group select {
+        .login-group input {
             width: 100%;
             padding: 13px 14px;
             border: 1px solid #d4d4d4;
             border-radius: 12px;
-            outline: none;
-            background: white;
+            background: #ffffff;
+            color: #171717;
+            font: inherit;
             font-size: 13px;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        .login-group input:focus {
             border-color: #d71920;
-            box-shadow: 0 0 0 3px rgba(215,25,32,0.08);
+            box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
+            outline: none;
         }
 
         .password-field {
@@ -323,77 +357,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             stroke-linejoin: round;
         }
 
-        .auth-button {
+        .login-button {
             width: 100%;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
-        .auth-message {
+        .login-error {
+            margin-top: 20px;
             padding: 12px 14px;
-            margin-bottom: 20px;
             border-radius: 12px;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #b51218;
             font-size: 12px;
             line-height: 1.5;
         }
 
-        .auth-error {
-            background: #fff1f2;
-            color: #b51218;
-            border: 1px solid #fecdd3;
-        }
-
-        .auth-success {
-            background: #f0fdf4;
-            color: #15803d;
-            border: 1px solid #bbf7d0;
-        }
-
-        .auth-footer {
+        .login-register {
             margin-top: 22px;
             text-align: center;
             color: #737373;
             font-size: 12px;
         }
 
-        .auth-footer a {
+        .login-register a {
             color: #d71920;
             font-weight: 800;
         }
 
-        .back-home {
-            display: inline-block;
-            margin-top: 20px;
-            color: #737373;
-            font-size: 12px;
-        }
-
-        .back-home:hover {
-            color: #d71920;
-        }
-
         @media (max-width: 800px) {
-            .auth-page {
-                display: block;
+            .login-page {
+                padding: 16px;
             }
 
-            .auth-left {
-                width: 100%;
-                min-height: 300px;
-                padding: 42px 26px;
+            .login-container {
+                grid-template-columns: 1fr;
             }
 
-            .auth-left h1 {
-                font-size: 38px;
+            .login-brand {
+                min-height: 220px;
+                padding: 28px 22px;
             }
 
-            .auth-quote {
-                display: none;
+            .login-form-area {
+                padding: 30px 22px 34px;
             }
 
-            .auth-right {
-                width: 100%;
-                padding: 42px 22px 52px;
-            }
         }
 
     </style>
@@ -402,30 +411,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<div class="auth-page">
+<div class="login-page">
+
+    <div class="login-container">
 
 
     <!-- ==========================
          LEFT
     =========================== -->
 
-    <div class="auth-left">
+    <div class="login-brand">
 
-        <div class="auth-left-content">
+        <div class="login-brand-content">
 
-            <div style="font-size: 30px;">
-                
+            <div class="auth-brand-logo">
+                <span class="brand-logo-icon">
+                    <img src="assets/uploads/logo.png" alt="">
+                </span>
+                MERDEKA COMMUNITY
             </div>
 
-            <h1>
-
-                Jadilah Bagian
-
-                <span>
-                    dari Perubahan.
-                </span>
-
-            </h1>
+            <h1>Jadilah Bagian<br>dari Perubahan.</h1>
 
             <p>
 
@@ -434,13 +440,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 kemerdekaan menjadi aksi nyata.
 
             </p>
-
-            <div class="auth-quote">
-
-                “Kemerdekaan adalah kesempatan
-                untuk berbuat sesuatu.”
-
-            </div>
 
         </div>
 
@@ -451,26 +450,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
          RIGHT
     =========================== -->
 
-    <div class="auth-right">
+    <div class="login-form-area">
 
-        <div class="auth-box">
+        <div class="login-box">
 
-            <div class="auth-logo">
-                 Aksi Untuk Negeri
-            </div>
+            <a href="index.php" class="login-back">
+                ← Kembali ke halaman utama
+            </a>
 
-            <h2>
-                Buat Akun
-            </h2>
+            <h2>Buat Akun</h2>
 
-            <p class="auth-subtitle">
+            <p class="login-description">
                 Mulai perjalanan aksimu untuk Indonesia.
             </p>
 
 
             <?php if (!empty($error)): ?>
 
-                <div class="auth-message auth-error">
+                <div class="login-error">
 
                     <?= htmlspecialchars($error) ?>
 
@@ -481,10 +478,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <form
                 method="POST"
-                class="auth-form"
+                class="login-form"
             >
 
-                <div class="form-group">
+                <div class="login-group">
 
                     <label for="nama">
                         Nama Lengkap
@@ -504,7 +501,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
 
 
-                <div class="form-group">
+                <div class="login-group">
 
                     <label for="email">
                         Email
@@ -524,7 +521,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
 
 
-                <div class="form-group">
+                <div class="login-group">
 
                     <label for="daerah">
                         Daerah
@@ -543,7 +540,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
 
 
-                <div class="form-group">
+                <div class="login-group">
 
                     <label for="password">
                         Password
@@ -565,7 +562,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </div>
 
 
-                <div class="form-group">
+                <div class="login-group">
 
                     <label for="konfirmasi_password">
                         Konfirmasi Password
@@ -589,7 +586,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <button
                     type="submit"
-                    class="btn btn-primary auth-button"
+                    class="btn btn-primary login-button"
                 >
                      Buat Akun
                 </button>
@@ -597,7 +594,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </form>
 
 
-            <div class="auth-footer">
+            <div class="login-register">
 
                 Sudah punya akun?
 
@@ -608,20 +605,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
 
-            <div style="text-align:center;">
-
-                <a
-                    href="index.php"
-                    class="back-home"
-                >
-                    ← Kembali ke halaman utama
-                </a>
-
-            </div>
-
         </div>
 
     </div>
+
+</div>
 
 </div>
 

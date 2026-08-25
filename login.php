@@ -248,6 +248,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             max-width: 360px;
         }
 
+        .auth-brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 26px;
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .auth-brand-logo .brand-logo-icon {
+            width: 34px;
+            height: 34px;
+            flex-basis: 34px;
+        }
+
+        .auth-brand-logo .brand-logo-icon img {
+            width: 34px;
+            height: 34px;
+        }
+
         .login-brand h1 {
             margin-top: 18px;
             font-size: clamp(36px, 4vw, 52px);
@@ -278,10 +299,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 32px;
+            margin-bottom: 18px;
             font-size: 18px;
             font-weight: 800;
             color: #171717;
+        }
+
+        .login-back {
+            display: inline-block;
+            margin-bottom: 28px;
+            color: #737373;
+            font-size: 12px;
+        }
+
+        .login-back:hover {
+            color: #d71920;
         }
 
         .login-box h2 {
@@ -476,18 +508,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             font-weight: 800;
         }
 
-        .login-back {
-            display: block;
-            margin-top: 20px;
-            color: #737373;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .login-back:hover {
-            color: #d71920;
-        }
-
         @media (max-width: 750px) {
             .login-page {
                 padding: 16px;
@@ -533,8 +553,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="login-brand-content">
 
-                <div style="font-size:35px;">
-                    
+                <div class="auth-brand-logo">
+                    <span class="brand-logo-icon">
+                        <img src="assets/uploads/logo.png" alt="">
+                    </span>
+                    MERDEKA COMMUNITY
                 </div>
 
 
@@ -572,16 +595,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="login-box">
 
+                <a href="index.php" class="login-back">
+                    ← Kembali ke halaman utama
+                </a>
 
-                <div class="login-logo">
-
-                     Aksi Untuk Negeri
-
-                </div>
 
 
                 <h2>
-
                     Selamat Datang
 
                 </h2>
@@ -753,16 +773,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                 <!-- KEMBALI -->
-
-                <a
-                    href="index.php"
-                    class="login-back"
-                >
-
-                    ← Kembali ke halaman utama
-
-                </a>
-
 
             </div>
 

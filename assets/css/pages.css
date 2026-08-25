@@ -2005,7 +2005,8 @@
 
         .leaderboard-total {
             color: #737373;
-            font-size: 10px;
+            font-size: 14px;
+            font-weight: 900;
             text-align: right;
         }
 
@@ -2330,7 +2331,7 @@
 
         .progress-hero {
             text-align: center;
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto 55px;
         }
 
@@ -2426,6 +2427,17 @@
             position: relative;
 
             z-index: 2;
+        }
+
+        .national-progress-copy {
+            min-width: 0;
+        }
+
+        .national-progress > .national-progress-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(310px, 0.8fr);
+            gap: 40px;
+            align-items: center;
         }
 
         .national-progress-label {
@@ -2541,6 +2553,12 @@
             margin-bottom: 70px;
         }
 
+        .national-progress .progress-stats {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 0;
+        }
+
         .progress-stat {
             padding: 28px;
 
@@ -2554,6 +2572,13 @@
             box-shadow:
                 0 5px 20px
                 rgba(0,0,0,0.03);
+        }
+
+        .national-progress .progress-stat {
+            padding: 17px 19px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(255,255,255,0.1);
+            box-shadow: none;
         }
 
         .progress-stat-icon {
@@ -2572,6 +2597,14 @@
             font-size: 21px;
         }
 
+        .national-progress .progress-stat-icon {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.16);
+            font-size: 17px;
+        }
+
         .progress-stat strong {
             display: block;
 
@@ -2580,10 +2613,20 @@
             font-size: 30px;
         }
 
+        .national-progress .progress-stat strong {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 25px;
+        }
+
         .progress-stat span {
             color: #737373;
 
             font-size: 11px;
+        }
+
+        .national-progress .progress-stat span {
+            color: rgba(255,255,255,0.72);
         }
 
 
@@ -2592,6 +2635,7 @@
         ================================================= */
 
         .impact-heading {
+            margin-top: 64px;
             margin-bottom: 30px;
         }
 
@@ -2627,6 +2671,7 @@
             border-radius: 17px;
 
             background: white;
+            text-align: center;
         }
 
         .impact-icon {
@@ -2640,27 +2685,24 @@
 
             border-radius: 12px;
 
-            background: #f5f5f5;
+            background: #d71920;
+            color: #ffffff;
 
             font-size: 20px;
+        }
+
+        .impact-icon-symbol {
+            filter: grayscale(1) brightness(0) invert(1);
+        }
+
+        .impact-card .impact-icon {
+            margin: 0 auto;
         }
 
         .impact-card h3 {
             margin-top: 15px;
 
-            font-size: 15px;
-        }
-
-        .impact-sdg {
-            display: block;
-
-            margin-top: 4px;
-
-            color: #d71920;
-
-            font-size: 9px;
-
-            font-weight: 900;
+            font-size: 14px;
         }
 
         .impact-total {
@@ -2670,7 +2712,8 @@
 
             gap: 5px;
 
-            margin-top: 18px;
+            margin-top: 4px;
+            justify-content: center;
         }
 
         .impact-total strong {
@@ -2707,6 +2750,11 @@
                 padding: 30px 23px;
 
                 border-radius: 22px;
+            }
+
+            .national-progress > .national-progress-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .national-number strong {
@@ -3014,7 +3062,8 @@
 
         .leaderboard-total {
             color: #737373;
-            font-size: 10px;
+            font-size: 12px;
+            font-weight: 900;
         }
 
         .leaderboard-user-highlight {
@@ -3058,7 +3107,10 @@
 .event-main {
     min-height: 70vh;
     padding: 70px 0 100px;
-    background: #fafafa;
+    background:
+        radial-gradient(circle at 10% 15%, rgba(215, 25, 32, 0.12), transparent 24%),
+        radial-gradient(circle at 90% 78%, rgba(245, 158, 11, 0.11), transparent 22%),
+        #f8f7f3;
 }
 
 .event-heading {
@@ -3070,6 +3122,10 @@
     margin-top: 12px;
     font-size: clamp(38px, 5vw, 58px);
     line-height: 1.05;
+}
+
+.event-heading h1 span {
+    color: var(--red);
 }
 
 .event-heading p {
@@ -3086,11 +3142,22 @@
     gap: 20px;
 }
 
+.event-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.event-layout .event-grid {
+    grid-template-columns: 1fr;
+}
+
 .event-card {
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    min-height: 230px;
+    min-height: 100px;
     padding: 26px;
     border: 1px solid #e5e5e5;
     border-top: 4px solid var(--red);
@@ -3123,6 +3190,13 @@
     min-width: 0;
 }
 
+.event-card .event-card-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+}
+
 .event-card-label {
     color: var(--red);
     font-size: 10px;
@@ -3133,7 +3207,7 @@
 .event-card h2,
 .event-card h3 {
     margin-top: 8px;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 1.2;
 }
 
@@ -3152,7 +3226,110 @@
     font-weight: 800;
 }
 
-@media (max-width: 600px) {
+.event-calendar {
+    padding: 26px;
+    border: 1px solid rgba(215, 25, 32, 0.16);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 12px 30px rgba(104, 32, 23, 0.08);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #f0d9d6;
+}
+
+.calendar-header h2 {
+    margin-top: 6px;
+    font-size: 24px;
+}
+
+.calendar-year {
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: #fff1f2;
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+    text-align: center;
+}
+
+.calendar-weekdays {
+    margin: 18px 0 8px;
+    color: #a1625c;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.calendar-days span {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    min-width: 28px;
+    border-radius: 9px;
+    font-family: var(--font-body);
+    font-size: 13px;
+}
+
+.calendar-days .calendar-event {
+    border: 1px solid #f1d7d5;
+    background: #ffe4e6;
+    color: #9f1239;
+    border-radius: 9px;
+}
+
+.calendar-days .calendar-highlight {
+    border-color: var(--red);
+    background: var(--red);
+    color: #ffffff;
+    font-weight: 900;
+    box-shadow: 0 5px 12px rgba(215, 25, 32, 0.25);
+}
+
+.calendar-note {
+    margin-top: 18px;
+    color: #737373;
+    font-size: 11px;
+}
+
+.calendar-note strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #525252;
+    font-size: 11px;
+}
+
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calendar-legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f9a8d4;
+    flex: 0 0 7px;
+}
+
+@media (max-width: 760px) {
+    .event-layout {
+        grid-template-columns: 1fr;
+    }
+
     .event-grid {
         grid-template-columns: 1fr;
     }

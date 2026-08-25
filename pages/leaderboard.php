@@ -103,7 +103,6 @@ if ($userId > 0) {
     <div class="container">
 
         <div class="leaderboard-hero">
-            <span class="leaderboard-badge">🏆 LEADERBOARD</span>
             <h1>
                 Peringkat <span>Kontribusi</span>
             </h1>
@@ -143,9 +142,6 @@ if ($userId > 0) {
                 <?php endforeach; ?>
             </div>
 
-            <div class="leaderboard-cta">
-                <a href="tantangan.php" class="btn btn-primary btn-large">← Kembali ke Tantangan</a>
-            </div>
         </div>
     </div>
 </main>
