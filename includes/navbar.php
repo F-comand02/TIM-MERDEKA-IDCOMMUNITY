@@ -13,11 +13,12 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
 <header class="navbar">
     <div class="container nav-container">
         <a href="<?= $basePath ?>index.php" class="logo">
-            <span class="logo-icon"></span>
+            <span class="brand-logo-icon">
+                <img src="<?= $basePath ?>assets/uploads/logo.png" alt="">
+            </span>
             MERDEKA COMMUNITY
         </a>
         <nav class="nav-menu">
-            <a href="<?= $basePath ?>index.php" class="<?= $isHome ? 'active' : '' ?>" <?= $isHome ? 'aria-current="page"' : '' ?>>Beranda</a>
             <a href="<?= $basePath ?>pages/aksi.php" class="<?= $isAction ? 'active' : '' ?>" <?= $isAction ? 'aria-current="page"' : '' ?>>Aksi</a>
             <a href="<?= $basePath ?>pages/peta.php" class="<?= $isMap ? 'active' : '' ?>" <?= $isMap ? 'aria-current="page"' : '' ?>>Peta</a>
             <a href="<?= $basePath ?>pages/progress.php" class="<?= $isProgress ? 'active' : '' ?>" <?= $isProgress ? 'aria-current="page"' : '' ?>>Progress</a>

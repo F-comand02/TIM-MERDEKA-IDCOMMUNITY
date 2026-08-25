@@ -437,6 +437,22 @@ $queryHistoryList = mysqli_query(
             background: #f7f7f7;
         }
 
+        .admin-brand-icon {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex: 0 0 34px;
+        }
+
+        .admin-brand-icon img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+        }
+
         .admin-main {
             padding: 45px 0 80px;
         }
@@ -1000,21 +1016,19 @@ $queryHistoryList = mysqli_query(
             class="logo"
         >
 
-            <span class="logo-icon">
-                
+            <span class="admin-brand-icon">
+                <img
+                    src="../assets/uploads/logo.png"
+                    alt=""
+                >
             </span>
 
-            Aksi Untuk Negeri
+            MERDEKA COMMUNITY
 
         </a>
 
 
         <nav class="nav-menu">
-
-            <a href="../index.php">
-                Beranda
-            </a>
-
             <a href="../index.php#cerita">
                 Kabar
             </a>

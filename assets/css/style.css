@@ -285,6 +285,22 @@ button,
     white-space: nowrap;
 }
 
+.brand-logo-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 34px;
+    overflow: hidden;
+}
+
+.brand-logo-icon img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
 .logo-icon {
     font-size: 24px;
 }
