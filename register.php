@@ -276,6 +276,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             box-shadow: 0 0 0 3px rgba(215,25,32,0.08);
         }
 
+        .password-field {
+            position: relative;
+        }
+
+        .password-field input {
+            padding-right: 46px;
+        }
+
+        .password-field input::-ms-reveal,
+        .password-field input::-ms-clear {
+            display: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            transform: translateY(-50%);
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #737373;
+            cursor: pointer;
+        }
+
+        .password-toggle:hover,
+        .password-toggle:focus-visible {
+            background: #f5f5f5;
+            color: #d71920;
+        }
+
+        .password-toggle svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         .auth-button {
             width: 100%;
             margin-top: 8px;
@@ -502,13 +549,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         Password
                     </label>
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Minimal 8 karakter"
-                        required
-                    >
+                    <div class="password-field">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Minimal 8 karakter"
+                            required
+                        >
+                        <button type="button" class="password-toggle" aria-label="Tampilkan password" aria-pressed="false" data-password-toggle="password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                        </button>
+                    </div>
 
                 </div>
 
@@ -519,13 +571,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         Konfirmasi Password
                     </label>
 
-                    <input
-                        type="password"
-                        id="konfirmasi_password"
-                        name="konfirmasi_password"
-                        placeholder="Masukkan kembali password"
-                        required
-                    >
+                    <div class="password-field">
+                        <input
+                            type="password"
+                            id="konfirmasi_password"
+                            name="konfirmasi_password"
+                            placeholder="Masukkan kembali password"
+                            required
+                        >
+                        <button type="button" class="password-toggle" aria-label="Tampilkan password" aria-pressed="false" data-password-toggle="konfirmasi_password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                        </button>
+                    </div>
 
                 </div>
 
@@ -569,6 +626,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </div>
 
 <script src="assets/js/icons.js"></script>
+<script src="assets/js/password-toggle.js"></script>
 </body>
 
 </html>
