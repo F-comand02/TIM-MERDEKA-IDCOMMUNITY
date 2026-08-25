@@ -42,6 +42,14 @@ Website ini dirancang untuk menjadi sebuah ruang digital yang memungkinkan pengg
 
 ---
 
+# 👥 Anggota Kelompok
+
+| No. | Nama               | NIM   | Peran                    |
+| :-: | ------------------ | ----- | ------------------------ |
+|  1  | **Farel Yamotaro Hia** | `251402069` | Project Manager            |
+|  2  | **Vedder Timothy Simbolon** | `251402072` | Frontend Developer |
+|  3  | **Yabesh Day Siahaan** | `251402004` | Hosting and Frontend Developer            |
+
 # 🎯 Latar Belakang
 
 Kemerdekaan Indonesia merupakan sebuah pencapaian besar yang lahir dari perjuangan dan pengorbanan.
