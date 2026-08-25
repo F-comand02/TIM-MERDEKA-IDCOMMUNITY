@@ -201,326 +201,267 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         .login-page {
             min-height: 100vh;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
-            padding: 30px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff,
-                    #fff5f5
-                );
+            padding: 32px;
+            background: linear-gradient(135deg, #fff, #fff5f5);
+            border-radius: 0;
         }
-
 
         .login-container {
             width: 100%;
-            max-width: 950px;
-
-            min-height: 600px;
-
+            max-width: 980px;
+            min-height: 620px;
             display: grid;
-
-            grid-template-columns:
-                0.9fr 1.1fr;
-
+            grid-template-columns: 0.9fr 1.1fr;
             overflow: hidden;
-
-            border-radius: 25px;
-
-            background: white;
-
-            box-shadow:
-                0 25px 70px
-                rgba(0,0,0,0.10);
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: 0 26px 80px rgba(0, 0, 0, 0.10);
+            border: 1px solid #f1f1f1;
         }
-
-
-        /* ==========================
-           BAGIAN KIRI
-        ========================== */
 
         .login-brand {
             position: relative;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
-            padding: 50px;
-
+            padding: 52px 46px;
             overflow: hidden;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #d71920,
-                    #a80f15
-                );
-
+            background: linear-gradient(145deg, #d71920, #a80f15);
             color: white;
         }
 
-
         .login-brand::before {
             content: "🇮🇩";
-
             position: absolute;
-
-            right: -80px;
-            bottom: -100px;
-
+            right: -70px;
+            bottom: -90px;
             font-size: 330px;
-
             opacity: 0.06;
         }
 
-
         .login-brand-content {
             position: relative;
-
             z-index: 2;
+            max-width: 360px;
         }
 
-
         .login-brand h1 {
-            margin-top: 20px;
-
-            font-size: 45px;
-
-            line-height: 1.08;
-
+            margin-top: 18px;
+            font-size: clamp(36px, 4vw, 52px);
+            line-height: 1.07;
             letter-spacing: -2px;
         }
 
-
         .login-brand p {
-            margin-top: 20px;
-
-            color:
-                rgba(255,255,255,0.75);
-
+            margin-top: 18px;
+            color: rgba(255, 255, 255, 0.78);
             font-size: 14px;
-
             line-height: 1.8;
         }
 
-
-        /* ==========================
-           BAGIAN FORM
-        ========================== */
-
         .login-form-area {
             display: flex;
-
             align-items: center;
-
-            padding: 60px;
+            justify-content: center;
+            padding: 52px 38px;
         }
-
 
         .login-box {
             width: 100%;
-
-            max-width: 390px;
-
-            margin: auto;
+            max-width: 420px;
         }
-
 
         .login-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
             font-size: 18px;
-
             font-weight: 800;
-
-            margin-bottom: 35px;
+            color: #171717;
         }
-
 
         .login-box h2 {
-            font-size: 34px;
-
+            font-size: clamp(30px, 3vw, 38px);
             letter-spacing: -1px;
+            line-height: 1.15;
         }
-
 
         .login-description {
-            margin-top: 7px;
-
+            margin-top: 8px;
             color: #737373;
-
             font-size: 13px;
+            line-height: 1.7;
         }
-
 
         .login-form {
-            margin-top: 30px;
+            margin-top: 26px;
         }
-
 
         .login-group {
             margin-bottom: 18px;
         }
 
-
         .login-group label {
             display: block;
-
-            margin-bottom: 7px;
-
+            margin-bottom: 8px;
             font-size: 12px;
-
             font-weight: 700;
+            color: #262626;
         }
-
 
         .login-group input {
             width: 100%;
-
-            padding: 14px;
-
-            border:
-                1px solid #d4d4d4;
-
-            border-radius: 10px;
-
-            outline: none;
-
+            padding: 13px 14px;
+            border: 1px solid #d4d4d4;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #171717;
+            font: inherit;
             font-size: 13px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-
 
         .login-group input:focus {
             border-color: #d71920;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(215,25,32,0.08);
+            box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
+            outline: none;
         }
-
 
         .login-button {
             width: 100%;
-
-            border: none;
-
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
-
-        /* ==========================
-           PESAN ERROR
-        ========================== */
-
-        .login-error {
-            margin-top: 20px;
-
-            padding: 12px 14px;
-
-            border-radius: 10px;
-
-            background: #fff1f2;
-
-            border:
-                1px solid #fecdd3;
-
-            color: #b51218;
-
-            font-size: 12px;
-        }
-
-
-        /* ==========================
-           PESAN BERHASIL REGISTER
-        ========================== */
-
+        .login-error,
         .login-success {
             margin-top: 20px;
-
             padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
 
-            border-radius: 10px;
+        .login-error {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #b51218;
+        }
 
+        .login-success {
             background: #f0fdf4;
-
-            border:
-                1px solid #bbf7d0;
-
+            border: 1px solid #bbf7d0;
             color: #15803d;
+        }
 
+        .social-login {
+            margin-top: 24px;
+        }
+
+        .social-label {
+            margin-bottom: 10px;
+            text-align: center;
+            color: #737373;
             font-size: 12px;
         }
 
+        .social-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 11px 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        .social-google {
+            background: #ffffff;
+            color: #111827;
+            border: 1px solid #d4d4d4;
+        }
+
+        .social-fb {
+            background: #1877f2;
+            color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .social-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icon svg {
+            width: 100%;
+            height: 100%;
+        }
 
         .login-register {
-            margin-top: 25px;
-
+            margin-top: 24px;
             text-align: center;
-
             color: #737373;
-
             font-size: 12px;
         }
-
 
         .login-register a {
             color: #d71920;
-
             font-weight: 800;
         }
 
-
         .login-back {
             display: block;
-
             margin-top: 20px;
-
             color: #737373;
-
             text-align: center;
-
             font-size: 12px;
         }
 
-
-        /* ==========================
-           RESPONSIVE
-        ========================== */
+        .login-back:hover {
+            color: #d71920;
+        }
 
         @media (max-width: 750px) {
-
             .login-page {
-                padding: 15px;
+                padding: 16px;
             }
-
 
             .login-container {
                 grid-template-columns: 1fr;
             }
 
-
             .login-brand {
-                min-height: 250px;
-
-                padding: 35px;
+                min-height: 220px;
+                padding: 28px 22px;
             }
-
-
-            .login-brand h1 {
-                font-size: 34px;
-            }
-
 
             .login-form-area {
-                padding: 40px 25px;
+                padding: 30px 22px 34px;
             }
 
+            .social-row {
+                grid-template-columns: 1fr;
+            }
         }
 
     </style>

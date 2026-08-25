@@ -485,6 +485,10 @@ if ($userId > 0) {
             <a href="aksi.php">Pilih Aksi</a>
             <a href="progress.php">Progress</a>
             <a href="tantangan.php">17 Hari</a>
+            <a href="about.php">Tentang</a>
+            <a href="faq.php">FAQ</a>
+            <a href="contact.php">Kontak</a>
+            <a href="cerita.php">Cerita Mereka</a>
         </nav>
 
         <div class="nav-button">
@@ -644,6 +648,18 @@ if ($userId > 0) {
 
             <a href="../index.php#cerita">
                 Cerita Mereka
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
             </a>
 
         </div>

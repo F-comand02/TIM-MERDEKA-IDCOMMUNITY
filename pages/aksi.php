@@ -749,15 +749,27 @@ $aksiIcons = [
                 Pilih Aksi
             </a>
 
-            <a href="../index.php#progress">
+            <a href="progress.php">
                 Progress
             </a>
 
-            <a href="../index.php#tantangan">
+            <a href="tantangan.php">
                 17 Hari
             </a>
 
-            <a href="../index.php#cerita">
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+            <a href="cerita.php">
                 Cerita Mereka
             </a>
 
@@ -1258,6 +1270,18 @@ $aksiIcons = [
 
             <a href="../index.php#tantangan">
                 17 Hari
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
             </a>
 
         </div>

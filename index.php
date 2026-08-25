@@ -52,6 +52,34 @@ $queryTantangan = mysqli_query(
 $dataTantangan = mysqli_fetch_assoc($queryTantangan);
 $totalTantangan = (int) $dataTantangan['total'];
 
+// Ambil aksi terbaru yang sudah disetujui
+$latestActionsQuery = mysqli_query(
+    $conn,
+    "SELECT
+        aksi_user.id,
+        aksi_user.tanggal_aksi,
+        aksi.nama_aksi,
+        aksi.poin,
+        users.nama AS nama_user,
+        users.daerah,
+        kategori.nama_kategori
+     FROM aksi_user
+     INNER JOIN users
+        ON users.id = aksi_user.user_id
+     INNER JOIN aksi
+        ON aksi.id = aksi_user.aksi_id
+     INNER JOIN kategori
+        ON kategori.id = aksi.kategori_id
+     WHERE aksi_user.status = 'disetujui'
+     ORDER BY aksi_user.id DESC
+     LIMIT 4"
+);
+
+$latestActions = [];
+while ($row = mysqli_fetch_assoc($latestActionsQuery)) {
+    $latestActions[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -740,6 +768,95 @@ $totalTantangan = (int) $dataTantangan['total'];
 
 
 <!-- =====================================================
+     AKSI TERBARU
+===================================================== -->
+
+<section class="recent-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-label">
+                KOMUNITAS BERGERAK
+            </span>
+
+            <h2>
+                Aksi Terbaru dari Negeri
+            </h2>
+
+            <p>
+                Lihat bagaimana masyarakat Indonesia
+                sudah mulai bergerak dan membangun
+                perubahan nyata di berbagai daerah.
+            </p>
+
+        </div>
+
+        <div class="recent-grid">
+
+            <?php foreach ($latestActions as $action): ?>
+
+                <article class="recent-card">
+
+                    <div class="recent-top">
+
+                        <span class="recent-badge">
+                            Aksi Baru
+                        </span>
+
+                        <span class="recent-date">
+                            <?= date('d M', strtotime($action['tanggal_aksi'])) ?>
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        <?= htmlspecialchars($action['nama_aksi']) ?>
+                    </h3>
+
+                    <p class="recent-user">
+                        <?= htmlspecialchars($action['nama_user']) ?>
+                        •
+                        <?= htmlspecialchars($action['daerah']) ?>
+                    </p>
+
+                    <div class="recent-meta">
+
+                        <span>
+                            🏷️ <?= htmlspecialchars($action['nama_kategori']) ?>
+                        </span>
+
+                        <span>
+                            ⭐ <?= (int) $action['poin'] ?> poin
+                        </span>
+
+                    </div>
+
+                </article>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <div class="center-button">
+
+            <a
+                href="pages/aksi.php"
+                class="btn btn-primary"
+            >
+                Lihat Semua Aksi →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
      CERITA MEREKA
 ===================================================== -->
 
@@ -747,57 +864,104 @@ $totalTantangan = (int) $dataTantangan['total'];
 
     <div class="container">
 
-        <div class="story-wrapper">
+        <div class="section-heading">
 
-            <div class="story-image">
+            <span class="section-label">
+                CERITA MEREKA
+            </span>
 
-                <div class="story-placeholder">
-                    ❤️
+            <h2>
+                Perubahan Besar
+                Dimulai dari Langkah Kecil.
+            </h2>
+
+            <p>
+                Banyak komunitas Indonesia sudah
+                mulai bergerak, dan dampaknya mulai
+                terlihat di lingkungan sekitar.
+            </p>
+
+        </div>
+
+        <div class="story-grid">
+
+            <article class="story-card story-card-featured">
+
+                <div class="story-tag">
+                    KISAH TERINSPIRASI
                 </div>
 
-            </div>
-
-
-            <div class="story-content">
-
-                <span class="section-label">
-                    CERITA MEREKA
-                </span>
-
-
-                <h2>
-                    Perubahan Besar
-                    Dimulai dari Langkah Kecil.
-                </h2>
-
+                <h3>
+                    “Dari 5 orang, kini kami mengajar 120 anak setiap minggu.”
+                </h3>
 
                 <p>
-
-                    “Kami mulai dari 5 orang.”
-
+                    Awalnya kami hanya berkumpul di halaman rumah,
+                    lalu berani mengajak warga untuk membantu soal
+                    dan kebutuhan sekolah anak-anak.
                 </p>
 
+                <div class="story-meta">
+                    <span>📍 Bandung</span>
+                    <span>📚 Pendidikan</span>
+                </div>
+
+            </article>
+
+            <article class="story-card">
+
+                <div class="story-tag">
+                    KONTEN POSITIF
+                </div>
+
+                <h3>
+                    “Sekolah kecil yang kami mulai kini jadi ruang belajar bersama.”
+                </h3>
 
                 <p>
-
-                    Sekarang komunitas kami telah
-                    membantu mengajar lebih dari
-                    120 anak di lingkungan sekitar.
-
-                    Kami percaya bahwa setiap orang
-                    bisa menjadi bagian dari perubahan.
-
+                    Kami mengumpulkan buku, alat tulis, dan relawan
+                    untuk memberi ruang belajar yang lebih layak.
                 </p>
 
+                <div class="story-meta">
+                    <span>📍 Yogyakarta</span>
+                    <span>🌱 Sosial</span>
+                </div>
 
-                <a
-                    href="pages/cerita.php"
-                    class="text-link"
-                >
-                    Baca cerita lainnya →
-                </a>
+            </article>
 
-            </div>
+            <article class="story-card">
+
+                <div class="story-tag">
+                    KOMUNITAS BERTUMBUH
+                </div>
+
+                <h3>
+                    “Semakin banyak orang hadir, semakin banyak perubahan yang terasa.”
+                </h3>
+
+                <p>
+                    Gerakan sadar lingkungan kami dimulai dari sampah
+                    plastik kecil, lalu berkembang jadi program bersih desa.
+                </p>
+
+                <div class="story-meta">
+                    <span>📍 Bali</span>
+                    <span>♻️ Lingkungan</span>
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="center-button">
+
+            <a
+                href="pages/cerita.php"
+                class="btn btn-primary"
+            >
+                Lihat Cerita Lainnya →
+            </a>
 
         </div>
 

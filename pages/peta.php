@@ -407,6 +407,22 @@ $totalAksi = array_sum(
                 Peta Aksi
             </a>
 
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+            <a href="cerita.php">
+                Cerita Mereka
+            </a>
+
         </nav>
 
 
@@ -753,6 +769,18 @@ $totalAksi = array_sum(
 
             <a href="../index.php#cerita">
                 Cerita Mereka
+            </a>
+
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
             </a>
 
         </div>

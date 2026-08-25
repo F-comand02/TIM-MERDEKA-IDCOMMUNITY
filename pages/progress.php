@@ -599,6 +599,22 @@ $queryKategoriAksi = mysqli_query(
                 17 Hari
             </a>
 
+            <a href="about.php">
+                Tentang
+            </a>
+
+            <a href="faq.php">
+                FAQ
+            </a>
+
+            <a href="contact.php">
+                Kontak
+            </a>
+
+            <a href="cerita.php">
+                Cerita Mereka
+            </a>
+
         </nav>
 
 
