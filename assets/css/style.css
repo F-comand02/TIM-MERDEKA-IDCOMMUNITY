@@ -3126,11 +3126,22 @@ a:focus-visible {
     }
 
     .nav-mobile-logout {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
         color: var(--red) !important;
         font-weight: 700;
-        border-top: 1px solid rgba(215, 25, 32, 0.1);
-        margin-top: 4px;
+        border: 1px solid rgba(215, 25, 32, 0.15) !important;
+        background: var(--red-light) !important;
+        margin-top: 8px;
+    }
+
+    .nav-mobile-logout:hover,
+    .nav-mobile-logout:focus-visible {
+        color: var(--white) !important;
+        border-color: var(--red) !important;
+        background: var(--red) !important;
     }
 
     .nav-menu a::after,
