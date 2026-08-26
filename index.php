@@ -151,7 +151,7 @@ require __DIR__ . '/includes/header.php';
                 <div class="hero-card-top">
 
                     <span>
-                         AKSI UNTUK NEGERI
+                        AKSI UNTUK NEGERI
                     </span>
 
                     <span>
@@ -181,7 +181,7 @@ require __DIR__ . '/includes/header.php';
                     </h2>
 
                     <p>
-                        Bersama membangun Indonesia
+                        Bersama bertindak untuk Indonesia
                         melalui aksi nyata.
                     </p>
 
@@ -238,12 +238,12 @@ require __DIR__ . '/includes/header.php';
             </span>
 
             <h2>
-                Bersama, Indonesia Bergerak.
+                Bersama Untuk Indonesia
             </h2>
 
             <p>
                 Angka sederhana yang menunjukkan
-                dampak aksi komunitas sejauh ini.
+                dampak aksi komunitas sejauh ini
             </p>
 
         </div>
@@ -364,12 +364,12 @@ require __DIR__ . '/includes/header.php';
             </span>
 
             <h2>
-                Aksi Kecil, Dampak Berarti.
+                Aksi Kecil Untuk Dampak Berarti
             </h2>
 
             <p>
                 Pilih bidang yang ingin kamu bantu,
-                lalu temukan aksi sederhana yang bisa kamu lakukan.
+                lalu temukan aksi sederhana yang bisa kamu lakukan
             </p>
 
         </div>
