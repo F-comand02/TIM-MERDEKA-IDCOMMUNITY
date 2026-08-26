@@ -45,6 +45,12 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
                     <a href="<?= $basePath ?>pages/contact.php" class="<?= $currentPage === 'contact.php' ? 'active' : '' ?>">Kontak</a>
                 </div>
             </details>
+            <div class="nav-mobile-links">
+                <a href="<?= $basePath ?>pages/about.php" class="<?= $currentPage === 'about.php' ? 'active' : '' ?>">Tentang Kami</a>
+                <a href="<?= $basePath ?>pages/cerita.php" class="<?= $currentPage === 'cerita.php' ? 'active' : '' ?>">Cerita Mereka</a>
+                <a href="<?= $basePath ?>pages/faq.php" class="<?= $currentPage === 'faq.php' ? 'active' : '' ?>">FAQ</a>
+                <a href="<?= $basePath ?>pages/contact.php" class="<?= $currentPage === 'contact.php' ? 'active' : '' ?>">Kontak</a>
+            </div>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="<?= $basePath ?>logout.php" class="nav-mobile-logout">Keluar</a>
             <?php endif; ?>
