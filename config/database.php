@@ -1,14 +1,14 @@
 <?php
 
 $host = getenv('MYSQLHOST');
-$username = getenv('MYSQLUSER');
+$user = getenv('MYSQLUSER');
 $password = getenv('MYSQLPASSWORD');
 $database = getenv('MYSQLDATABASE');
 $port = getenv('MYSQLPORT');
 
 $conn = mysqli_connect(
     $host,
-    $username,
+    $user,
     $password,
     $database,
     (int)$port
@@ -19,3 +19,4 @@ if (!$conn) {
 }
 
 mysqli_set_charset($conn, "utf8mb4");
+?>
