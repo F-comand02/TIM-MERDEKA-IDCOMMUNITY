@@ -12,7 +12,7 @@ if (!file_exists($configFile)) {
 
 $oauth = require $configFile;
 
-$provider = $_GET['provider'] ?? '';
+$provider = $_GET['provider'] ?? $_SESSION['oauth_provider'] ?? '';
 
 if (!in_array($provider, ['google', 'facebook'], true)) {
     die('Provider OAuth tidak valid.');
@@ -43,6 +43,7 @@ if (
 }
 
 unset($_SESSION['oauth_state']);
+unset($_SESSION['oauth_provider']);
 
 
 /*

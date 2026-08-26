@@ -1,15 +1,17 @@
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "admin123";
-$database = "semangat_kemerdekaan";
+$host = getenv('DB_HOST');
+$port = getenv('DB_PORT');
+$database = getenv('DB_DATABASE');
+$user = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
 
 $conn = mysqli_connect(
     $host,
-    $username,
+    $user,
     $password,
-    $database
+    $database,
+    (int)$port
 );
 
 if (!$conn) {
@@ -17,3 +19,4 @@ if (!$conn) {
 }
 
 mysqli_set_charset($conn, "utf8mb4");
+?>
