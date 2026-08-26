@@ -1,15 +1,17 @@
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "admin123";
-$database = "semangat_kemerdekaan";
+$host = getenv('MYSQLHOST');
+$username = getenv('MYSQLUSER');
+$password = getenv('MYSQLPASSWORD');
+$database = getenv('MYSQLDATABASE');
+$port = getenv('MYSQLPORT');
 
 $conn = mysqli_connect(
     $host,
     $username,
     $password,
-    $database
+    $database,
+    (int)$port
 );
 
 if (!$conn) {
