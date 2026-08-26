@@ -133,7 +133,10 @@ $faqItems = [
         <div class="cta-content about-cta-content">
             <h2>Masih punya pertanyaan?</h2>
             <p>Kami siap membantu kamu mulai langkah pertama untuk Indonesia yang lebih baik.</p>
-            <a href="contact.php" class="btn btn-white btn-large"> Hubungi Kami </a>
+            <a href="contact.php" class="btn btn-white btn-large">
+                <img class="btn-brand-logo" src="../assets/uploads/logo.png" alt="">
+                Hubungi Kami
+            </a>
         </div>
     </div>
 </section>

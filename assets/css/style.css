@@ -239,6 +239,7 @@ a:focus-visible {
 .btn-brand-logo {
     width: 22px;
     height: 22px;
+    flex: 0 0 22px;
     object-fit: contain;
 }
 
@@ -2617,6 +2618,8 @@ a:focus-visible {
 
 .about-cta .about-cta-content .btn-white {
     margin-top: 4px;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 
@@ -3570,7 +3573,10 @@ button,
     }
 
     .team-group-image {
-        min-height: 0;
+        order: 1;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        min-height: 190px;
         background: #f5f5f5;
     }
 
@@ -3578,11 +3584,15 @@ button,
         grid-template-columns: 1fr;
     }
 
+    .team-group-info {
+        order: 2;
+    }
+
     .team-group-image img {
         width: 100%;
-        height: auto;
+        height: 100%;
         min-height: 0;
-        object-fit: contain;
+        object-fit: cover;
     }
 
     .about-card h2,
