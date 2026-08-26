@@ -107,18 +107,6 @@ $faqItems = [
                 <a href="../index.php#aksi" class="btn btn-light">Lihat Aksi</a>
             </div>
         </div>
-
-        <div class="about-visual">
-            <div class="about-panel about-panel-primary">
-                <span>❓</span>
-                <strong>FAQ</strong>
-                <small>Panduan cepat</small>
-            </div>
-            <div class="about-panel about-panel-card">
-                <strong><?= count($faqItems) ?></strong>
-                <span>Jawaban umum</span>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -142,10 +130,9 @@ $faqItems = [
 <section class="about-cta">
     <div class="container">
         <div class="cta-content about-cta-content">
-            <span>🇮🇩 UNTUK INDONESIA</span>
             <h2>Masih punya pertanyaan?</h2>
             <p>Kami siap membantu kamu mulai langkah pertama untuk Indonesia yang lebih baik.</p>
-            <a href="contact.php" class="btn btn-white btn-large">💬 Hubungi Kami</a>
+            <a href="contact.php" class="btn btn-white btn-large"> Hubungi Kami </a>
         </div>
     </div>
 </section>

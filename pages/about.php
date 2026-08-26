@@ -131,7 +131,7 @@ require __DIR__ . '/../includes/header.php';
         <div class="team-group-card">
             <div class="team-group-image">
                 <!-- Masukkan path foto bersama kalian di src -->
-                <img src="../assets/images/foto-bersama.jpg" alt="Foto Bersama Tim Aksi Untuk Negeri">
+                <img src="../assets/uploads/foto-bersama.jpg" alt="Foto Bersama Tim Aksi Untuk Negeri">
             </div>
             <div class="team-group-info">
                 <h3>Penggerak Aksi Untuk Negeri</h3>

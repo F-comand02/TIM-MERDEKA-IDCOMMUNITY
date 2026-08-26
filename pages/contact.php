@@ -74,36 +74,40 @@ require_once "../config/database.php";
             </div>
         </div>
 
-        <div class="about-visual">
-            <div class="about-panel about-panel-primary">
-                <span>📩</span>
-                <strong>Siap membantu</strong>
-                <small>Kolaborasi & pertanyaan</small>
-            </div>
-            <div class="about-panel about-panel-card">
-                <strong>24/7</strong>
-                <span>Respon komunitas</span>
-            </div>
-        </div>
+
     </div>
 </section>
 
 <section class="about-section">
     <div class="container contact-grid">
         <div class="contact-card">
-            <div class="value-icon">📞</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <path d="M5 4h3l2 5-2 2a14 14 0 0 0 5 5l2-2 5 2v3a2 2 0 0 1-2 2C10.4 21 3 13.6 3 5a2 2 0 0 1 2-2Z"></path>
+                </svg>
+            </div>
             <h3>Telepon</h3>
             <p>0877 8517 1888</p>
         </div>
 
         <div class="contact-card">
-            <div class="value-icon">✉️</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="m3 7 9 6 9-6"></path>
+                </svg>
+            </div>
             <h3>Email</h3>
             <p>merdekacomunity45@gmail.com</p>
         </div>
 
         <div class="contact-card">
-            <div class="value-icon">📍</div>
+            <div class="value-icon" aria-hidden="true">
+                <svg class="ui-icon" viewBox="0 0 24 24">
+                    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                    <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+            </div>
             <h3>Alamat</h3>
             <p>Medan, Indonesia</p>
         </div>
@@ -146,7 +150,6 @@ require_once "../config/database.php";
 <section class="about-cta">
     <div class="container">
         <div class="cta-content about-cta-content">
-            <span>🇮🇩 UNTUK INDONESIA</span>
             <h2>Siap bergerak bersama?</h2>
             <p>Jangan ragu untuk menghubungi kami. Mari kita bangun perubahan yang lebih besar.</p>
             <a href="../register.php" class="btn btn-white btn-large">🔥 Bergabung Sekarang</a>

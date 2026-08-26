@@ -180,9 +180,17 @@ a:focus-visible {
     background: var(--red);
     color: var(--white);
     border-color: var(--red);
-
     box-shadow:
         0 8px 20px rgba(215, 25, 32, 0.20);
+}
+
+.btn-primary,
+.btn-primary span {
+    color: var(--white);
+}
+
+.btn-primary .ui-icon {
+    color: var(--white) !important;
 }
 
 .btn-primary:hover {
@@ -1592,6 +1600,9 @@ a:focus-visible {
 }
 
 .recent-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
     padding: 22px 20px;
     border: 1px solid rgba(215, 25, 32, 0.08);
     border-radius: 18px;
@@ -1613,13 +1624,34 @@ a:focus-visible {
     margin-bottom: 16px;
 }
 
+.recent-icon {
+    width: 55px;
+    height: 55px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: var(--red);
+    color: var(--white);
+    font-size: 25px;
+}
+
+.recent-icon > span {
+    filter: grayscale(1) brightness(0) invert(1);
+}
+
+.recent-icon .ui-icon {
+    width: 1.15em;
+    height: 1.15em;
+}
+
 .recent-badge {
     display: inline-block;
     padding: 6px 8px;
     border-radius: 999px;
     background: #fff1f2;
     color: #d71920;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 900;
     letter-spacing: 0.08em;
 }
@@ -1631,6 +1663,7 @@ a:focus-visible {
 }
 
 .recent-card h3 {
+    margin-top: 16px;
     font-size: 20px;
     line-height: 1.35;
     letter-spacing: -0.02em;
@@ -1639,7 +1672,7 @@ a:focus-visible {
 .recent-user {
     margin-top: 10px;
     color: #737373;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.6;
 }
 
@@ -1647,11 +1680,16 @@ a:focus-visible {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 18px;
-    padding-top: 16px;
+    margin-top: auto;
+    padding-top: 20px;
     border-top: 1px solid #f0f0f0;
     color: #525252;
     font-size: 11px;
+}
+
+.recent-meta span:last-child {
+    color: var(--red);
+    font-weight: 800;
 }
 
 
@@ -2517,6 +2555,12 @@ a:focus-visible {
     font-size: 28px;
 }
 
+.contact-card .value-icon .ui-icon {
+    width: 1.3em;
+    height: 1.3em;
+    color: var(--red);
+}
+
 .value-card h3 {
     font-size: 20px;
     letter-spacing: -0.02em;
@@ -2550,7 +2594,14 @@ a:focus-visible {
 
 .about-cta-content p {
     color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 0;
 }
+
+.about-cta .about-cta-content .btn-white {
+    margin-top: 4px;
+}
+
+
 
 .contact-grid {
     display: grid;
@@ -2767,6 +2818,9 @@ a:focus-visible {
         rgba(255, 255, 255, 0.75);
 
     font-size: 15px;
+}
+.cta-content .btn-white {
+    margin-top: 36px;
 }
 
 
@@ -3376,4 +3430,101 @@ button,
     color: var(--gray-600);
     font-size: 14px;
     line-height: 1.8;
+}
+
+@media (max-width: 650px) {
+    .about-hero {
+        padding: 60px 0 45px;
+    }
+
+    .about-hero-inner {
+        gap: 28px;
+    }
+
+    .about-visual {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .about-stat-panel {
+        min-height: 120px;
+        padding: 14px 10px;
+    }
+
+    .about-stat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .about-stat-panel strong {
+        font-size: 27px;
+    }
+
+    .about-stat-panel small {
+        font-size: 9px;
+    }
+
+    .about-two-column,
+    .program-grid,
+    .story-grid,
+    .team-grid,
+    .value-grid,
+    .contact-grid,
+    .faq-grid,
+    .partner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        padding: 65px 0;
+    }
+
+    .about-section + .about-section {
+        padding-top: 35px;
+    }
+
+    .about-card,
+    .program-card,
+    .story-card,
+    .team-card,
+    .contact-card {
+        padding: 24px 20px;
+    }
+
+    .about-card h2,
+    .story-card h3 {
+        font-size: 28px;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .about-actions {
+        flex-direction: column;
+    }
+
+    .about-actions .btn {
+        width: 100%;
+    }
+
+    .cta-content h2 {
+        font-size: 32px;
+    }
+
+    .floating-cta {
+        right: 14px;
+        bottom: 14px;
+        min-height: 54px;
+        padding: 11px 15px 11px 13px;
+        font-size: 13px;
+    }
+
+    .floating-whatsapp {
+        right: 14px;
+        bottom: 78px;
+        width: 54px;
+        height: 54px;
+    }
 }

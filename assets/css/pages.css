@@ -2106,17 +2106,40 @@
 
 /* pages/peta.php */
 .map-page {
+            position: relative;
             min-height: 100vh;
-            background: #fafafa;
+            background:
+                radial-gradient(circle at 8% 12%, rgba(215, 25, 32, 0.1), transparent 24%),
+                radial-gradient(circle at 92% 72%, rgba(215, 25, 32, 0.08), transparent 25%),
+                linear-gradient(180deg, #fffafa 0%, #f7f7f7 48%, #ffffff 100%);
         }
 
         .map-main {
+            position: relative;
+            overflow: hidden;
             padding: 70px 0 100px;
+        }
+
+        .map-main::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 180px;
+            pointer-events: none;
+            opacity: 0.55;
+            background: repeating-linear-gradient(165deg, transparent 0 72px, rgba(215, 25, 32, 0.05) 72px 88px, transparent 88px 150px);
+        }
+
+        .map-main > .container {
+            position: relative;
+            z-index: 1;
         }
 
         .map-heading {
             max-width: 700px;
-            margin-bottom: 45px;
+            margin-bottom: 28px;
         }
 
         .map-heading h1 {
@@ -2280,15 +2303,24 @@
         }
 
         .region-name {
-            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
 
-            font-weight: 800;
+            font-weight: 600;
+        }
+
+        .region-name .ui-icon {
+            width: 1.25em;
+            height: 1.25em;
+            color: #d71920 !important;
         }
 
         .region-total {
             color: #d71920;
 
-            font-size: 19px;
+            font-size: 16px;
 
             font-weight: 900;
         }
@@ -2322,7 +2354,7 @@
 
             color: #a3a3a3;
 
-            font-size: 9px;
+            font-size: 11px;
         }
 
 
@@ -2334,11 +2366,12 @@
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(2, minmax(0, 1fr));
 
             gap: 15px;
 
-            margin-top: 25px;
+            max-width: 720px;
+            margin: 0 0 30px;
         }
 
         .summary-card {
@@ -2350,18 +2383,23 @@
             border-radius: 16px;
 
             background: white;
+            box-shadow: 0 10px 25px rgba(17, 24, 39, 0.04);
+            text-align: center;
         }
 
         .summary-card strong {
             display: block;
 
-            font-size: 28px;
+            color: #d71920;
+            font-size: 32px;
+            line-height: 1;
         }
 
         .summary-card span {
             color: #737373;
 
-            font-size: 10px;
+            font-size: 12px;
+            font-weight: 700;
         }
 
 
@@ -2519,9 +2557,9 @@
         }
 
         .national-progress-label {
-            font-size: 10px;
+            font-size: 12px;
 
-            font-weight: 900;
+            font-weight: 700;
 
             letter-spacing: 2px;
 
@@ -2608,7 +2646,7 @@
             color:
                 rgba(255,255,255,0.65);
 
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .national-progress-info strong {
@@ -3496,5 +3534,143 @@
 
     .event-card {
         min-height: 0;
+    }
+}
+
+@media (max-width: 650px) {
+    .dashboard-main,
+    .action-main,
+    .leaderboard-main,
+    .map-main,
+    .progress-main,
+    .challenge-main,
+    .event-main {
+        padding-top: 45px;
+        padding-bottom: 70px;
+    }
+
+    .dashboard-header,
+    .leaderboard-header,
+    .admin-header,
+    .calendar-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-profile {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .dashboard-stats,
+    .badge-grid,
+    .admin-stats,
+    .map-summary,
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-stat,
+    .admin-stat {
+        min-height: 150px;
+    }
+
+    .dashboard-content,
+    .action-layout,
+    .map-wrapper,
+    .leaderboard-item,
+    .verification-item {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-item {
+        gap: 9px;
+    }
+
+    .leaderboard-poin,
+    .leaderboard-total {
+        text-align: left;
+    }
+
+    .dashboard-progress,
+    .profile-progress {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .profile-progress {
+        padding-top: 14px;
+        padding-left: 0;
+        border-top: 1px solid #e5e5e5;
+        border-left: 0;
+    }
+
+    .progress-bar,
+    .progress-meter {
+        width: 100%;
+    }
+
+    .aksi-search {
+        grid-template-columns: 1fr;
+    }
+
+    .aksi-list-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .aksi-grid,
+    .challenge-grid,
+    .event-grid,
+    .story-grid-wide {
+        grid-template-columns: 1fr;
+    }
+
+    .challenge-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .challenge-progress {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .progress-meter {
+        flex-basis: auto;
+    }
+
+    .map-heading h1,
+    .progress-hero h1,
+    .leaderboard-hero h1 {
+        font-size: 38px;
+    }
+
+    .map-card,
+    .google-map-embed {
+        min-height: 350px;
+    }
+
+    .region-item,
+    .summary-card,
+    .leaderboard-card,
+    .dashboard-panel,
+    .badge-panel {
+        padding: 20px;
+    }
+
+    .verification-actions,
+    .verification-buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-page .nav-menu {
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
+    }
+
+    .proof-link,
+    .verify-btn,
+    .history-filter a {
+        min-height: 42px;
     }
 }

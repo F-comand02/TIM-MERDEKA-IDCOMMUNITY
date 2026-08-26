@@ -468,11 +468,10 @@ $queryHistoryList = mysqli_query(
             gap: 10px;
             margin-left: auto;
             flex-direction: row;
-            padding: 8px 10px;
-            border: 1px solid rgba(215, 25, 32, 0.08);
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.82);
-            box-shadow: 0 12px 20px rgba(15, 23, 42, 0.04);
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
         }
 
         .admin-page .nav-button .btn {
@@ -485,6 +484,7 @@ $queryHistoryList = mysqli_query(
             white-space: normal;
             text-align: center;
             min-width: 120px;
+            font-family: var(--font-body);
         }
 
         .admin-page .nav-button .btn-primary {
@@ -827,7 +827,7 @@ $queryHistoryList = mysqli_query(
         }
 
         .admin-panel-header h2 {
-            font-size: 19px;
+            font-size: 20px;
         }
 
         .admin-panel-header p {
@@ -835,11 +835,11 @@ $queryHistoryList = mysqli_query(
 
             color: #737373;
 
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .pending-badge {
-            padding: 7px 11px;
+            padding: 8px 12px;
 
             border-radius: 999px;
 
@@ -847,9 +847,9 @@ $queryHistoryList = mysqli_query(
 
             color: #a16207;
 
-            font-size: 10px;
+            font-size: 11px;
 
-            font-weight: 900;
+            font-weight: 600;
         }
 
         .status-badge {
@@ -857,12 +857,12 @@ $queryHistoryList = mysqli_query(
             align-items: center;
             justify-content: center;
 
-            padding: 6px 10px;
+            padding: 8px 10px;
 
             border-radius: 999px;
 
-            font-size: 9px;
-            font-weight: 900;
+            font-size: 11px;
+            font-weight: 800;
             letter-spacing: 0.4px;
         }
 
@@ -884,13 +884,13 @@ $queryHistoryList = mysqli_query(
         }
 
         .history-filter a {
-            padding: 7px 11px;
+            padding: 7px 16px;
             border: 1px solid #e5e5e5;
             border-radius: 999px;
             background: #fafafa;
             color: #525252;
-            font-size: 10px;
-            font-weight: 800;
+            font-size: 12px;
+            font-weight: 600;
             text-decoration: none;
         }
 
@@ -948,7 +948,7 @@ $queryHistoryList = mysqli_query(
         }
 
         .verification-info h3 {
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .verification-user {
@@ -956,7 +956,7 @@ $queryHistoryList = mysqli_query(
 
             color: #525252;
 
-            font-size: 11px;
+            font-size: 14px;
         }
 
         .verification-meta {
@@ -977,7 +977,11 @@ $queryHistoryList = mysqli_query(
 
             color: #737373;
 
-            font-size: 9px;
+            font-size: 11px;
+        }
+
+        .meta-item .ui-icon {
+            color: #d71920 !important;
         }
 
         .verification-meta .meta-item:nth-child(2) {
@@ -1001,7 +1005,7 @@ $queryHistoryList = mysqli_query(
             align-items: center;
             justify-content: center;
 
-            padding: 9px;
+            padding: 10px;
 
             border:
                 1px solid #e5e5e5;
@@ -1012,12 +1016,20 @@ $queryHistoryList = mysqli_query(
 
             background: white;
 
-            font-size: 10px;
+            font-size: 12px;
 
-            font-weight: 800;
+            font-weight: 600;
+            gap: 8px;
 
             transition:
                 0.2s ease;
+        }
+
+        .proof-link .ui-icon {
+            width: 1.35em;
+            height: 1.35em;
+            color: #d71920 !important;
+            flex: 0 0 auto;
         }
 
         .proof-link:hover {
@@ -1043,10 +1055,11 @@ $queryHistoryList = mysqli_query(
             border-radius: 9px;
 
             cursor: pointer;
+            font-family: var(--font-body);
 
-            font-size: 10px;
+            font-size: 12px;
 
-            font-weight: 900;
+            font-weight: 600;
 
             transition:
                 transform 0.2s ease,
@@ -1060,15 +1073,15 @@ $queryHistoryList = mysqli_query(
         }
 
         .approve-btn {
-            background: #16a34a;
+            background: #d71920;
 
             color: white;
         }
 
         .reject-btn {
-            background: #fee2e2;
+            background: #171717;
 
-            color: #b91c1c;
+            color: white;
         }
 
 
@@ -1214,10 +1227,10 @@ $queryHistoryList = mysqli_query(
                 flex-wrap: nowrap;
                 width: auto;
                 min-width: 0;
-                padding: 9px 10px;
-                background: rgba(255, 255, 255, 0.9);
-                border: 1px solid rgba(215, 25, 32, 0.08);
-                border-radius: 18px;
+                padding: 0;
+                background: transparent;
+                border: 0;
+                border-radius: 0;
             }
 
             .admin-page .nav-button .btn {
@@ -1309,7 +1322,7 @@ $queryHistoryList = mysqli_query(
         <div class="nav-button">
             <a
                 href="../logout.php"
-                class="btn btn-outline"
+                class="btn btn-primary"
             >
                 Keluar
             </a>
@@ -1510,7 +1523,7 @@ $queryHistoryList = mysqli_query(
                 <span class="pending-badge">
 
                     <?= $totalPending ?>
-                    PENDING
+                    Pending
 
                 </span>
 
@@ -1592,7 +1605,7 @@ $queryHistoryList = mysqli_query(
                                     🎯
 
                                     <?= htmlspecialchars(
-                                        $item['sdg']
+                                        ''
                                     ) ?>
 
                                 </span>
@@ -1812,7 +1825,7 @@ $queryHistoryList = mysqli_query(
 
         <!-- RIWAYAT VERIFIKASI -->
 
-        <section class="admin-panel" style="margin-top: 28px;">
+        <section id="riwayat-verifikasi" class="admin-panel" style="margin-top: 28px; scroll-margin-top: 24px;">
 
             <div class="admin-panel-header">
 
@@ -1829,9 +1842,9 @@ $queryHistoryList = mysqli_query(
                 </div>
 
                 <div class="history-filter">
-                    <a href="index.php?history_status=all" class="<?= $historyStatusFilter === 'all' ? 'active' : '' ?>">Semua</a>
-                    <a href="index.php?history_status=disetujui" class="<?= $historyStatusFilter === 'disetujui' ? 'active' : '' ?>">Disetujui</a>
-                    <a href="index.php?history_status=ditolak" class="<?= $historyStatusFilter === 'ditolak' ? 'active' : '' ?>">Ditolak</a>
+                    <a href="index.php?history_status=all#riwayat-verifikasi" class="<?= $historyStatusFilter === 'all' ? 'active' : '' ?>">Semua</a>
+                    <a href="index.php?history_status=disetujui#riwayat-verifikasi" class="<?= $historyStatusFilter === 'disetujui' ? 'active' : '' ?>">Disetujui</a>
+                    <a href="index.php?history_status=ditolak#riwayat-verifikasi" class="<?= $historyStatusFilter === 'ditolak' ? 'active' : '' ?>">Ditolak</a>
                 </div>
 
             </div>
@@ -1861,7 +1874,6 @@ $queryHistoryList = mysqli_query(
 
                             <div class="verification-meta">
                                 <span class="meta-item">📂 <?= htmlspecialchars($item['nama_kategori']) ?></span>
-                                <span class="meta-item">🎯 <?= htmlspecialchars($item['sdg']) ?></span>
                                 <span class="meta-item">📍 <?= htmlspecialchars($item['daerah']) ?></span>
                                 <span class="meta-item">🌏 <?= htmlspecialchars($item['wilayah']) ?></span>
                                 <span class="meta-item">📅 <?= date('d M Y', strtotime($item['tanggal_aksi'])) ?></span>
@@ -1873,7 +1885,7 @@ $queryHistoryList = mysqli_query(
                         <div class="verification-actions">
 
                             <span class="status-badge <?= $item['status'] === 'disetujui' ? 'approved' : 'rejected' ?>">
-                                <?= $item['status'] === 'disetujui' ? 'DISETUJUI' : 'DITOLAK' ?>
+                                <?= $item['status'] === 'disetujui' ? 'Disetujui' : 'Ditolak' ?>
                             </span>
 
                             <?php

@@ -21,7 +21,7 @@ $wilayahList = [
 
 ];
 
-$wilayahDipilih = $_GET['wilayah'] ?? '';
+$wilayahDipilih = $_GET['wilayah'] ?? 'Sumatera';
 if (!in_array($wilayahDipilih, $wilayahList, true)) {
     $wilayahDipilih = '';
 }
@@ -197,10 +197,6 @@ $totalAksi = array_sum(
 
         <div class="map-heading">
 
-            <span class="section-label">
-                🗺️ PETA AKSI INDONESIA
-            </span>
-
             <h1>
 
                 Aksi dari
@@ -225,6 +221,20 @@ $totalAksi = array_sum(
 
         </div>
 
+        <!-- SUMMARY -->
+
+        <div class="map-summary">
+            <div class="summary-card">
+                <strong><?= count(array_filter($dataWilayah, fn($jumlah) => $jumlah > 0)) ?></strong>
+                <span>Wilayah sudah berkontribusi</span>
+            </div>
+
+            <div class="summary-card">
+                <strong><?= number_format($totalAksi, 0, ',', '.') ?></strong>
+                <span>Total aksi disetujui</span>
+            </div>
+        </div>
+
 
         <div class="map-wrapper">
 
@@ -240,7 +250,6 @@ $totalAksi = array_sum(
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
-
             </div>
 
 
@@ -248,201 +257,51 @@ $totalAksi = array_sum(
 
             <div class="region-list">
 
-
                 <?php
-
-                $maxAksi =
-                    !empty($dataWilayah)
-                    ? max($dataWilayah)
-                    : 1;
-
+                $maxAksi = !empty($dataWilayah) ? max($dataWilayah) : 1;
                 ?>
 
-
-                <?php foreach (
-                    $wilayahList
-                    as $wilayah
-                ): ?>
-
-
+                <?php foreach ($wilayahList as $wilayah): ?>
                     <?php
-
-                    $jumlah =
-                        $dataWilayah[
-                            $wilayah
-                        ] ?? 0;
-
-                    $persentase =
-                        $totalAksi > 0
-                        ? (
-                            $jumlah
-                            / $totalAksi
-                        ) * 100
-                        : 0;
-
-                    $barWidth =
-                        (
-                            $jumlah
-                            / $maxAksi
-                        ) * 100;
-
+                    $jumlah = $dataWilayah[$wilayah] ?? 0;
+                    $persentase = $totalAksi > 0 ? ($jumlah / $totalAksi) * 100 : 0;
+                    $barWidth = ($jumlah / $maxAksi) * 100;
+                    $iconWilayah = match ($wilayah) {
+                        'Sumatera' => '🌴',
+                        'Jawa' => '🏙️',
+                        'Kalimantan' => '🌳',
+                        'Sulawesi' => '🌊',
+                        'Bali & Nusa Tenggara' => '🏝️',
+                        'Maluku' => '🌊',
+                        'Papua' => '🏔️',
+                        default => ''
+                    };
                     ?>
 
-
                     <div class="region-item">
-
-                        <a
-                            class="region-top"
-                            href="peta.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta"
-                        >
-
+                        <a class="region-top" href="peta.php?<?= http_build_query(['wilayah' => $wilayah]) ?>#peta">
                             <span class="region-name">
-
-                                <?php
-
-                                $iconWilayah = match (
-                                    $wilayah
-                                ) {
-
-                                    'Sumatera' =>
-                                        '🌴',
-
-                                    'Jawa' =>
-                                        '🏙️',
-
-                                    'Kalimantan' =>
-                                        '🌳',
-
-                                    'Sulawesi' =>
-                                        '🌊',
-
-                                    'Bali & Nusa Tenggara' =>
-                                        '🏝️',
-
-                                    'Maluku' =>
-                                        '🌊',
-
-                                    'Papua' =>
-                                        '🏔️',
-
-                                    default =>
-                                        ''
-                                };
-
-                                ?>
-
                                 <?= $iconWilayah ?>
-
-                                <?= htmlspecialchars(
-                                    $wilayah
-                                ) ?>
-
+                                <?= htmlspecialchars($wilayah) ?>
                             </span>
-
 
                             <span class="region-total">
-
-                                <?= number_format(
-                                    $jumlah,
-                                    0,
-                                    ',',
-                                    '.'
-                                ) ?>
-
+                                <?= number_format($jumlah, 0, ',', '.') ?>
                             </span>
-
                         </a>
 
-
                         <div class="region-bar">
-
-                            <div
-                                class="region-fill"
-                                style="
-                                    width:
-                                    <?= $barWidth ?>%;
-                                "
-                            ></div>
-
+                            <div class="region-fill" style="width: <?= $barWidth ?>%;"></div>
                         </div>
 
-
                         <span class="region-percent">
-
-                            <?= number_format(
-                                $persentase,
-                                1
-                            ) ?>%
-                            dari seluruh aksi
-
+                            <?= number_format($persentase, 1) ?>% dari seluruh aksi
                         </span>
-
                     </div>
-
-
                 <?php endforeach; ?>
-
-
             </div>
 
         </div>
-
-
-        <!-- SUMMARY -->
-
-        <div class="map-summary">
-
-            <div class="summary-card">
-
-                <strong>
-                    <?= count(
-                        array_filter(
-                            $dataWilayah,
-                            fn($jumlah) =>
-                                $jumlah > 0
-                        )
-                    ) ?>
-                </strong>
-
-                <span>
-                    Wilayah sudah berkontribusi
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <strong>
-                    <?= number_format(
-                        $totalAksi,
-                        0,
-                        ',',
-                        '.'
-                    ) ?>
-                </strong>
-
-                <span>
-                    Total aksi disetujui
-                </span>
-
-            </div>
-
-
-            <div class="summary-card">
-
-                <strong>
-                    
-                </strong>
-
-                <span>
-                    Dari Indonesia untuk Indonesia
-                </span>
-
-            </div>
-
-        </div>
-
     </div>
 
 </main>

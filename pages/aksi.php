@@ -639,11 +639,10 @@ $aksiIcons = [
 
 </section>
 
-
+<!-- 
 <section class="aksi-map-section" id="peta-aksi">
     <div class="container">
         <div class="aksi-map-heading">
-            <span class="section-label">🗺️ PETA AKSI</span>
             <h2>Lihat aksi yang sedang berlangsung di Indonesia</h2>
             <p>Pilih wilayah untuk menemukan aksi yang sedang dilakukan komunitas di sana.</p>
         </div>
@@ -708,7 +707,7 @@ $aksiIcons = [
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- =====================================================
      CTA

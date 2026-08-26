@@ -62,7 +62,8 @@ $latestActionsQuery = mysqli_query(
         aksi.poin,
         users.nama AS nama_user,
         users.daerah,
-        kategori.nama_kategori
+        kategori.nama_kategori,
+        kategori.icon
      FROM aksi_user
      INNER JOIN users
         ON users.id = aksi_user.user_id
@@ -466,12 +467,10 @@ require __DIR__ . '/includes/header.php';
 
 
                 <div class="progress-bar">
-
                     <div
                         class="progress-fill"
                         style="width: <?= $progress ?>%;"
                     ></div>
-
                 </div>
 
 
@@ -610,9 +609,9 @@ require __DIR__ . '/includes/header.php';
 
                     <div class="recent-top">
 
-                        <span class="recent-badge">
-                            Aksi Baru
-                        </span>
+                        <div class="recent-icon">
+                            <span aria-hidden="true"><?= htmlspecialchars($action['icon']) ?></span>
+                        </div>
 
                         <span class="recent-date">
                             <?= date('d M', strtotime($action['tanggal_aksi'])) ?>
@@ -632,13 +631,9 @@ require __DIR__ . '/includes/header.php';
 
                     <div class="recent-meta">
 
-                        <span>
-                            🏷️ <?= htmlspecialchars($action['nama_kategori']) ?>
-                        </span>
+                        <span><?= htmlspecialchars($action['nama_kategori']) ?></span>
 
-                        <span>
-                            ⭐ <?= (int) $action['poin'] ?> poin
-                        </span>
+                        <span>+<?= (int) $action['poin'] ?> poin</span>
 
                     </div>
 
@@ -789,10 +784,6 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
 
         <div class="cta-content">
-
-            <span>
-                 UNTUK INDONESIA
-            </span>
 
 
             <h2>
