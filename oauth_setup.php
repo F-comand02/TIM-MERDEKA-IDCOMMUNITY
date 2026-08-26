@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             'redirect_uri' =>
                 $baseUrl .
-                '/oauth_callback.php?provider=google',
+                '/oauth_callback.php',
         ];
     }
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             'redirect_uri' =>
                 $baseUrl .
-                '/oauth_callback.php?provider=facebook',
+                '/oauth_callback.php',
         ];
     }
 

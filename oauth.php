@@ -54,6 +54,7 @@ if (
 $state = bin2hex(random_bytes(32));
 
 $_SESSION['oauth_state'] = $state;
+$_SESSION['oauth_provider'] = $provider;
 
 
 /*
