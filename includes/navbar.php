@@ -52,9 +52,6 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
                 <a href="<?= $basePath ?>pages/contact.php" class="<?= $currentPage === 'contact.php' ? 'active' : '' ?>">Kontak</a>
             </div>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="<?= $basePath ?><?= (($_SESSION['role'] ?? '') === 'admin') ? 'admin/index.php' : 'dashboard.php' ?>" class="nav-mobile-account">
-                    <?= (($_SESSION['role'] ?? '') === 'admin') ? 'Dashboard Admin' : 'Dashboard' ?>
-                </a>
                 <a href="<?= $basePath ?>logout.php" class="nav-mobile-logout">Keluar</a>
             <?php endif; ?>
         </nav>
