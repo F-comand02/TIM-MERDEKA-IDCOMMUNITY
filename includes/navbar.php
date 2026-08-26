@@ -18,7 +18,14 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
             </span>
             MERDEKA COMMUNITY
         </a>
-        <nav class="nav-menu">
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Buka menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-menu" id="primary-menu">
             <a href="<?= $basePath ?>pages/aksi.php" class="<?= $isAction ? 'active' : '' ?>" <?= $isAction ? 'aria-current="page"' : '' ?>>Aksi</a>
             <a href="<?= $basePath ?>pages/peta.php" class="<?= $isMap ? 'active' : '' ?>" <?= $isMap ? 'aria-current="page"' : '' ?>>Peta</a>
             <a href="<?= $basePath ?>pages/progress.php" class="<?= $isProgress ? 'active' : '' ?>" <?= $isProgress ? 'aria-current="page"' : '' ?>>Progress</a>

@@ -2,10 +2,12 @@
     <div class="container footer-container">
         <div class="footer-brand">
             <div class="logo">
-                <span class="logo-icon"></span>
+            <span class="logo-icon">
+                    <img src="<?= $basePath ?>assets/uploads/logo.png" alt="">
+            </span>
                 MERDEKA COMMUNITY
             </div>
-            <p>Platform kampanye sosial untuk mengubah semangat kemerdekaan menjadi aksi nyata.</p>
+            <p>Platform sosial untuk mengubah semangat kemerdekaan Republik Indonesia menjadi aksi nyata.</p>
         </div>
         <div class="footer-links">
             <h4>Jelajahi</h4>
@@ -31,10 +33,11 @@
     </div>
     <div class="footer-bottom">
         <div class="container">
-            <p>© <?= date('Y') ?> Aksi Untuk Negeri. Dibuat untuk Indonesia </p>
+            <p>© <?= date('Y') ?> MERDEKA COMMUNITY. Dibuat untuk Indonesia </p>
         </div>
     </div>
 </footer>
 <script src="<?= $basePath ?>assets/js/icons.js"></script>
+<script src="<?= $basePath ?>assets/js/mobile-nav.js"></script>
 </body>
 </html>
