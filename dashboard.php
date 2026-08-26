@@ -250,8 +250,8 @@ $resultHistory = mysqli_stmt_get_result($stmtHistory);
     <title>Dashboard — Aksi Untuk Negeri</title>
     <link rel="icon" type="image/png" href="assets/uploads/logo.png">
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?= filemtime(__DIR__ . '/assets/css/style.css') ?>">
+    <link rel="stylesheet" href="assets/css/pages.css?v=<?= filemtime(__DIR__ . '/assets/css/pages.css') ?>">
 </head>
 
 <body class="dashboard-page">
