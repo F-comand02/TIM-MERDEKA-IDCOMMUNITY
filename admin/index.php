@@ -337,8 +337,7 @@ $queryPendingList = mysqli_query(
         aksi.poin,
 
         kategori.nama_kategori,
-        kategori.icon,
-        kategori.sdg
+        kategori.icon
 
      FROM aksi_user
 
@@ -383,8 +382,7 @@ $queryHistoryList = mysqli_query(
         aksi.poin,
 
         kategori.nama_kategori,
-        kategori.icon,
-        kategori.sdg
+        kategori.icon
 
      FROM aksi_user
 
@@ -434,6 +432,7 @@ $queryHistoryList = mysqli_query(
 
         .admin-page {
             min-height: 100vh;
+            font-family: var(--font-body);
             background: #f7f7f7;
         }
 
@@ -684,18 +683,32 @@ $queryHistoryList = mysqli_query(
         }
 
         .admin-stat {
-            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 190px;
+            padding: 24px;
 
             border:
-                1px solid #e5e5e5;
+                1px solid #b51218;
 
             border-radius: 17px;
 
-            background: white;
+            background: linear-gradient(145deg, #d71920, #b51218);
+            color: #ffffff;
 
             box-shadow:
-                0 4px 15px
-                rgba(0,0,0,0.03);
+                0 14px 30px
+                rgba(215,25,32,0.18);
+
+            text-align: center;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .admin-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 35px rgba(215,25,32,0.24);
         }
 
         .admin-stat-icon {
@@ -708,9 +721,15 @@ $queryHistoryList = mysqli_query(
 
             border-radius: 12px;
 
-            background: #f5f5f5;
+            border: 1px solid rgba(255,255,255,0.55);
+            background: rgba(255,255,255,0.12);
 
             font-size: 19px;
+            color: #ffffff;
+        }
+
+        .admin-stat-icon svg {
+            color: #ffffff !important;
         }
 
         .admin-stat-icon svg {
@@ -726,15 +745,19 @@ $queryHistoryList = mysqli_query(
         .admin-stat strong {
             display: block;
 
-            margin-top: 13px;
+            margin-top: 16px;
 
-            font-size: 27px;
+            color: #ffffff;
+            font-size: 42px;
+            line-height: 1;
         }
 
         .admin-stat span {
-            color: #737373;
+            margin-top: 9px;
+            color: rgba(255,255,255,0.84);
 
             font-size: 11px;
+            text-align: center;
         }
 
 
@@ -914,9 +937,14 @@ $queryHistoryList = mysqli_query(
 
             border-radius: 15px;
 
-            background: #f5f5f5;
+            background: #d71920;
+            color: #ffffff;
 
             font-size: 25px;
+        }
+
+        .verification-icon svg {
+            color: #ffffff !important;
         }
 
         .verification-info h3 {
@@ -950,6 +978,10 @@ $queryHistoryList = mysqli_query(
             color: #737373;
 
             font-size: 9px;
+        }
+
+        .verification-meta .meta-item:nth-child(2) {
+            display: none;
         }
 
 
@@ -1590,7 +1622,7 @@ $queryHistoryList = mysqli_query(
 
                                 <span class="meta-item">
 
-                                    📅
+                                    ✦
 
                                     <?= date(
                                         'd M Y',
@@ -1692,7 +1724,7 @@ $queryHistoryList = mysqli_query(
                                         class="verify-btn approve-btn"
                                         style="width:100%;"
                                     >
-                                        ✓ Setujui
+                                        Setujui
                                     </button>
 
                                 </form>
@@ -1736,7 +1768,7 @@ $queryHistoryList = mysqli_query(
                                         class="verify-btn reject-btn"
                                         style="width:100%;"
                                     >
-                                        ✕ Tolak
+                                        Tolak
                                     </button>
 
                                 </form>
