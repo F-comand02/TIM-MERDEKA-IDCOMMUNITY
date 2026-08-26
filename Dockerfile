@@ -6,4 +6,4 @@ WORKDIR /app
 
 COPY . /app
 
-RUN php -m | grep mysqli
+CMD ["frankenphp", "php-server", "--root", "/app"]
