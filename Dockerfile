@@ -5,3 +5,5 @@ RUN install-php-extensions mysqli pdo_mysql
 WORKDIR /app
 
 COPY . /app
+
+RUN php -m | grep mysqli
