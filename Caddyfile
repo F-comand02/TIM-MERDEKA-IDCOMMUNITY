@@ -1,0 +1,8 @@
+{
+    frankenphp
+}
+
+:{$PORT} {
+    root * /app
+    php_server
+}
