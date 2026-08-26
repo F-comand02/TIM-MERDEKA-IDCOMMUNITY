@@ -6,4 +6,6 @@ WORKDIR /app
 
 COPY . /app
 
-ENV SERVER_NAME=:8080
+RUN php -m | grep mysqli
+
+EXPOSE 8080
