@@ -6,4 +6,4 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ["frankenphp", "php-server", "--root", "/app"]
+ENV SERVER_NAME=:8080
