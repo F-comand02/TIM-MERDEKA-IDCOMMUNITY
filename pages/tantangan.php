@@ -139,7 +139,7 @@ if ($userId > 0) {
     <link rel="stylesheet" href="../assets/css/style.css">
 
     
-    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="../assets/css/pages.css?v=<?= filemtime(__DIR__ . '/../assets/css/pages.css') ?>">
 </head>
 
 <body class="challenge-page">
@@ -179,39 +179,39 @@ if ($userId > 0) {
 
 <main class="challenge-main">
     <div class="container">
+        <a href="event.php" class="challenge-back-link">← Kembali ke Event</a>
 
         <div class="challenge-hero">
-            <a href="event.php" class="text-link">← Kembali ke Event</a>
-            <span class="challenge-label"> 17 HARI BERSAMA</span>
             <h1>
-                Tantangan <span>untuk Negeri</span>
+                17 Hari, <span>17 Aksi</span>
             </h1>
             <p>
-                Setiap hari punya peluang untuk memberi dampak kecil yang berarti.
-                Ikuti rangkaian tantangan ini dan jadikan semangat kemerdekaan sebagai aksi nyata.
+                Rayakan kemerdekaan dengan aksi nyata! Selesaikan 17 tantangan dalam 17 hari dan jadikan setiap langkah kecilmu berarti bagi sesama.
             </p>
         </div>
 
-        <div class="challenge-progress">
+        <div class="challenge-summary">
             <div class="achievement-box">
-                <div class="achievement-icon"><?= htmlspecialchars($currentAchievement['icon']) ?></div>
+                <div class="achievement-icon"><span><?= htmlspecialchars($currentAchievement['icon']) ?></span></div>
                 <div class="achievement-copy">
                     <strong><?= htmlspecialchars($currentAchievement['label']) ?></strong>
                     <small><?= htmlspecialchars($currentAchievement['desc']) ?></small>
                 </div>
             </div>
 
-            <div>
-                <strong>
-                    Progress kamu: <?= (int) $userCompleted ?>/<?= $totalHari ?> hari
-                </strong>
-                <small>
-                    Selesaikan tantangan untuk menambah semangat dan kontribusi positif.
-                </small>
-            </div>
+            <div class="challenge-progress">
+                <div>
+                    <strong>
+                        Progress kamu: <?= (int) $userCompleted ?>/<?= $totalHari ?> hari
+                    </strong>
+                    <small>
+                        Selesaikan tantangan untuk menambah semangat dan kontribusi positif.
+                    </small>
+                </div>
 
-            <div class="progress-meter" aria-label="Progress tantangan">
-                <span style="width: <?= round($progressChallenge) ?>%"></span>
+                <div class="progress-meter" aria-label="Progress tantangan">
+                    <span style="width: <?= round($progressChallenge) ?>%"></span>
+                </div>
             </div>
         </div>
 
@@ -222,19 +222,20 @@ if ($userId > 0) {
                 ?>
 
                 <article class="challenge-card">
-                    <div class="challenge-day">Hari <?= (int) $tantangan['hari'] ?></div>
-                    <div class="icon"><?= htmlspecialchars($tantangan['icon'] ?? '✨') ?></div>
+                    <div class="challenge-card-top">
+                        <div class="challenge-icon"><span><?= htmlspecialchars($tantangan['icon'] ?? '✨') ?></span></div>
+                        <div class="challenge-day">Hari <?= (int) $tantangan['hari'] ?></div>
+                    </div>
                     <h3><?= htmlspecialchars($tantangan['judul']) ?></h3>
-                    <span class="sdg">SDG <?= (int) $tantangan['sdg_nomor'] ?></span>
                     <p><?= htmlspecialchars($tantangan['deskripsi']) ?></p>
 
                     <?php if ($userId > 0): ?>
                         <span class="challenge-status <?= $isDone ? 'done' : 'pending' ?>">
-                            <?= $isDone ? '✅ Selesai (Admin)' : '⏳ Menunggu verifikasi admin' ?>
+                            <?= $isDone ? 'Selesai diverifikasi admin' : 'Menunggu verifikasi admin' ?>
                         </span>
                     <?php else: ?>
                         <div class="challenge-status pending">
-                            🔐 Login untuk melihat status
+                            Masuk untuk Mengikuti
                         </div>
                     <?php endif; ?>
                 </article>
@@ -268,10 +269,6 @@ if ($userId > 0) {
                     Kamu saat ini berada di peringkat #<?= $userRank['rank_no'] ?> dengan <?= $userRank['total_poin'] ?> poin.
                 </div>
             <?php endif; ?>
-        </div>
-
-        <div class="challenge-cta">
-            <a href="aksi.php" class="btn btn-primary btn-large">💪 Ambil Aksi Sekarang</a>
         </div>
 
     </div>
