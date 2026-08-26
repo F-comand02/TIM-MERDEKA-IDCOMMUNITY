@@ -226,9 +226,9 @@ $aksiIcons = [
         Aksi Indonesia — Aksi Untuk Negeri
     </title>
 
-    <link
-
     <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
+
+    <link
         rel="stylesheet"
         href="../assets/css/style.css"
     >
