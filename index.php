@@ -116,7 +116,7 @@ require __DIR__ . '/includes/header.php';
                 berbuat sesuatu. Mari ubah semangat
                 kemerdekaan menjadi aksi nyata yang
                 memberikan dampak bagi masyarakat
-                dan Indonesia.
+                dan Indonesia
 
             </p>
 
@@ -173,16 +173,16 @@ require __DIR__ . '/includes/header.php';
                 <div class="hero-card-content">
 
                     <h3>
-                        Satu Indonesia.
+                        Satu Indonesia
                     </h3>
 
                     <h2>
-                        Ribuan Aksi.
+                        Ribuan Aksi
                     </h2>
 
                     <p>
                         Bersama bertindak untuk Indonesia
-                        melalui aksi nyata.
+                        melalui aksi nyata
                     </p>
 
                 </div>
@@ -434,7 +434,7 @@ require __DIR__ . '/includes/header.php';
             <div class="progress-content">
 
                 <span class="section-label">
-                     PROGRESS KEMERDEKAAN
+                    PROGRESS KEMERDEKAAN
                 </span>
 
 
@@ -447,7 +447,7 @@ require __DIR__ . '/includes/header.php';
 
                     Setiap aksi yang telah dilakukan
                     menjadi bagian dari gerakan bersama
-                    untuk Indonesia.
+                    untuk Indonesia
 
                 </p>
 
@@ -539,7 +539,7 @@ require __DIR__ . '/includes/header.php';
 
                 Ikuti event yang sedang berlangsung dan
                 ubah satu aksi kecil setiap hari menjadi
-                dampak nyata untuk Indonesia.
+                dampak nyata untuk Indonesia
 
             </p>
 
@@ -551,8 +551,8 @@ require __DIR__ . '/includes/header.php';
                 <div class="event-card-icon">17</div>
                 <div class="event-card-content">
                     <span class="event-card-label">EVENT UTAMA</span>
-                    <h3>17 Hari, 17 Aksi</h3>
-                    <p>Satu tantangan setiap hari untuk membangun kebiasaan beraksi dan memberi dampak nyata.</p>
+                    <h3>17 Hari 17 Aksi</h3>
+                    <p>Satu tantangan setiap hari untuk membangun kebiasaan beraksi dan memberi dampak nyata untuk Indonesia</p>
                     <span class="event-card-link">Lihat Event <span aria-hidden="true">→</span></span>
                 </div>
             </a>
@@ -597,7 +597,7 @@ require __DIR__ . '/includes/header.php';
             <p>
                 Lihat bagaimana masyarakat Indonesia
                 sudah mulai bergerak dan membangun
-                perubahan nyata di berbagai daerah.
+                perubahan nyata di berbagai daerah
             </p>
 
         </div>
@@ -681,13 +681,13 @@ require __DIR__ . '/includes/header.php';
 
             <h2>
                 Perubahan Besar
-                Dimulai dari Langkah Kecil.
+                Dimulai dari Langkah Kecil
             </h2>
 
             <p>
                 Banyak komunitas Indonesia sudah
                 mulai bergerak, dan dampaknya mulai
-                terlihat di lingkungan sekitar.
+                terlihat di lingkungan sekitar
             </p>
 
         </div>
@@ -796,18 +796,11 @@ require __DIR__ . '/includes/header.php';
 
 
             <h2>
-                Kemerdekaanmu,
-                Aksimu,
-                Dampakmu.
+                Dari Kemerdekaanmu 
+                Akan Terlahir Dampak Nyata
+                Dari Aksimu
+                Akan Berguna Bagimu
             </h2>
-
-
-            <p>
-
-                Jangan hanya menjadi penonton.
-                Jadilah bagian dari perubahan.
-
-            </p>
 
 
             <a

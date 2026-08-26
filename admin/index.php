@@ -437,6 +437,123 @@ $queryHistoryList = mysqli_query(
             background: #f7f7f7;
         }
 
+        .admin-page .navbar {
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid rgba(215, 25, 32, 0.08);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+        }
+
+        .admin-page .nav-container {
+            min-height: 78px;
+            gap: 18px;
+            position: relative;
+        }
+
+        .admin-page .nav-menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            justify-content: center;
+        }
+
+        .admin-page .nav-menu a,
+        .admin-page .nav-dropdown summary {
+            padding: 26px 0;
+            font-weight: 700;
+        }
+
+        .admin-page .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+            flex-direction: row;
+            padding: 8px 10px;
+            border: 1px solid rgba(215, 25, 32, 0.08);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 12px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        .admin-page .nav-button .btn {
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.2;
+            box-shadow: 0 8px 18px rgba(17, 24, 39, 0.05);
+            white-space: normal;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .admin-page .nav-button .btn-primary {
+            background: linear-gradient(135deg, #d71920, #b51218);
+            border-color: transparent;
+            box-shadow: 0 12px 22px rgba(215, 25, 32, 0.18);
+        }
+
+        .admin-page .nav-button .btn-outline {
+            background: #ffffff;
+            border: 1px solid #f1d2d4;
+            color: #444;
+        }
+
+        .admin-page .nav-button .btn-outline:hover {
+            background: #fff7f7;
+            border-color: #d71920;
+            color: #d71920;
+        }
+
+        .admin-page .nav-toggle {
+            display: none;
+            position: relative;
+            width: 46px;
+            height: 42px;
+            border: 1px solid rgba(215, 25, 32, 0.12);
+            border-radius: 12px;
+            background: rgba(215, 25, 32, 0.04);
+            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-page .nav-toggle:hover {
+            transform: translateY(-1px);
+            border-color: rgba(215, 25, 32, 0.25);
+            background: rgba(215, 25, 32, 0.08);
+        }
+
+        .admin-page .nav-toggle span {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            height: 2px;
+            border-radius: 999px;
+            background: #d71920;
+            transition: transform 0.28s ease, opacity 0.28s ease, top 0.28s ease;
+        }
+
+        .admin-page .nav-toggle span:nth-child(1) { top: 13px; }
+        .admin-page .nav-toggle span:nth-child(2) { top: 20px; }
+        .admin-page .nav-toggle span:nth-child(3) { top: 27px; }
+
+        .admin-page .nav-toggle.is-active span:nth-child(1) {
+            top: 20px;
+            transform: rotate(45deg);
+        }
+
+        .admin-page .nav-toggle.is-active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .admin-page .nav-toggle.is-active span:nth-child(3) {
+            top: 20px;
+            transform: rotate(-45deg);
+        }
+
         .admin-brand-icon {
             width: 34px;
             height: 34px;
@@ -451,6 +568,17 @@ $queryHistoryList = mysqli_query(
             width: 34px;
             height: 34px;
             object-fit: contain;
+        }
+
+        .admin-page .logo {
+            flex: 1 1 auto;
+            min-width: 0;
+            max-width: 100%;
+            font-size: clamp(12px, 1.8vw, 17px);
+            line-height: 1.1;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
         .admin-main {
@@ -583,6 +711,16 @@ $queryHistoryList = mysqli_query(
             background: #f5f5f5;
 
             font-size: 19px;
+        }
+
+        .admin-stat-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2.5;
         }
 
         .admin-stat strong {
@@ -959,6 +1097,110 @@ $queryHistoryList = mysqli_query(
 
         }
 
+        @media (max-width: 820px) {
+            .admin-page .nav-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                order: 2;
+            }
+
+            .admin-page .nav-menu {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                transform: none;
+                width: auto;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 14px;
+                border: 1px solid rgba(215, 25, 32, 0.08);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+                z-index: 1001;
+            }
+
+            .admin-page .nav-menu.is-open {
+                display: flex;
+            }
+
+            .admin-page .nav-menu a,
+            .admin-page .nav-dropdown summary {
+                width: 100%;
+                padding: 13px 14px;
+                white-space: normal;
+                border-radius: 10px;
+                background: transparent;
+            }
+
+            .admin-page .nav-dropdown {
+                width: 100%;
+            }
+
+            .admin-page .nav-dropdown summary {
+                justify-content: space-between;
+            }
+
+            .admin-page .nav-dropdown-menu {
+                position: static;
+                transform: none;
+                left: auto;
+                top: auto;
+                min-width: 0;
+                width: 100%;
+                margin-top: 8px;
+                padding: 8px;
+                border: 1px solid rgba(215, 25, 32, 0.08);
+                box-shadow: none;
+            }
+
+            .admin-page .nav-button {
+                gap: 8px;
+            }
+
+            .admin-page .nav-button .btn-primary,
+            .admin-page .nav-button .btn-outline {
+                display: inline-flex;
+                min-width: unset;
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .admin-page .nav-button {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 8px;
+                flex-wrap: nowrap;
+                width: auto;
+                min-width: 0;
+                padding: 9px 10px;
+                background: rgba(255, 255, 255, 0.9);
+                border: 1px solid rgba(215, 25, 32, 0.08);
+                border-radius: 18px;
+            }
+
+            .admin-page .nav-button .btn {
+                min-width: 0;
+                flex: 0 0 auto;
+                min-height: 38px;
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .admin-page .nav-button .btn-outline {
+                display: inline-flex;
+            }
+        }
+
 
         @media (max-width: 600px) {
 
@@ -991,6 +1233,10 @@ $queryHistoryList = mysqli_query(
 
             .verification-actions {
                 grid-template-columns: 1fr;
+            }
+
+            .admin-page .nav-button .btn-outline {
+                display: inline-flex;
             }
 
         }
@@ -1028,31 +1274,7 @@ $queryHistoryList = mysqli_query(
         </a>
 
 
-        <nav class="nav-menu">
-            <a href="../index.php#cerita">
-                Kabar
-            </a>
-
-            <a href="../dashboard.php">
-                Profil
-            </a>
-
-            <a href="../dashboard.php">
-                Halaman Web
-            </a>
-
-        </nav>
-
-
         <div class="nav-button">
-
-            <a
-                href="../dashboard.php"
-                class="btn btn-primary"
-            >
-                Halaman Web
-            </a>
-
             <a
                 href="../logout.php"
                 class="btn btn-outline"
@@ -1140,7 +1362,10 @@ $queryHistoryList = mysqli_query(
             <div class="admin-stat">
 
                 <div class="admin-stat-icon">
-                    📋
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <rect x="5" y="4" width="14" height="17" rx="2"></rect>
+                        <path d="M9 4.5V3h6v1.5M8 9h8M8 13h8M8 17h5"></path>
+                    </svg>
                 </div>
 
                 <strong>
@@ -1174,7 +1399,9 @@ $queryHistoryList = mysqli_query(
             <div class="admin-stat">
 
                 <div class="admin-stat-icon">
-                    ✅
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="m5 12 4 4L19 6"></path>
+                    </svg>
                 </div>
 
                 <strong>
@@ -1191,7 +1418,9 @@ $queryHistoryList = mysqli_query(
             <div class="admin-stat">
 
                 <div class="admin-stat-icon">
-                    ❌
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M6 6 18 18M18 6 6 18"></path>
+                    </svg>
                 </div>
 
                 <strong>
@@ -1660,103 +1889,14 @@ $queryHistoryList = mysqli_query(
 
 
 <footer class="footer">
-
-    <div class="container footer-container">
-
-        <div class="footer-brand">
-
-            <div class="logo">
-
-                <span class="logo-icon">
-                    
-                </span>
-
-                Aksi Untuk Negeri
-
-            </div>
-
-
-            <p>
-                Platform kampanye sosial untuk
-                mengubah semangat kemerdekaan
-                menjadi aksi nyata.
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Jelajahi
-            </h4>
-
-            <a href="../index.php#aksi">
-                Pilih Aksi
-            </a>
-
-            <a href="../index.php#progress">
-                Progress
-            </a>
-
-            <a href="../index.php#tantangan">
-                17 Hari
-            </a>
-
-            <a href="../index.php#cerita">
-                Cerita Mereka
-            </a>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Bergabung
-            </h4>
-
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="../dashboard.php">
-                    Halaman Web
-                </a>
-
-                <a href="../logout.php">
-                    Keluar
-                </a>
-            <?php else: ?>
-                <a href="../login.php">
-                    Masuk
-                </a>
-
-                <a href="../register.php">
-                    Daftar
-                </a>
-            <?php endif; ?>
-
-        </div>
-
+    <div class="container footer-bottom">
+        <p>© <?= date('Y') ?> MERDEKA COMMUNITY. Dibuat untuk Indonesia </p>
     </div>
-
-
-    <div class="footer-bottom">
-
-        <div class="container">
-
-            <p>
-                © <?= date('Y') ?>
-                Aksi Untuk Negeri.
-                Dibuat untuk Indonesia 
-            </p>
-
-        </div>
-
-    </div>
-
 </footer>
 
 
 <script src="../assets/js/icons.js"></script>
+<script src="../assets/js/mobile-nav.js"></script>
 </body>
 
 </html>

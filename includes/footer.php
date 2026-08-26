@@ -38,5 +38,6 @@
     </div>
 </footer>
 <script src="<?= $basePath ?>assets/js/icons.js"></script>
+<script src="<?= $basePath ?>assets/js/mobile-nav.js"></script>
 </body>
 </html>
