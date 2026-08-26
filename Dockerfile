@@ -6,6 +6,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN php -m | grep mysqli
-
 EXPOSE 8080
+
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
