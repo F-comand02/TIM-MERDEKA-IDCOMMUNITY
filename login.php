@@ -192,6 +192,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         Masuk — Aksi Untuk Negeri
     </title>
 
+    <link rel="icon" type="image/png" href="assets/uploads/logo.png">
+
     <link
         rel="stylesheet"
         href="assets/css/style.css"

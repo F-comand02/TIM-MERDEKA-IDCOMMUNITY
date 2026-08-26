@@ -227,6 +227,8 @@ $aksiIcons = [
     </title>
 
     <link
+
+    <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
         rel="stylesheet"
         href="../assets/css/style.css"
     >

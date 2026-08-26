@@ -40,7 +40,9 @@ require __DIR__ . '/../includes/header.php';
             </div>
 
             <div class="about-panel about-stat-panel about-stat-panel-white">
-                <span class="about-stat-icon" aria-hidden="true">🔥</span>
+                <span class="about-stat-icon" aria-hidden="true">
+                    <img src="../assets/uploads/logo.png" alt="">
+                </span>
                 <strong><?= number_format((int) ($stats['total_aksi'] ?? 0), 0, ',', '.') ?></strong>
                 <small>Aksi Tercatat</small>
             </div>
@@ -130,8 +132,11 @@ require __DIR__ . '/../includes/header.php';
 
         <div class="team-group-card">
             <div class="team-group-image">
-                <!-- Masukkan path foto bersama kalian di src -->
-                <img src="../assets/uploads/foto-bersama.jpg" alt="Foto Bersama Tim Aksi Untuk Negeri">
+                <img
+                    src="<?= $basePath ?>assets/uploads/foto-bersama.jpg"
+                    alt="Foto Bersama Tim Aksi Untuk Negeri"
+                    loading="lazy"
+                >
             </div>
             <div class="team-group-info">
                 <h3>Penggerak Aksi Untuk Negeri</h3>
@@ -149,7 +154,10 @@ require __DIR__ . '/../includes/header.php';
         <div class="cta-content about-cta-content">
             <h2>Ikut bangun negeri, mulai dari langkahmu.</h2>
             <p>Jadilah bagian dari gerakan yang mengubah semangat kemerdekaan menjadi tindakan nyata.</p>
-            <a href="../register.php" class="btn btn-white btn-large">🔥 Mulai Beraksi</a>
+            <a href="../register.php" class="btn btn-white btn-large">
+                <img class="btn-brand-logo" src="../assets/uploads/logo.png" alt="">
+                Mulai Beraksi
+            </a>
         </div>
     </div>
 </section>
@@ -163,7 +171,9 @@ require __DIR__ . '/../includes/header.php';
 </a>
 
 <a href="../register.php" class="floating-cta" aria-label="Gabung sekarang">
-    <span class="floating-cta-icon">🔥</span>
+    <span class="floating-cta-icon">
+        <img src="../assets/uploads/logo.png" alt="">
+    </span>
     <span class="floating-cta-text">Gabung Sekarang</span>
 </a>
 

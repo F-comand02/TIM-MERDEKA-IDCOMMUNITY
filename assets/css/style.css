@@ -16,6 +16,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -29,6 +30,7 @@ body {
         linear-gradient(180deg, #f9f9f9 0%, #f5f5f5 100%);
     color: #171717;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
@@ -232,6 +234,12 @@ a:focus-visible {
 
 .btn-white:hover {
     background: #fff5f5;
+}
+
+.btn-brand-logo {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 .btn-large {
@@ -474,6 +482,10 @@ a:focus-visible {
     border-color: var(--gray-200);
     background: var(--gray-100);
     color: var(--gray-900);
+}
+
+.nav-mobile-logout {
+    display: none;
 }
 
 .nav-toggle {
@@ -2131,6 +2143,12 @@ a:focus-visible {
     color: #ffffff !important;
 }
 
+.about-stat-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
 .about-stat-panel-white .about-stat-icon .ui-icon {
     color: var(--red) !important;
 }
@@ -2691,9 +2709,14 @@ a:focus-visible {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.12);
-    font-size: 15px;
+    background: #ffffff;
     flex-shrink: 0;
+}
+
+.floating-cta-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
 }
 
 .floating-cta-text {
@@ -3099,6 +3122,14 @@ a:focus-visible {
         background: transparent;
     }
 
+    .nav-mobile-logout {
+        display: block;
+        color: var(--red) !important;
+        font-weight: 700;
+        border-top: 1px solid rgba(215, 25, 32, 0.1);
+        margin-top: 4px;
+    }
+
     .nav-menu a::after,
     .nav-dropdown summary::after {
         display: none;
@@ -3173,8 +3204,10 @@ a:focus-visible {
 @media (max-width: 650px) {
 
     .container {
-        width:
-            calc(100% - 28px);
+        width: calc(100% - 28px);
+        max-width: calc(100% - 28px);
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .navbar {
@@ -3232,7 +3265,7 @@ a:focus-visible {
     }
 
     .hero-card {
-        min-height: 410px;
+        min-height: 430px;
 
         transform: none;
     }
@@ -3243,6 +3276,50 @@ a:focus-visible {
 
     .hero-card-content h2 {
         font-size: 34px;
+    }
+
+    .hero-card-top {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        padding: 22px 24px;
+        font-size: 10px;
+    }
+
+    .hero-flag {
+        width: min(190px, 70%);
+        height: auto;
+        aspect-ratio: 190 / 120;
+        margin: 18px auto 24px;
+    }
+
+    .hero-card-content {
+        padding: 8px 24px 90px;
+    }
+
+    .hero-card-content h3 {
+        font-size: 17px;
+    }
+
+    .hero-card-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-card-content p {
+        max-width: 260px;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .hero-card-bottom {
+        padding: 14px 24px;
+    }
+
+    .hero-card-bottom strong {
+        font-size: 21px;
+    }
+
+    .hero-card-bottom span {
+        font-size: 13px;
     }
 
 
@@ -3490,6 +3567,22 @@ button,
     .team-card,
     .contact-card {
         padding: 24px 20px;
+    }
+
+    .team-group-image {
+        min-height: 0;
+        background: #f5f5f5;
+    }
+
+    .team-group-card {
+        grid-template-columns: 1fr;
+    }
+
+    .team-group-image img {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
     }
 
     .about-card h2,

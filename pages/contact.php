@@ -17,6 +17,7 @@ require_once "../config/database.php";
         content="Kontak Aksi Untuk Negeri. Hubungi kami untuk pertanyaan, kolaborasi, dan dukungan komunitas."
     >
     <title>Kontak — Aksi Untuk Negeri</title>
+    <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -152,7 +153,10 @@ require_once "../config/database.php";
         <div class="cta-content about-cta-content">
             <h2>Siap bergerak bersama?</h2>
             <p>Jangan ragu untuk menghubungi kami. Mari kita bangun perubahan yang lebih besar.</p>
-            <a href="../register.php" class="btn btn-white btn-large">🔥 Bergabung Sekarang</a>
+            <a href="../register.php" class="btn btn-white btn-large">
+                <img class="btn-brand-logo" src="../assets/uploads/logo.png" alt="">
+                Bergabung Sekarang
+            </a>
         </div>
     </div>
 </section>
@@ -216,7 +220,9 @@ require_once "../config/database.php";
 </a>
 
 <a href="../register.php" class="floating-cta" aria-label="Gabung sekarang">
-    <span class="floating-cta-icon">🔥</span>
+    <span class="floating-cta-icon">
+        <img src="../assets/uploads/logo.png" alt="">
+    </span>
     <span class="floating-cta-text">Gabung Sekarang</span>
 </a>
 

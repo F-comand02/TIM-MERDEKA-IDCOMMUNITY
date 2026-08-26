@@ -1,17 +1,17 @@
 <?php
 
-$host = getenv('DB_HOST');
-$port = getenv('DB_PORT');
-$database = getenv('DB_DATABASE');
-$user = getenv('DB_USERNAME');
-$password = getenv('DB_PASSWORD');
+$host = getenv('DB_HOST') ?: 'localhost';
+$port = (int)(getenv('DB_PORT') ?: 3306);
+$database = getenv('DB_DATABASE') ?: 'semangat_kemerdekaan';
+$user = getenv('DB_USERNAME') ?: 'root';
+$password = getenv('DB_PASSWORD') ?: '';
 
 $conn = mysqli_connect(
     $host,
     $user,
     $password,
     $database,
-    (int)$port
+    $port
 );
 
 if (!$conn) {

@@ -88,6 +88,8 @@ $totalAksi = array_sum(
         Peta Aksi Indonesia — Aksi Untuk Negeri
     </title>
 
+    <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
+
     <link
         rel="stylesheet"
         href="../assets/css/style.css"

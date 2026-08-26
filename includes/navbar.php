@@ -31,20 +31,23 @@ $isHelp = $currentPage === 'faq.php' || $currentPage === 'contact.php';
             <a href="<?= $basePath ?>pages/progress.php" class="<?= $isProgress ? 'active' : '' ?>" <?= $isProgress ? 'aria-current="page"' : '' ?>>Progress</a>
             <a href="<?= $basePath ?>pages/event.php" class="<?= $isEvent ? 'active' : '' ?>" <?= $isEvent ? 'aria-current="page"' : '' ?>>Event</a>
             <a href="<?= $basePath ?>pages/leaderboard.php" class="<?= $isLeaderboard ? 'active' : '' ?>" <?= $isLeaderboard ? 'aria-current="page"' : '' ?>>Leaderboard</a>
-            <details class="nav-dropdown" <?= $isAbout ? 'open' : '' ?>>
+            <details class="nav-dropdown">
                 <summary class="<?= $isAbout ? 'active' : '' ?>">Tentang <span aria-hidden="true">▾</span></summary>
                 <div class="nav-dropdown-menu">
                     <a href="<?= $basePath ?>pages/about.php" class="<?= $currentPage === 'about.php' ? 'active' : '' ?>">Tentang Kami</a>
                     <a href="<?= $basePath ?>pages/cerita.php" class="<?= $currentPage === 'cerita.php' ? 'active' : '' ?>">Cerita Mereka</a>
                 </div>
             </details>
-            <details class="nav-dropdown" <?= $isHelp ? 'open' : '' ?>>
+            <details class="nav-dropdown">
                 <summary class="<?= $isHelp ? 'active' : '' ?>">Bantuan <span aria-hidden="true">▾</span></summary>
                 <div class="nav-dropdown-menu">
                     <a href="<?= $basePath ?>pages/faq.php" class="<?= $currentPage === 'faq.php' ? 'active' : '' ?>">FAQ</a>
                     <a href="<?= $basePath ?>pages/contact.php" class="<?= $currentPage === 'contact.php' ? 'active' : '' ?>">Kontak</a>
                 </div>
             </details>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="<?= $basePath ?>logout.php" class="nav-mobile-logout">Keluar</a>
+            <?php endif; ?>
         </nav>
         <div class="nav-button">
             <?php if (isset($_SESSION['user_id'])): ?>

@@ -52,6 +52,7 @@ $faqItems = [
         content="FAQ Aksi Untuk Negeri — pertanyaan umum seputar cara bergabung, aksi, komunitas, dan kolaborasi."
     >
     <title>FAQ — Aksi Untuk Negeri</title>
+    <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -196,7 +197,9 @@ $faqItems = [
 </a>
 
 <a href="../register.php" class="floating-cta" aria-label="Gabung sekarang">
-    <span class="floating-cta-icon">🔥</span>
+    <span class="floating-cta-icon">
+        <img src="../assets/uploads/logo.png" alt="">
+    </span>
     <span class="floating-cta-text">Gabung Sekarang</span>
 </a>
 

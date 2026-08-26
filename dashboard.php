@@ -248,6 +248,7 @@ $resultHistory = mysqli_stmt_get_result($stmtHistory);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard — Aksi Untuk Negeri</title>
+    <link rel="icon" type="image/png" href="assets/uploads/logo.png">
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/pages.css">

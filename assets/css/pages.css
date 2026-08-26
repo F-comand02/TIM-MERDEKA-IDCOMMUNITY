@@ -531,6 +531,10 @@
             align-items: start;
         }
 
+        .action-exit-section {
+            margin-bottom: 18px;
+        }
+
         .selected-action {
             position: sticky;
             top: 100px;
@@ -554,8 +558,8 @@
         }
 
         .selected-icon {
-            width: 65px;
-            height: 65px;
+            width: 82px;
+            height: 82px;
 
             display: flex;
             align-items: center;
@@ -566,25 +570,21 @@
             background:
                 rgba(255,255,255,0.12);
 
-            font-size: 30px;
+            color: #ffffff;
         }
 
-        .selected-action .sdg {
-            display: block;
-
-            margin-top: 25px;
-
-            font-size: 10px;
-
-            font-weight: 900;
-
-            letter-spacing: 1px;
-
-            opacity: 0.75;
+        .selected-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.8;
         }
 
         .selected-action h1 {
-            margin-top: 7px;
+                    margin-top: 25px;
 
             font-size: 30px;
 
@@ -604,19 +604,61 @@
 
         .selected-poin {
             display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
             margin-top: 22px;
 
-            padding: 7px 11px;
+            padding: 10px 15px;
 
             border-radius: 999px;
 
-            background:
-                rgba(255,255,255,0.12);
+            background: #ffffff;
+            color: #d71920;
 
-            font-size: 10px;
+            font-size: 16px;
 
             font-weight: 900;
+        }
+
+        .selected-poin svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
+        .selected-poin strong {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .selected-action-exit {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 0;
+            color: #737373;
+            font-size: 12px;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .selected-action-exit:hover {
+            color: #d71920;
+        }
+
+        .selected-action-exit svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
         }
 
         .action-form-card {
@@ -666,6 +708,18 @@
             font-weight: 800;
         }
 
+        .form-label-icon {
+            width: 19px;
+            height: 19px;
+            margin-right: 5px;
+            vertical-align: -5px;
+            fill: none;
+            stroke: #d71920;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
+
         .action-form-group input {
             width: 100%;
 
@@ -712,7 +766,17 @@
         }
 
         .upload-icon {
-            font-size: 35px;
+            color: #d71920;
+        }
+
+        .upload-icon svg {
+            width: 52px;
+            height: 52px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.8;
         }
 
         .upload-box strong {
@@ -789,6 +853,18 @@
 
             font-size: 14px;
         }
+
+                .inline-status-icon {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 5px;
+                    vertical-align: -4px;
+                    fill: none;
+                    stroke: currentColor;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 2.5;
+                }
 
         .success-box p {
             margin-top: 6px;
