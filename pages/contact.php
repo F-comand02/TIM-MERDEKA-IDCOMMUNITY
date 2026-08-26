@@ -18,7 +18,7 @@ require_once "../config/database.php";
     >
     <title>Kontak — Aksi Untuk Negeri</title>
     <link rel="icon" type="image/png" href="../assets/uploads/logo.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>">
 </head>
 
 <body>

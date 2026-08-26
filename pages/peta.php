@@ -97,7 +97,7 @@ $totalAksi = array_sum(
 
     
 
-    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="../assets/css/pages.css?v=<?= filemtime(__DIR__ . '/../assets/css/pages.css') ?>">
 </head>
 
 <body class="map-page">
