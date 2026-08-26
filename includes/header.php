@@ -9,8 +9,8 @@ $pageTitle = $pageTitle ?? 'Aksi Untuk Negeri';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pageTitle) ?></title>
     <link rel="icon" type="image/png" href="<?= $basePath ?>assets/uploads/logo.png">
-    <link rel="stylesheet" href="<?= $basePath ?>assets/css/style.css">
-    <link rel="stylesheet" href="<?= $basePath ?>assets/css/pages.css">
+    <link rel="stylesheet" href="<?= $basePath ?>assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= $basePath ?>assets/css/pages.css?v=<?= filemtime(__DIR__ . '/../assets/css/pages.css') ?>">
 </head>
 <body<?= !empty($bodyClass) ? ' class="' . htmlspecialchars($bodyClass) . '"' : '' ?>>
 <?php require __DIR__ . '/navbar.php'; ?>
