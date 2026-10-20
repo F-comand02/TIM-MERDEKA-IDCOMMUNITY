@@ -7,7 +7,8 @@ WORKDIR /app
 
 COPY . /app
 
-ENV PORT=80
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 EXPOSE 80
 
-CMD ["frankenphp", "run", "--config", "/app/Caddyfile"]
+CMD ["frankenphp", "run", "--config", "/app/Caddyfile.vercel"]
